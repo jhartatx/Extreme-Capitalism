@@ -1,4 +1,4 @@
 -- Drops the todolist if it exists currently --
-DROP DATABASE IF EXISTS todolist;
+DROP DATABASE IF EXISTS c6mw1yoy0se23py8;
 -- Creates the "todolist" database --
-CREATE DATABASE todolist;
+CREATE DATABASE c6mw1yoy0se23py8;
