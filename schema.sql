@@ -1,10 +1,41 @@
 -- Drops the todolist if it exists currently --
-<<<<<<< HEAD
-DROP DATABASE IF EXISTS todolist;
--- Creates the "todolist" database --
-CREATE DATABASE todolist;
-=======
 DROP DATABASE IF EXISTS c6mw1yoy0se23py8;
 -- Creates the "todolist" database --
 CREATE DATABASE c6mw1yoy0se23py8;
->>>>>>> 64abdeab508eef1b95b20812c0879e827e46f8d8
+<<<<<<< HEAD
+=======
+
+
+use c6mw1yoy0se23py8;
+
+CREATE TABLE players(
+user_id INTEGER (1) PRIMARY KEY AUTO_INCREMENT,
+user_name VARCHAR (50) NOT NULL,
+money INTEGER (255),
+is_turn BOOLEAN,
+pos_id INTEGER (2) NOT NULL,
+in_jail INTEGER (1) NOT NULL
+);
+
+
+CREATE TABLE places(
+pos_id INTEGER (2) PRIMARY KEY NOT NULL,
+id_grp INTEGER (1),
+c_owner VARCHAR (50),
+rent_lvl INTEGER (1) NOT NULL,
+name VARCHAR (255) NOT NULL,
+rent INTEGER (255),
+active BOOLEAN
+);
+
+
+CREATE TABLE community(
+com_id INTEGER (2) PRIMARY KEY NOT NULL,
+card_text VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE chance(
+cha_id INTEGER (2) PRIMARY KEY NOT NULL,
+card_text VARCHAR (255) NOT NULL
+);
+>>>>>>> 632d1d06daca16195de0c543066c777ddb0aa785
