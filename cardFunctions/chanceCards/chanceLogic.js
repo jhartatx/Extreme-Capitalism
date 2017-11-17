@@ -1,7 +1,9 @@
 
-function Player(name, positionNumber, money, property, inJail) {
+var bank;
+
+function Player(name, position, money, property, inJail){
   this.name = name;
-  this.position = positionNumber;
+  this.position = position;
   this.money = money;
   this.property = [];
   this.inJail = false;
@@ -9,6 +11,7 @@ function Player(name, positionNumber, money, property, inJail) {
     this.money -= number;
   };
   this.receiveMoney = function(number){
+
     this.money =+ number;
   };
   this.movePlayer = function(number){
