@@ -15,7 +15,9 @@ VALUES("Paul1", 1500, true, 1, 0),
 ("Just Justin", 1500, false, 1, 0);
 
 INSERT INTO places(id_grp, c_owner, rent_lvl, name, rent, active)
-VALUES(1, "bank", 0, "Austin", 100, false),
+VALUES
+
+(1, "bank", 0, "Austin", 100, false),
 (1, "bank", 0, "Taj Mahal", 200, false),
 (1, "bank", 0, "Maldives", 250, false),
 (2, "bank", 0, "Great Wall of China", 300, false);
