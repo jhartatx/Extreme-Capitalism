@@ -1,3 +1,4 @@
+
 var bank;
 
 function Player(name, position, money, property, inJail){
@@ -10,46 +11,40 @@ function Player(name, position, money, property, inJail){
     this.money -= number;
   };
   this.receiveMoney = function(number){
-    this.money += number;
+
+    this.money =+ number;
   };
-  this.movePlayer = function(rollNumber){
-    this.position += position;
+  this.movePlayer = function(number){
+    this.position += rollNumber;
   };
-};
+  //**the go to mail function below may not be necessary depending on how we write the functions to tell players where to go
+  this.goToJail = function(){
+    this.position = 11;
+    this.inJail = true;
+  };
+}
 
-var newPlayer = new Player("justin", 0, 500, "", false);
-
-//console.log("Justin's stats: " + justin.name + justin.position + justin.money + justin.property + justin.inJail);
-
-function payBank(amount, player) {
 
 
-};
 
-function payEach(amount, player){
+var andrew = new Player("Andrew", 0, 1500, [], false);
+console.log("name: " + andrew.name + " | postition number: " +andrew.position + " | property Number: " + andrew.property + " | Total money: "+ andrew.money + " | Jail Status: " + andrew.inJail);
 
-};
 
-function getPaid(amount, player){
 
-};
+function payBank(amount, playerAmount){
+ playerAmount = playerAmount - amount;
+}
+andrew.payBank(50);
 
-function goToGo(){
+function bankPays(amount, playerAmount) {
+  playeAmount = playerAmount + amount;
+}
 
-};
 
-function goToJail(){
 
-};
-
-function goBack(){
-
-};
-
-function goToRail(){
-
-};
-
-function goToService(){
-
-};
+//payBank(50, andrew.money);
+console.log(" ");
+console.log("____________------------_____________-----------------_________________");
+console.log("  ");
+console.log("name: " + andrew.name + " | postition number: " +andrew.position + " | property Number: " + andrew.property + " | Total money: "+ andrew.money + " | Jail Status: " + andrew.inJail);
