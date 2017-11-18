@@ -27,25 +27,25 @@ rent INTEGER (255),
 active BOOLEAN
 );
 
-CREATE TABLE community(
+CREATE TABLE community_cards(
 com_id INTEGER (2) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 card_title VARCHAR (255) NOT NULL,
 card_text TEXT NOT NULL,
 card_value INTEGER (255) DEFAULT NULL
 );
 
-CREATE TABLE chance(
+CREATE TABLE chance_cards(
 cha_id INTEGER (2) PRIMARY KEY AUTO_INCREMENT NOT NULL,
 card_title VARCHAR (255) NOT NULL,
 card_text TEXT NOT NULL,
 card_value INTEGER (255) DEFAULT NULL
 );
 
-INSERT INTO community (card_title, card_text, card_value)
+INSERT INTO community_cards (card_title, card_text, card_value)
 VALUES ("Back Taxes!", "You owe $150 in backtaxes!", 150),
 ("@$<ERROR>!@#!", "ERROR CODE:2010 PAY $100 TO REMOVE VIRUS", 100);
 
-INSERT INTO chance (card_title, card_text, card_value)
+INSERT INTO chance_cards (card_title, card_text, card_value)
 VALUES ("Advance to Go", "Advance to Go. Collect $200", 200),
 ("Surprise Vacation!", "Take your family on a scurprise vacation. Advance to Disney World", 200);
 
