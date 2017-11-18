@@ -1,3 +1,4 @@
+/* ================================================================================= */
 /* General Page Settings */ 
 * {
   box-sizing: border-box;
@@ -17,9 +18,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-
+/* ---------------------------------------------- */
 /* Property Colors */
-
 .dark-purple { background: #5e3577; }
 .light-blue  { background: #d2eaf5; }
 .purple      { background: #b02f7c; }
@@ -29,121 +29,144 @@ h1, h2, h3, h4, h5, h6 {
 .green       { background: #41994e; }
 .dark-blue   { background: #5a6dba; }
 
+/* ================================================================================= */
+/* MAIN LAYOUT --------------------------------------------------------------------- */
+/* table settings */
+.table {
+  padding-left: 50px;
+  padding-right: 50px;
+}
 
-/* Main Layout -------------------------------------------------------- */
-/* Table and Board */
+/* coard settings */
 .board {
   display: grid;
-  grid-template-columns: repeat(11,1fr);
-  grid-template-rows: repeat(11, 1fr);
-  margin: 5%;
-  width: 90%;
-  height: 800px;
-  background: #080808;
-  border: 2px solid #080808;
+  grid-template-columns: 125px repeat(9, 80px) 125px;
+  grid-template-rows: 125px repeat(9, 80px) 125px;
+  grid-gap: 2px;
+  margin: 50px auto;
+  width: 994px;
+  height: 994px;
+  background: black;
+  border: 2px solid black;
 }
 
+/* center grid block with title and card deck */
 .center {
-  background: #fafaf8; /* board color */
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  grid-template-rows: repeat(11, 1fr);
-  grid-column: 2 /11;
+  grid-column: 2 / 11;
   grid-row: 2 / 11;
-  justify-items: center;
+  background:#fafaf8; /* table color */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   align-items: center;
-  border: 2px solid #080808;
 }
 
+/* page game board title */
 .title {
-  grid-column: 5 / 7;
-  grid-row: 3 / 2;
-  font-size: 56px;
+    grid-column: 1 / 9;
+  grid-row: 2;
+  font-size: 70px;
+  font-weight: 400;
+  letter-spacing: 12px;
   text-align:center;
-  letter-spacing: 10px;
-
 }
 
+/* community chest card deck */
 .community-chest-deck {
-  grid-column: 4 ;
-  grid-row: 4;
+  grid-column: 3;
+  grid-row: 3;
+  margin-top:20%;
 }
 
+/* chance card deck */
 .chance-deck {
-  grid-column:8;
-  grid-row: 4;
+  grid-column: 5;
+  grid-row: 3;
+  margin-top:20%;
 }
 
+/* card deck title lable */
 .label {
   text-align: center;
   letter-spacing: 3px;
-  margin-bottom:5%;
+  padding-bottom: 10px;
 }
 
+/* card deck box */
 .deck {
-  border: 2px dashed #080808;
+  border: 2px dashed black;
   width: 180px;
   height: 120px;
 }
 
-
-
+/* ================================================================================= */
+/* ROW ORIENTATION ----------------------------------------------------------------- */
+/* rows */
 .row {
   display: grid;
   grid-gap: 2px;
 }
 
+/* horizontal row */
 .horizontal-row {
-  grid-template-columns: repeat(9, 14.15%);
-  grid-template-rows: 127px;
+  grid-template-columns: repeat(9, 80px);
+  grid-template-rows: 125px;
 }
 
+/* ---------------------------------------------- */
+/* vertical row */
 .vertical-row {
   grid-template-columns: 125px;
-  grid-template-rows: repeat(9, 14.15%);
+  grid-template-rows: repeat(9, 80px);
 }
 
 .vertical-row .container {
-  top: 49%;
+  top: 50%;
   left: 50%;
 }
 
+/* ---------------------------------------------- */
+/* bottom row */
 .bottom-row {
-  grid-column: 2 / 9;
+  grid-column: 2 / 11;
   grid-row: 11;
-  padding-left:2px;
 }
 
+/* ---------------------------------------------- */
+/* left row */
 .left-row {
   grid-column: 1;
-  grid-row: 2 / 9;
+  grid-row: 2 / 11;
 }
 
 .left-row .container {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
+/* ---------------------------------------------- */
+/* top row */
 .top-row {
-  grid-column: 2 / 9;
+  grid-column: 2 / 11;
   grid-row: 1;
 }
 
 .top-row .container {
- transform: rotate(180deg);
- margin-top:3%;
- margin-left:-.5%;
+  transform: rotate(180deg);
 }
 
+/* ---------------------------------------------- */
+/* right row */
 .right-row {
   grid-column: 11;
-  grid-row: 2 / 9;
-}
+  grid-row: 2 / 11;
+} 
 .right-row  .container {
   transform: translate(-50%, -50%) rotate(270deg);
 }
 
-/* */
-
+/* ================================================================================= */
+/* INDIVIDUAL TILE PIECE ----------------------------------------------------------- */
+/* general space settings */
 .space {
   background: #fafaf8; /* board color */
   text-align: center;
@@ -156,62 +179,78 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   transform-origin: center;
   height: 125px;
-  width: 100%;
+  width: 80px;
 }
 
+/* main space name */
 .space .name,
 .space .instructions {
-  padding-left:5%;
-  padding-right:5%;
+  padding-left:15px;
+  padding-right:15px;
 }
 
+/* main space price */
 .space .price {
   font-size: 8px;
   padding-bottom: 5px;
-}
+} 
 
-  
 .space .corner .container {
   justify-content: space-around;
-  height: 125px;
+  height: 100%;
+  width: 100%;
 }
 
 .space.name {
   padding: 0;
 }
 
+/* ---------------------------------------------- */
+/* corner pieces */
+.corner .container {
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
 
+.corner .name {
+  padding: 0;
+}
+
+/* ---------------------------------------------- */
+/* property color bar */
 .property .color-bar {
   height: 25px;
   border-bottom:2px solid black;
-  width:100%;
-
 }
 
 .property .name {
   padding-bottom: 50px;
 }
 
-
+/* ---------------------------------------------- */
+/* rail road */
 .railroad .name {
   padding-top: 10px;
 }
 
 .railroad .drawing {
-  font-size: 45px;
+  font-size: 60px;
   color: #080808;
 }
 
-
+/* ---------------------------------------------- */
+/* utility */
 .utility .name {
   padding-top: 10px;
 }
 
 .utility .drawing {
-  font-size: 55px;
+  font-size: 70px;
 }
 
-
+/* ---------------------------------------------- */
+/* fee */
 .fee .name {
   padding-top: 10px;
   font-size: 14px;
@@ -221,34 +260,35 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 10px;
 }
 
-
-/* Specific Spaces ----------------------------------------------------------- */
-/* Go Corner Piece */
+/* ================================================================================= */
+/* SPECIFIC SPACES ----------------------------------------------------------------- */
+/* go corner piece */
 .go {
   grid-column: 11;
-  grid-row: 11 / 11;
-  position: relative;
-  border-left:2px solid black;
-  border-top: 2px solid black;
+  grid-row: 11 / 12;
+  position: relative;  
 }
 
 .go .container {
   justify-content: flex-start;
   transform: rotate(315deg);
-  padding-top:20%;
 }
 
+/* go instructions */
 .go .instructions {
-  padding: 0 20px;
+  padding: 0 30px;
+  margin-top:10px;
 }
 
+/* "GO" */
 .go .go-word {
-  font-size: 50px;
+  font-size: 60px;
   color: #f50c2b; /* red */
 }
 
+/* go arrow */
 .arrow {
-  font-size: 75px;
+  font-size: 45px;
   color: #f50c2b;
   position: absolute;
   margin-top:-20px;
@@ -256,22 +296,23 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotate(315deg);
 }
 
-/* Jail Corner Piece */
+/* ---------------------------------------------- */
+/* jail (corner piece) */
 .jail {
   grid-column: 1;
-  grid-row: 11 / 11;
+  grid-row: 11 / 12;
   display: grid;
-  grid-template-columns: repeat(9, 12.5px);
-  grid-template-rows: repeat(9, 12.5px);
+  grid-template-columns: repeat(10, 12.5px);
+  grid-template-rows: repeat(10, 12.5px);
   align-items: center;
-
 }
 
+/* jail drawing */
 .jail .drawing {
   grid-column: 4 / 11;
   grid-row: 1 / 8;
-  width: 100%;
-  height: 100%;
+  width: 87px;
+  height: 87px;
   background: #fa811d; /* orange */
   border-bottom: 2px solid #080808;
   border-left: 2px solid #080808;
@@ -297,54 +338,53 @@ h1, h2, h3, h4, h5, h6 {
 
 .jail .name {
   font-size: 14px;
-  padding-right:35%;
-  margin-bottom:-15%;
 }
 
+/* jail window drawing */
 .jail .window {
   display: flex;
   justify-content: space-around;
   align-items: center;
   position: relative;
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   background: #fafaf8;
   border: 2px solid #080808;
-  margin-right:25%;
-  margin-bottom:20%;
 }
 
+/* jail person */
 .jail .person {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  font-size: 35px;
+  font-size: 40px;
 }
 
+/* jail bars */
 .jail .bar {
-  height: 45px;
+  height: 53px;
   width: 2px;
   background: #080808;
 }
 
 
-
-/* Free Parking Corner Piece */
+/* ---------------------------------------------- */
+/* free parking (corner piece) */
 .free-parking {
   grid-column: 1;
-  grid-row: 1 ;
-  border-right:2px solid black;
-  border-bottom:2px solid black;
+  grid-column: 1 / 2;
 }
 
 .free-parking  .container {
   justify-content: center; 
   transform: rotate(135deg);
+  margin-top:7px;
+  margin-left:7px;
 }
 
 .free-parking  .name {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .free-parking  .drawing {
@@ -354,12 +394,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 5px;
 }
 
-/* Go To Jail Corner Piece */
+/* ---------------------------------------------- */
+/* go to jail (corner piece) */
 .go-to-jail {
   grid-column: 11;
-  grid-row: 1;
-  border-left:2px solid black;
-  border-bottom:2px solid black;
+  grid-row: 1 / 1;
 }
 
 .go-to-jail .container {
@@ -368,23 +407,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .go-to-jail .name {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .go-to-jail .drawing {
-  font-size: 50px;
+  font-size: 60px;
   color: #640303;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-/* Chance Piece */
+/* ---------------------------------------------- */
+/* chance piece */
 .chance .container {
   justify-content: center;
 }
 
 .chance .drawing {
-  font-size: 70px;
+  font-size: 90px;
   color: #f50c2b;
 }
 
@@ -392,13 +432,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #5a6dba; /* dark blue */
 }
 
-/* Community Piece Piece */
+/* ---------------------------------------------- */
+/* community chest piece */
 .community-chest .container {
   justify-content: space-around;
 }
 
 .community-chest .drawing {
-  font-size: 45px;
+  font-size: 50px;
   color: #d2eaf5; /* light blue */
 }
 
@@ -406,26 +447,31 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 8px;
 }
 
-/* Electric Company Piece */
+/* ---------------------------------------------- */
+/* electric company piece */
 .electric-company .drawing {
   color: #ffed20;
 }
 
-/* Waterworks Piece */
+/* ---------------------------------------------- */
+/* waterworks piece */
 .waterworks .drawing {
   color: #5a6dba;
 }
 
-/* Income Tax Piece */
+/* ---------------------------------------------- */
+/* income tax piece */
 .income-tax .container {
   justify-content: center;
   align-items: center;
 }
 
+/* income tax piece name */
 .income-tax .name {
   padding-bottom: 5px;
 }
 
+/* tax income diamond */
 .income-tax .diamond {
   width: 5px;
   height: 5px;
@@ -439,7 +485,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 5px;
 }
 
-/* Luxury Tax Piece */
+/* luxury tax piece */
 .luxury-tax .drawing {
   font-size: 50px;
 }
@@ -448,8 +494,9 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 5px;
 }
 
-/* Name Wrap -------------------------------------------------------------- */
-/* Long Name - Wrap */
+/* ================================================================================= */
+/* NAME WRAP ----------------------------------------------------------------------- */
+/* long name - wrap */
 .long-name {
   padding-left: 0 !important;
   padding-right: 0 !important;
