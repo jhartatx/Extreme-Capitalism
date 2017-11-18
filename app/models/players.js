@@ -6,10 +6,11 @@ var Sequelize = require("sequelize");
 // sequelize (lowercase) references my connection to the DB.
 var sequelize = require("../config/connection.js");
 
-// Creates a "Book" model that matches up with DB
+// Creates a "player" model
 var Players = sequelize.define("players", {
 user_id: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    primaryKey: true
   },
   user_name: {
     type: Sequelize.STRING
@@ -31,7 +32,7 @@ user_id: {
 });
 
 // Syncs with DB
-Player.sync();
+Players.sync();
 
 // Makes the Book Model available for other files (will also create a table)
 module.exports = Players;
