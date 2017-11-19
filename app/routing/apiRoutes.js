@@ -1,3 +1,7 @@
+/*==============================================================================
+------------------------------CONNECTIONS---------------------------------------
+===============================================================================*/
+
 var Players = require("../models/players.js");
 var Places = require("../models/places.js");
 var Community = require("../models/community.js");
@@ -24,13 +28,15 @@ module.exports = function(app) {
 
   //pulls information of the current player
   app.put("/playermove", function(req, res){
-    console.log();
+    console.log(req.body);
     Players.update({
-      pos_id: 5
+      pos_id: req.body.move
     },{where:{
         is_turn: true
       }
     }).then(function(results){
+      //property check function
+      //function based on property check
     });
   });
 
@@ -39,7 +45,7 @@ module.exports = function(app) {
   /*============================================================================
   ------------------------------PLACES DATABASE---------------------------------
   =============================================================================*/
-
+  //runs the
 
 
   //localhost:8081/checkplaces pulls up locations on the board
