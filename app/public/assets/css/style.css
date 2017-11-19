@@ -6,8 +6,11 @@
 
 body {
   margin: 0;
+  background-image:url("../images/background.jpg");
   background-position: center;
   background-repeat: repeat;
+  background-attachment:fixed;
+  background-size:100%;
   font-family: 'Raleway', sans-serif;;
   font-size: 8px;
   color: #080808;
@@ -48,6 +51,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 994px;
   background: black;
   border: 2px solid black;
+  box-shadow:0px 0px 50px black;
 }
 
 /* center grid block with title and card deck */
@@ -63,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* page game board title */
 .title {
-    grid-column: 1 / 9;
+  grid-column: 1 / 9;
   grid-row: 2;
   font-size: 70px;
   font-weight: 400;
@@ -71,25 +75,13 @@ h1, h2, h3, h4, h5, h6 {
   text-align:center;
 }
 
-/* community chest card deck */
-.community-chest-deck {
-  grid-column: 3;
-  grid-row: 3;
-  margin-top:20%;
-}
-
-/* chance card deck */
-.chance-deck {
-  grid-column: 5;
-  grid-row: 3;
-  margin-top:20%;
-}
-
+/* ---------------------------------------------- */
 /* card deck title lable */
 .label {
   text-align: center;
   letter-spacing: 3px;
-  padding-bottom: 10px;
+  padding: 10px;
+
 }
 
 /* card deck box */
@@ -97,8 +89,121 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px dashed black;
   width: 180px;
   height: 120px;
+  background-color:#DFF1E5;
 }
 
+/* ---------------------------------------------- */
+/* community chest card deck */
+.community-chest-deck {
+  grid-column: 3;
+  grid-row: 3;
+  margin-top:20%;
+}
+
+/* community chest card image */
+.community-chest-deck img{
+  width:40%;
+  margin:1% 28%;
+}
+
+/* ---------------------------------------------- */
+/* chance card deck */
+.chance-deck {
+  grid-column: 5;
+  grid-row: 3;
+  margin-top:20%;
+} 
+
+/* chance card deck image */
+.chance-deck img{
+  width:20%;
+  margin:1% 40%;
+}
+
+/* ---------------------------------------------- */
+/* community chest card and chance card BUTTON */
+.community-chest-btn, .chance-btn{
+  background:#257EC2;
+  color:white;
+  border: 1px solid #257EC2;
+  padding:10px 15px;
+  width:80%;
+  margin:10% 10%;
+  box-shadow: -4px 5px 20px #dbdbdb;
+  transition:.3s ease-in-out;
+}
+
+.community-chest-btn:hover, .chance-btn:hover{
+  background:none;
+  border: 1px solid #257EC2;
+  color:#257EC2;
+  box-shadow: -4px 10px 10px #dbdbdb;
+  transition:.3s ease-in-out;
+}
+
+/* ---------------------------------------------- */
+/* game dice */
+.dice {
+  grid-column: 3;
+  grid-row: 4;
+  margin-top:5%;
+}
+
+.dice-btn{
+  background:none;
+  color:black;
+  border: 1px solid black;
+  padding:10px 15px;
+  width:80%;
+  margin:10% 10%;
+  box-shadow: -4px 5px 20px #dbdbdb;
+  transition:.3s ease-in-out;
+}
+
+.dice-btn:hover{
+  background:none;
+  border: 1px solid #257EC2;
+  color:#257EC2;
+  box-shadow: -4px 10px 10px #dbdbdb;
+  transition:.3s ease-in-out;
+}
+
+.dice-div {
+  width: 170px;
+  height: 70px;
+}
+
+#dice-1, #dice-2{
+  border:3px solid black;
+  width:50px;
+  float:left;
+  height: 50px;
+  border-radius:5px;
+  box-shadow: -5px 10px 15px #dbdbdb;
+}
+
+#dice-1{
+ margin:5% 5% 5% 18%
+}
+
+#dice-2{
+  margin:5%;
+}
+
+.dot{
+  content:'';
+  width:12px;
+  height:12px;
+  background-color:black;
+  border:3px solid black;
+  border-radius:50%;
+  margin-left:37%;
+  margin-top:15%
+}
+
+#dice-2 .dot{
+  margin-top:34%
+}
 /* ================================================================================= */
 /* ROW ORIENTATION ----------------------------------------------------------------- */
 /* rows */
