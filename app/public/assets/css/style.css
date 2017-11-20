@@ -469,7 +469,7 @@ h1, h2, h3, h4, h5, h6 {
 /* jail bars */
 .jail .bar {
   height: 53px;
-  width: 2px;
+  width: 3px;
   background: #080808;
 }
 
