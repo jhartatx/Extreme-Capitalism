@@ -12,7 +12,7 @@ body {
   background-attachment:fixed;
   background-size:100%;
   font-family: 'Raleway', sans-serif;;
-  font-size: 8px;
+  font-size: 4px;
   color: #080808;
   text-transform: uppercase;
 }
@@ -32,25 +32,102 @@ h1, h2, h3, h4, h5, h6 {
 .green       { background: #41994e; }
 .dark-blue   { background: #5a6dba; }
 
+
+
 /* ================================================================================= */
-/* MAIN LAYOUT --------------------------------------------------------------------- */
+/* GAME RULES ---------------------------------------------------------------------- */
+/* info button settings */
+#info-btn{
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 50px;
+  border:2px solid white;
+  background:none;
+  margin:3%;
+  color:white;
+  position:relative;
+  padding:3px 7px;
+  transition: .4s ease-in-out;
+  font-size: 25px;
+  float
+}
+
+#info-btn:hover{
+  transition: .4s ease-in-out;
+  box-shadow:0 0 15px black;
+}
+
+/* ---------------------------------------------- */
+/* modal settings */
+.modal {
+  display: none;
+  position: fixed; 
+  z-index: 20; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin:0; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* odal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; 
+  padding: 5%;
+  border: 1px solid white;
+  width: 90%;
+  font-size:14px;
+  text-transform: none;
+}
+
+.modal-content p{
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  margin:-3% -2%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+/* ================================================================================= */
+/* MAIN LAYOUT BOARD GAME ---------------------------------------------------------- */
 /* table settings */
+
 .table {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-top:-5%;
 }
 
 /* coard settings */
 .board {
   display: grid;
-  grid-template-columns: 125px repeat(9, 80px) 125px;
-  grid-template-rows: 125px repeat(9, 80px) 125px;
-  grid-gap: 2px;
-  margin: 50px auto;
-  width: 994px;
-  height: 994px;
+  grid-template-columns: 65px repeat(9, 41.6px) 65px;
+  grid-template-rows: 65px repeat(9, 41.6px) 65px;
+  grid-gap: 1px;
+  margin: 2% auto;
+  width: 516.88px;
+  height: 516.88px;
   background: black;
-  border: 2px solid black;
+  border: 1px solid black;
   box-shadow:0px 0px 50px black;
 }
 
@@ -69,8 +146,8 @@ h1, h2, h3, h4, h5, h6 {
 .title {
   grid-column: 1 / 9;
   grid-row: 2;
-  font-size: 70px;
-  font-weight: 400;
+  margin-top:5%;
+  font-size: 30px;
   letter-spacing: 12px;
   text-align:center;
 }
@@ -79,17 +156,16 @@ h1, h2, h3, h4, h5, h6 {
 /* card deck title lable */
 .label {
   text-align: center;
-  letter-spacing: 3px;
-  padding: 10px;
+  letter-spacing: 2px;
+  padding: 5px;
 
 }
 
 /* card deck box */
 .deck {
-  border: 2px dashed black;
-  width: 180px;
-  height: 120px;
-  background-color:#DFF1E5;
+  border: 1.3px dashed black;
+  width: 100px;
+  height:60px;
 }
 
 /* ---------------------------------------------- */
@@ -97,54 +173,38 @@ h1, h2, h3, h4, h5, h6 {
 .community-chest-deck {
   grid-column: 3;
   grid-row: 3;
-  margin-top:20%;
+  margin-top:10%;
+  margin-left:50px;
 }
 
 /* community chest card image */
-.community-chest-deck img{
-  width:40%;
-  margin:1% 28%;
+.community-chest-deck .drawing {
+  font-size: 25px;
+  margin-left:35%;
+  color: #d2eaf5; /* light blue */
 }
 
 /* ---------------------------------------------- */
 /* chance card deck */
 .chance-deck {
-  grid-column: 5;
+  grid-column: 4;
   grid-row: 3;
-  margin-top:20%;
+  margin-top:8%;
+  margin-left:20px;
 } 
 
 /* chance card deck image */
-.chance-deck img{
-  width:20%;
-  margin:1% 40%;
-}
-
-/* ---------------------------------------------- */
-/* community chest card and chance card BUTTON */
-.community-chest-btn, .chance-btn{
-  background:#257EC2;
-  color:white;
-  border: 1px solid #257EC2;
-  padding:10px 15px;
-  width:80%;
-  margin:10% 10%;
-  box-shadow: -4px 5px 20px #dbdbdb;
-  transition:.3s ease-in-out;
-}
-
-.community-chest-btn:hover, .chance-btn:hover{
-  background:none;
-  border: 1px solid #257EC2;
-  color:#257EC2;
-  box-shadow: -4px 10px 10px #dbdbdb;
-  transition:.3s ease-in-out;
+.chance-deck .drawing {
+  font-size: 38px;
+  margin-left:37%;
+  margin-top:-3px;
+  color: #5a6dba;
 }
 
 /* ---------------------------------------------- */
 /* game dice */
 .dice {
-  grid-column: 3;
+  grid-column: 4;
   grid-row: 4;
   margin-top:5%;
 }
@@ -153,9 +213,10 @@ h1, h2, h3, h4, h5, h6 {
   background:none;
   color:black;
   border: 1px solid black;
-  padding:10px 15px;
-  width:80%;
-  margin:10% 10%;
+  padding:5px 10px;
+  width:50%;
+  font-size:8px;
+  margin:2% 16%;
   box-shadow: -4px 5px 20px #dbdbdb;
   transition:.3s ease-in-out;
 }
@@ -174,10 +235,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #dice-1, #dice-2{
-  border:3px solid black;
-  width:50px;
+  border:1px solid black;
+  width:30px;
   float:left;
-  height: 50px;
+  height: 30px;
   border-radius:5px;
   box-shadow: -5px 10px 15px #dbdbdb;
 }
@@ -192,8 +253,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .dot{
   content:'';
-  width:12px;
-  height:12px;
+  width:6px;
+  height:6px;
   background-color:black;
   border:3px solid black;
   border-radius:50%;
@@ -209,20 +270,20 @@ h1, h2, h3, h4, h5, h6 {
 /* rows */
 .row {
   display: grid;
-  grid-gap: 2px;
+  grid-gap: 1px;
 }
 
 /* horizontal row */
 .horizontal-row {
-  grid-template-columns: repeat(9, 80px);
-  grid-template-rows: 125px;
+  grid-template-columns: repeat(9, 41.6px);
+  grid-template-rows: 65px;
 }
 
 /* ---------------------------------------------- */
 /* vertical row */
 .vertical-row {
-  grid-template-columns: 125px;
-  grid-template-rows: repeat(9, 80px);
+  grid-template-columns: 65px;
+  grid-template-rows: repeat(9, 41.6px);
 }
 
 .vertical-row .container {
@@ -283,20 +344,20 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   position: relative;
   transform-origin: center;
-  height: 125px;
-  width: 80px;
+  height: 65px;
+  width: 41.6px;
 }
 
 /* main space name */
 .space .name,
 .space .instructions {
-  padding-left:15px;
-  padding-right:15px;
+  padding-left:5px;
+  padding-right:5px;
 }
 
 /* main space price */
 .space .price {
-  font-size: 8px;
+  font-size: 5px;
   padding-bottom: 5px;
 } 
 
@@ -325,44 +386,44 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------------------------------------------- */
 /* property color bar */
 .property .color-bar {
-  height: 25px;
-  border-bottom:2px solid black;
+  height: 14px;
+  border-bottom:1px solid black;
 }
 
 .property .name {
-  padding-bottom: 50px;
+  padding-bottom: 22px;
 }
 
 /* ---------------------------------------------- */
 /* rail road */
 .railroad .name {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .railroad .drawing {
-  font-size: 60px;
+  font-size: 25px;
   color: #080808;
 }
 
 /* ---------------------------------------------- */
 /* utility */
 .utility .name {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .utility .drawing {
-  font-size: 70px;
+  font-size: 25px;
 }
 
 /* ---------------------------------------------- */
 /* fee */
 .fee .name {
-  padding-top: 10px;
-  font-size: 14px;
+  padding-top: 5px;
+  font-size: 8px;
 }
 
 .fee .instructions {
-  font-size: 10px;
+  font-size: 6px;
 }
 
 /* ================================================================================= */
@@ -381,23 +442,25 @@ h1, h2, h3, h4, h5, h6 {
 
 /* go instructions */
 .go .instructions {
-  padding: 0 30px;
-  margin-top:10px;
+  width:90%;
+  padding: 5px 5px;
+  margin-top:4px;
+  margin-left:5%;
 }
 
 /* "GO" */
 .go .go-word {
-  font-size: 60px;
+  font-size: 25px;
   color: #f50c2b; /* red */
 }
 
 /* go arrow */
 .arrow {
-  font-size: 45px;
+  font-size: 15px;
   color: #f50c2b;
   position: absolute;
-  margin-top:-20px;
-  margin-left:40px;
+  margin-top:-15px;
+  margin-left:20px;
   transform: rotate(315deg);
 }
 
@@ -407,8 +470,8 @@ h1, h2, h3, h4, h5, h6 {
   grid-column: 1;
   grid-row: 11 / 12;
   display: grid;
-  grid-template-columns: repeat(10, 12.5px);
-  grid-template-rows: repeat(10, 12.5px);
+  grid-template-columns: repeat(10, 6.4px);
+  grid-template-rows: repeat(10, 6.3px);
   align-items: center;
 }
 
@@ -416,22 +479,23 @@ h1, h2, h3, h4, h5, h6 {
 .jail .drawing {
   grid-column: 4 / 11;
   grid-row: 1 / 8;
-  width: 87px;
-  height: 87px;
+  width: 46px;
+  border-top:1px splid black;
+  height: 46px;
   background: #fa811d; /* orange */
-  border-bottom: 2px solid #080808;
-  border-left: 2px solid #080808;
+  border-bottom: 1px solid #080808;
+  border-left: 1px solid #080808;
 }
 
 .jail .just {
   grid-column: 3;
-  grid-row: 4;
+  grid-row: 3;
   transform: rotate(90deg);
   padding-top: 5px;
 }
 
 .jail .visiting {
-  grid-column: 6;
+  grid-column: 5;
   grid-row: 8;
   padding-top: 5px;
 }
@@ -442,7 +506,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .jail .name {
-  font-size: 14px;
+  font-size: 8px;
 }
 
 /* jail window drawing */
@@ -451,10 +515,10 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-around;
   align-items: center;
   position: relative;
-  width: 55px;
-  height: 55px;
+  width: 25px;
+  height: 25px;
   background: #fafaf8;
-  border: 2px solid #080808;
+  border: 1px solid #080808;
 }
 
 /* jail person */
@@ -463,13 +527,13 @@ h1, h2, h3, h4, h5, h6 {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  font-size: 40px;
+  font-size: 20px;
 }
 
 /* jail bars */
 .jail .bar {
-  height: 53px;
-  width: 3px;
+  height: 25px;
+  width: 1px;
   background: #080808;
 }
 
@@ -484,16 +548,16 @@ h1, h2, h3, h4, h5, h6 {
 .free-parking  .container {
   justify-content: center; 
   transform: rotate(135deg);
-  margin-top:7px;
-  margin-left:7px;
+  margin-left:4px;
+  margin-top:4px;
 }
 
 .free-parking  .name {
-  font-size: 16px;
+  font-size: 8px;
 }
 
 .free-parking  .drawing {
-  font-size: 50px;
+  font-size: 25px;
   color: #f50c2b;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -512,11 +576,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .go-to-jail .name {
-  font-size: 16px;
+  font-size: 8px;
 }
 
 .go-to-jail .drawing {
-  font-size: 60px;
+  font-size: 30px;
   color: #640303;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -529,7 +593,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .chance .drawing {
-  font-size: 90px;
+  font-size: 40px;
   color: #f50c2b;
 }
 
@@ -544,12 +608,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .community-chest .drawing {
-  font-size: 50px;
+  font-size: 25px;
   color: #d2eaf5; /* light blue */
 }
 
 .community-chest .instructions {
-  font-size: 8px;
+  font-size: 4px;
 }
 
 /* ---------------------------------------------- */
@@ -592,7 +656,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* luxury tax piece */
 .luxury-tax .drawing {
-  font-size: 50px;
+  font-size: 20px;
 }
 
 .luxury-tax .instructions {

@@ -42,14 +42,23 @@ function rolldice() {
         if(dbl%3==0){
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
-          
         }
         //Now reroll the dice, but if you hit 3 doubles in a row, you get message go to jail.
 
     }
 };
-
 //dice button onclick
 $(".dice-btn").click(function(){
   rolldice();
 });
+
+// display and hide modal content for user instructions
+$("#info-btn").click(function (){
+  $("#myModal").show(300);
+});
+
+$(".close").click (function(){
+  $("#myModal").hide(300);
+});
+
+// 
