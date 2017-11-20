@@ -26,6 +26,17 @@ module.exports = function(app) {
   });
 
 
+  app.get("/checkactiveplayer", function(req, res) {
+    Players.findAll({
+      where:{
+          is_turn: true
+        }
+    }).then(function(results) {
+      res.json(results);
+      // console.log(res.json(results));
+    });
+  });
+
   //pulls information of the current player
   app.put("/playermove", function(req, res){
     console.log(req.body);
@@ -105,7 +116,7 @@ module.exports = function(app) {
   });
 
 //sends message to db requesting a chance card based on the cha_id of the card
-  app.get("/pull/community", function(req, res){
+  app.get("/pullcommunity", function(req, res){
     Community.findAll({
       where:{
         //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
