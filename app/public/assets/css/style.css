@@ -236,37 +236,14 @@ h1, h2, h3, h4, h5, h6 {
   height: 70px;
 }
 
-#dice-1, #dice-2{
-  border:1px solid black;
-  width:30px;
-  float:left;
-  height: 30px;
-  border-radius:5px;
-  box-shadow: -5px 10px 15px #dbdbdb;
-}
-
 #dice-1{
- margin:5% 5% 5% 18%
+
 }
 
 #dice-2{
-  margin:5%;
+
 }
 
-.dot{
-  content:'';
-  width:6px;
-  height:6px;
-  background-color:black;
-  border:3px solid black;
-  border-radius:50%;
-  margin-left:37%;
-  margin-top:15%
-}
-
-#dice-2 .dot{
-  margin-top:34%
-}
 /* ================================================================================= */
 /* ROW ORIENTATION ----------------------------------------------------------------- */
 /* rows */
