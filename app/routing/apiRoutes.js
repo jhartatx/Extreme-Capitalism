@@ -32,7 +32,7 @@ module.exports = function(app) {
           is_turn: true
         }
     }).then(function(results) {
-      res.json(results[0].pos_id);
+      res.json(results);
       // console.log(res.json(results));
     });
   });
