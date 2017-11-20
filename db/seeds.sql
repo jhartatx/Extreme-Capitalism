@@ -43,8 +43,50 @@ VALUES("Paul1", 1500, true, 1, 0),
 
 INSERT INTO places(id_grp, c_owner, rent_lvl, name, rent, active)
 VALUES
+--BOTTOM ROW OF BOARD--
+(NULL, "bank", 0, "GO", NULL, false),
+(1, "bank", 0, "Purple1", 60, false),
+(NULL, "bank", 0, "Community Chest1", NULL, false),
+(1, "bank", 0, "Purple2", 60, False),
+(NULL, "bank", "Income Tax", NULL, false),
+(9, "bank", 0, "RR1", 200, False),
+(2, "bank", 0, "Blue1", 100, false),
+(NULL, "bank", "Chance1", NULL, false),
+(2, "bank", "Blue2", 100, false),
+(2, "bank", "Blue3", 120, false),
 
-(1, "bank", 0, "Austin", 100, false),
-(1, "bank", 0, "Taj Mahal", 200, false),
-(1, "bank", 0, "Maldives", 250, false),
-(2, "bank", 0, "Great Wall of China", 300, false);
+--LEFT ROW OF BOARD--
+(NULL, "bank", 0, "JAIL", NULL, false),
+(3, "bank", 0, "Pink1", 140, false),
+(10, "bank", 0, "Utility1", 150, false),
+(3, "bank", 0, "Pink2", 140, false),
+(3, "bank", 0, "Pink3", 160, false),
+(9, "bank", 0, "RR2", 200, False),
+(4, "bank", 0, "Orange1", 180, false),
+(NULL, "bank", 0, "Community Chest2", NULL, false),
+(4, "bank", 0, "Orange2", 180, false),
+(4, "bank", 0, "Orange3", 200, false),
+
+--TOP ROW OF BOARD--
+(NULL, "bank", 0, "FREE PARKING", NULL, false),
+(5, "bank", 0, "Red1", 220, false),
+(NULL, "bank", 0, "Chance2", NULL, false),
+(5, "bank", 0, "Red2", 220, false),
+(5, "bank", 0, "Red3", 240, false),
+(9, "bank", 0, "RR3", 200, false),
+(6, "bank", 0, "Yellow1", 260, false),
+(6, "bank", 0, "Yellow2", 260, false),
+(10, "bank", 0, "Utility2", 150, false),
+(6, "bank", 0, "Yellow3", 280, false);
+
+--RIGHT ROW OF BOARD--
+(NULL, "bank", 0, "GO TO JAIL", NULL, false),
+(7, "bank", 0, "Green1", NULL, false),
+(7, "bank", 0, "Green2", NULL, false),
+(NULL, "bank", 0, "Community Chest3", NULL, false),
+(7, "bank", 0, "Green3", NULL, false),
+(9, "bank", 0, "RR4", 200, false),
+(NULL, "bank", 0, "Chance3", NULL, false),
+(8, "bank", 0, "Awesome1", 350, false),
+(NULL, "bank", 0, "Luxury Tax", 75, false),
+(8, "bank", 0, "Awesome2", 400, false);

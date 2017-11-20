@@ -5,7 +5,12 @@ $.get("/checkplayers").then(function(response){
   console.log(response);
   //do something
   });
-
+$.get("/pullchance").then(function(response){
+  console.log(response);
+});
+$.get("/pullcommunity").then(function(response){
+  console.log(response);
+});
 
 
 
