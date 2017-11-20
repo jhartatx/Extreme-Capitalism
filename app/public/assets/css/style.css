@@ -47,14 +47,15 @@ h1, h2, h3, h4, h5, h6 {
   color:white;
   position:relative;
   padding:3px 7px;
-  transition: .4s ease-in-out;
+  transition: .3s ease-in-out;
   font-size: 25px;
   float
 }
 
 #info-btn:hover{
-  transition: .4s ease-in-out;
+  transition: .3s ease-in-out;
   box-shadow:0 0 15px black;
+  cursor:pointer;
 }
 
 /* ---------------------------------------------- */
@@ -227,6 +228,7 @@ h1, h2, h3, h4, h5, h6 {
   color:#257EC2;
   box-shadow: -4px 10px 10px #dbdbdb;
   transition:.3s ease-in-out;
+   cursor:pointer;
 }
 
 .dice-div {
