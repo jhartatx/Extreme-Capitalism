@@ -21,7 +21,7 @@ var move = 2;
       data: {move:move}
     }).done(console.log("finished"));
 }
-updateMove(move);
+// updateMove(move);
 
 //dice
 var dbl = 0;
@@ -33,8 +33,9 @@ function rolldice() {
     console.log("dice2: " + y);
     var diceTotal = x + y;
     console.log("dice total: " + diceTotal);
-    $('.dice1').attr('id', "dice" + x);
-    $('.dice2').attr('id', "dice" + y);
+    updateMove(diceTotal);
+    // $('#dice-1').attr('id', "dice" + x);
+    // $('#dice-2').attr('id', "dice" + y);
     if (x == y) { //<----checking if there is a double
 
         dbl++; //<---increment double count
@@ -61,4 +62,4 @@ $(".close").click (function(){
   $("#myModal").hide(300);
 });
 
-// 
+//
