@@ -42,7 +42,7 @@ function rolldice() {
     console.log("dice2: " + y);
 
     var diceTotal = x + y;
-    var newPos = currentLoc + diceTotal;
+    var newPos = currentLocation + diceTotal;
     if(newPos > 40){
       newPos -= 40;
     }
@@ -51,7 +51,8 @@ function rolldice() {
     console.log("dice total: " + diceTotal);
     $('.dice1').attr('id', "dice" + x);
     $('.dice2').attr('id', "dice" + y);
-    if (x == y) { //<----checking if there is a double
+
+
 
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
@@ -65,12 +66,12 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPos, x, y);
-
-}});
-
+});
 // socket listener
+}
 
 
+//socket listener logic.
 socket.on('roll', function(newPos, x, y){
   console.log(newPos);
   if(x == 1){
@@ -110,7 +111,28 @@ socket.on('roll', function(newPos, x, y){
     $("#dice-2 img").attr('src', "./assets/images/dice-sides/side6.jpg");
   }
 });
+
+
+function updateActivePlayer(active) {
+  console.log(active);
+  $.ajax({
+    method: "PUT",
+    url: "/changeactive",
+    data: {newActive:active}
+  }).done(console.log("finished"));
 }
+//TURN THE CURRENT ACTIVE PLAYER
+function endTurn(){
+  var activePlayer;
+  $.get("/checkactiveplayer").then(function(response){
+    activePlayer = response[0].user_id + 1;
+    console.log(activePlayer);
+    //do something
+  }).then(function (){
+    updateActivePlayer(activePlayer);
+  });
+}
+endTurn();
 
 //dice button onclick
 $(".dice-btn").click(function(){
