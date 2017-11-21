@@ -1,5 +1,6 @@
 
-
+var socket = io();
+console.log("connected");
 /*get request sent to api routes requesting */
 $.get("/checkplayers").then(function(response){
   console.log(response);
@@ -29,6 +30,7 @@ $.get("/pullcommunity").then(function(response){
 //dice
 var dbl = 0;
 function rolldice() {
+  console.log("rolled");
   $.get("/checkactiveplayer").then(function(response){
     currentLocation = response[0].pos_id;
     console.log("current location: "+ currentLocation);
@@ -40,9 +42,16 @@ function rolldice() {
     console.log("dice2: " + y);
 
     var diceTotal = x + y;
-    var newPosition = currentLocation + diceTotal;
-
-    updateMove(newPosition);
+    var newPos = currentLoc + diceTotal;
+    if(newPos > 40){
+      newPos -= 40;
+    }
+    console.log("newPos"+newPos);
+    updateMove(newPos);
+    console.log("dice total: " + diceTotal);
+    $('.dice1').attr('id', "dice" + x);
+    $('.dice2').attr('id', "dice" + y);
+    if (x == y) { //<----checking if there is a double
 
 //assign dice photo to dice role and display
     if(x == 1){
@@ -93,10 +102,22 @@ function rolldice() {
           dbl = 0;
         }
     }
+    //trying to get this to emit to everyone
+    socket.emit("roll", newPos);
       });
 }
+
+// socket listener
+
+
+socket.on('roll', function(newPos){
+  console.log(newPos);
+});
+
+
 //dice button onclick
 $(".dice-btn").click(function(){
+  console.log("clicked");
   rolldice();
 });
 
