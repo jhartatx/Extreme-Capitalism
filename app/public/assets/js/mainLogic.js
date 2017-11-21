@@ -47,11 +47,15 @@ function rolldice() {
 
     }
 };
+
+// DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
   rolldice();
 });
 
+
+// INFO BUTTON ON CLICK FUNCTION ============================================
 // display and hide modal content for user instructions
 $("#info-btn").click(function (){
   $("#myModal").show(300);
@@ -61,4 +65,20 @@ $(".close").click (function(){
   $("#myModal").hide(300);
 });
 
-// 
+
+// USER BUTTON ON CLICK FUNCTION ============================================
+// user info panel drop down
+var userInfo = $(".user-btn");
+var i;
+
+for (i = 0; i < userInfo.length; i++) {
+  userInfo[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
