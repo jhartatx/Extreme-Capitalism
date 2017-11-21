@@ -50,16 +50,23 @@ module.exports = function(app) {
       //function based on property check
     });
   });
-  app.put("/changeactive", function(req, res){
-    console.log(req.body);
+
+  app.put("/activeon", function(req, res){
     Players.update({
       is_turn: true
     },{where:{
-        pos_id: req.body.newActive
+        user_id: req.body.current
       }
-    }).then(function(results){
-      //property check function
-      //function based on property check
+    });
+
+
+
+    app.put("activeoff",function(req, res){
+      Players.update({
+        is_turn: false
+      },{where:{
+          user_id: req.body.previous
+        }
     });
   });
 
@@ -140,4 +147,5 @@ module.exports = function(app) {
     });
   });
 
+});
 };

@@ -42,12 +42,12 @@ function rolldice() {
     console.log("dice2: " + y);
 
     var diceTotal = x + y;
-    var newPos = currentLocation + diceTotal;
-    if(newPos > 40){
-      newPos -= 40;
+    var newPosition = currentLocation + diceTotal;
+    if(newPosition > 40){
+      newPosition -= 40;
     }
-    console.log("newPos"+newPos);
-    updateMove(newPos);
+    console.log("newPos"+newPosition);
+    updateMove(newPosition);
     console.log("dice total: " + diceTotal);
     $('.dice1').attr('id', "dice" + x);
     $('.dice2').attr('id', "dice" + y);
@@ -65,15 +65,15 @@ function rolldice() {
 
     }
     //trying to get this to emit to everyone
-    socket.emit("roll", newPos, x, y);
+    socket.emit("roll", newPosition, x, y);
 });
 // socket listener
 }
 
 
 //socket listener logic.
-socket.on('roll', function(newPos, x, y){
-  console.log(newPos);
+socket.on('roll', function(newPosition, x, y){
+  console.log(newPosition);
   if(x == 1){
     $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
   }
@@ -113,31 +113,48 @@ socket.on('roll', function(newPos, x, y){
 });
 
 
-function updateActivePlayer(active) {
-  console.log(active);
+function activeOff(current) {
+  console.log('');
   $.ajax({
     method: "PUT",
-    url: "/changeactive",
-    data: {newActive:active}
+    url: "/activeon",
+    data: {current:current}
+  }).done(console.log("finished"));
+}
+
+function activeOn(previous) {
+  console.log('');
+  $.ajax({
+    method: "PUT",
+    url: "/activeoff",
+    data: {previous:previous}
   }).done(console.log("finished"));
 }
 //TURN THE CURRENT ACTIVE PLAYER
 function endTurn(){
   var activePlayer;
+  var previousPlayer;
   $.get("/checkactiveplayer").then(function(response){
+    console.log(response);
+    previousPlayer = response[0].user_id;
     activePlayer = response[0].user_id + 1;
-    console.log(activePlayer);
+    // var status = {
+    //   activePlayer:activePlayer,
+    //   previousPlayer:response[0].user_id
+    // };
     //do something
   }).then(function (){
-    updateActivePlayer(activePlayer);
+    activeOff(previousPlayer);
+  }).then(function(){
+    activeOn(activePlayer);
   });
 }
-endTurn();
 
 //dice button onclick
 $(".dice-btn").click(function(){
   console.log("clicked");
   rolldice();
+  endTurn();
 });
 
 // display and hide modal content for user instructions
