@@ -1,5 +1,5 @@
 /* ================================================================================= */
-/* General Page Settings */ 
+/* General Page Settings */
 * {
   box-sizing: border-box;
 }
@@ -62,22 +62,22 @@ h1, h2, h3, h4, h5, h6 {
 /* modal settings */
 .modal {
   display: none;
-  position: fixed; 
-  z-index: 20; 
+  position: fixed;
+  z-index: 20;
   left: 0;
   top: 0;
   width: 100%;
-  margin:0; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
+  margin:0;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
 
 /* odal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto; 
+  margin: 5% auto;
   padding: 5%;
   border: 1px solid white;
   width: 90%;
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
   grid-row: 3;
   margin-top:8%;
   margin-left:20px;
-} 
+}
 
 /* chance card deck image */
 .chance-deck .drawing {
@@ -236,12 +236,13 @@ h1, h2, h3, h4, h5, h6 {
   height: 70px;
 }
 
-#dice-1{
+#dice-1 img{
+  width: 10%;
 
 }
 
-#dice-2{
-
+#dice-2 img{
+  width: 10%;
 }
 
 /* ================================================================================= */
@@ -304,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 .right-row {
   grid-column: 11;
   grid-row: 2 / 11;
-} 
+}
 .right-row  .container {
   transform: translate(-50%, -50%) rotate(270deg);
 }
@@ -338,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
 .space .price {
   font-size: 5px;
   padding-bottom: 5px;
-} 
+}
 
 .space .corner .container {
   justify-content: space-around;
@@ -411,7 +412,7 @@ h1, h2, h3, h4, h5, h6 {
 .go {
   grid-column: 11;
   grid-row: 11 / 12;
-  position: relative;  
+  position: relative;
 }
 
 .go .container {
@@ -525,7 +526,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .free-parking  .container {
-  justify-content: center; 
+  justify-content: center;
   transform: rotate(135deg);
   margin-left:4px;
   margin-top:4px;
