@@ -42,7 +42,7 @@ function rolldice() {
     console.log("dice2: " + y);
 
     var diceTotal = x + y;
-    var newPos = currentLoc + diceTotal;
+    var newPos = currentLocation + diceTotal;
     if(newPos > 40){
       newPos -= 40;
     }
@@ -51,45 +51,8 @@ function rolldice() {
     console.log("dice total: " + diceTotal);
     $('.dice1').attr('id', "dice" + x);
     $('.dice2').attr('id', "dice" + y);
-    if (x == y) { //<----checking if there is a double
 
-//assign dice photo to dice role and display
-    if(x == 1){
-      $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
-    }
-    if(x == 2){
-      $("#dice-1 img").attr('src', "./assets/images/dice-sides/side2.jpg");
-    }
-    if(x == 3){
-      $("#dice-1 img").attr('src', "./assets/images/dice-sides/side3.jpg");
-    }
-    if(x == 4){
-      $("#dice-1 img").attr('src', "./assets/images/dice-sides/side4.jpg");
-    }
-    if(x == 5){
-      $("#dice-1 img").attr('src', "./assets/images/dice-sides/side5.jpg");
-    }
-    if(x == 6){
-      $("#dice-1 img").attr('src', "./assets/images/dice-sides/side6.jpg");
-    }
-    if(y == 1){
-      $("#dice-2 img").attr('src', "./assets/images/dice-sides/side1.jpg");
-    }
-    if(y == 2){
-      $("#dice-2 img").attr('src', "./assets/images/dice-sides/side2.jpg");
-    }
-    if(y == 3){
-      $("#dice-2 img").attr('src', "./assets/images/dice-sides/side3.jpg");
-    }
-    if(y == 4){
-      $("#dice-2 img").attr('src', "./assets/images/dice-sides/side4.jpg");
-    }
-    if(y == 5){
-      $("#dice-2 img").attr('src', "./assets/images/dice-sides/side5.jpg");
-    }
-    if(y == 6){
-      $("#dice-2 img").attr('src', "./assets/images/dice-sides/side6.jpg");
-    }
+
 
 
     // $('#dice-1').attr('id', "dice" + x);
@@ -103,17 +66,74 @@ function rolldice() {
         }
     }
     //trying to get this to emit to everyone
-    socket.emit("roll", newPos);
-      });
+    socket.emit("roll", newPos, x, y);
+});
+// socket listener
 }
 
-// socket listener
 
-
-socket.on('roll', function(newPos){
+//socket listener logic.
+socket.on('roll', function(newPos, x, y){
   console.log(newPos);
+  if(x == 1){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
+  }
+  if(x == 2){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side2.jpg");
+  }
+  if(x == 3){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side3.jpg");
+  }
+  if(x == 4){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side4.jpg");
+  }
+  if(x == 5){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side5.jpg");
+  }
+  if(x == 6){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side6.jpg");
+  }
+  if(y == 1){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side1.jpg");
+  }
+  if(y == 2){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side2.jpg");
+  }
+  if(y == 3){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side3.jpg");
+  }
+  if(y == 4){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side4.jpg");
+  }
+  if(y == 5){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side5.jpg");
+  }
+  if(y == 6){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side6.jpg");
+  }
 });
 
+
+function updateActivePlayer(active) {
+  console.log(active);
+  $.ajax({
+    method: "PUT",
+    url: "/changeactive",
+    data: {newActive:active}
+  }).done(console.log("finished"));
+}
+//TURN THE CURRENT ACTIVE PLAYER
+function endTurn(){
+  var activePlayer;
+  $.get("/checkactiveplayer").then(function(response){
+    activePlayer = response[0].user_id + 1;
+    console.log(activePlayer);
+    //do something
+  }).then(function (){
+    updateActivePlayer(activePlayer);
+  });
+}
+endTurn();
 
 //dice button onclick
 $(".dice-btn").click(function(){

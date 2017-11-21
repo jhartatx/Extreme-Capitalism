@@ -50,6 +50,18 @@ module.exports = function(app) {
       //function based on property check
     });
   });
+  app.put("/changeactive", function(req, res){
+    console.log(req.body);
+    Players.update({
+      is_turn: true
+    },{where:{
+        pos_id: req.body.newActive
+      }
+    }).then(function(results){
+      //property check function
+      //function based on property check
+    });
+  });
 
 
 

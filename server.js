@@ -66,8 +66,8 @@ io.on('connection', function(socket){
       console.log("___________DISCONNECTED____________________________");
     console.log('user disconnected');
   });
-  socket.on('roll', function(newPos){
-    io.emit('roll', newPos);
+  socket.on('roll', function(newPos, x, y){
+    io.emit('roll', newPos, x, y);
   });
 });
 
