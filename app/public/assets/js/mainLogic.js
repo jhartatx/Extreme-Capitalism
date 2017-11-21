@@ -30,7 +30,6 @@ $.get("/pullcommunity").then(function(response){
 //dice
 var dbl = 0;
 function rolldice() {
-  console.log("rolled");
   $.get("/checkactiveplayer").then(function(response){
     currentLocation = response[0].pos_id;
     console.log("current location: "+ currentLocation);
@@ -42,15 +41,14 @@ function rolldice() {
     console.log("dice2: " + y);
 
     var diceTotal = x + y;
-    var newPos = currentLocation + diceTotal;
-    if(newPos > 40){
-      newPos -= 40;
+    var newPosition = currentLocation + diceTotal;
+    if(newPosition > 40){
+      newPosition -= 40;
     }
-    console.log("newPos"+newPos);
-    updateMove(newPos);
+    console.log("newPosition: "+newPosition);
+    updateMove(newPosition);
     console.log("dice total: " + diceTotal);
-    $('.dice1').attr('id', "dice" + x);
-    $('.dice2').attr('id', "dice" + y);
+    
 
 
 
@@ -61,19 +59,19 @@ function rolldice() {
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
-        //Now reroll the dice, but if you hit 3 doubles in a row, you get message go to jail.
+        
 
     }
     //trying to get this to emit to everyone
-    socket.emit("roll", newPos, x, y);
+    socket.emit("roll", newPosition, x, y);
 });
 // socket listener
 }
 
 
 //socket listener logic.
-socket.on('roll', function(newPos, x, y){
-  console.log(newPos);
+socket.on('roll', function(newPosition, x, y){
+  console.log(newPosition);
   if(x == 1){
     $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
   }
@@ -134,14 +132,14 @@ function endTurn(){
 }
 endTurn();
 
-};
+
 
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
-// $(".dice-btn").click(function(){
-//   console.log("clicked");
-//   rolldice();
-// });
+$(".dice-btn").click(function(){
+  console.log("clicked");
+  rolldice();
+});
 
 
 // INFO BUTTON ON CLICK FUNCTION ============================================

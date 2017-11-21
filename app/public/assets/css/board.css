@@ -158,11 +158,14 @@ h1, h2, h3, h4, h5, h6 {
   height: 70px;
 }
 
-#dice-1{
-
+#dice-1 img{
+  width:20%;
+  float:left;
+  margin-left:20%;
 }
 
-#dice-2{
+#dice-2 img{
+  width:20%;
 
 }
 
