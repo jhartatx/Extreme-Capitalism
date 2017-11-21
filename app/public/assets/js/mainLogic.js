@@ -7,42 +7,36 @@ $.get("/checkplayers").then(function(response){
   //do something
   });
 $.get("/pullchance").then(function(response){
-  console.log(response);
+  var randomNumber = Math.floor(Math.random() * (response.length)+1);
+  var randomChance = response[randomNumber-1];
+  console.log(randomChance);
 });
 $.get("/pullcommunity").then(function(response){
-  console.log(response);
+  var randomNumber = Math.floor(Math.random() * (response.length)+1);
+  var randomCommunity = response[randomNumber-1];
+  console.log(randomCommunity);
 });
-
-
-
-
-/*AJAX UPDATE pases the move variable through and sends information to the api routes. triggering the database the upset targeting the current player with the "active" boolean set to true*/
-//this variable should be set to the players new location via a function
 
 //this function will update the players new location
   function updateMove(move) {
     console.log(move);
     $.ajax({
-      //type of request sent
       method: "PUT",
-      //target of request in apiroutes
       url: "/playermove",
-      //the move variable gets passed through here
       data: {move:move}
     }).done(console.log("finished"));
 }
-
 
 //dice
 var dbl = 0;
 function rolldice() {
   console.log("rolled");
   $.get("/checkactiveplayer").then(function(response){
-    currentLoc = response[0].pos_id;
-    console.log("current "+ currentLoc);
+    currentLocation = response[0].pos_id;
+    console.log("current location: "+ currentLocation);
 
-    var x = Math.floor(Math.random() * ((6 - 1) + 1) + 1);
-    var y = Math.floor(Math.random() * ((6 - 1) + 1) + 1);
+    var x = Math.floor(Math.random() * 6 + 1);
+    var y = Math.floor(Math.random() * 6 + 1);
 
     console.log("dice1: " + x);
     console.log("dice2: " + y);
@@ -59,6 +53,7 @@ function rolldice() {
     $('.dice2').attr('id', "dice" + y);
     if (x == y) { //<----checking if there is a double
 
+    if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
         alert("Doubles! Roll again. Double count: " + dbl);
         if(dbl%3==0){
@@ -95,5 +90,3 @@ $("#info-btn").click(function (){
 $(".close").click (function(){
   $("#myModal").hide(300);
 });
-
-//

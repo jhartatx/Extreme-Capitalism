@@ -87,10 +87,10 @@ module.exports = function(app) {
   //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullchance", function(req, res){
     Chance.findAll({
-      where:{
+      // where:{
         //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
-        cha_id: 2
-      },
+      //   cha_id: 2
+      // },
     }).then(function(results){
       //card functionality will then occur in here based on cha_id
       res.json(results);
