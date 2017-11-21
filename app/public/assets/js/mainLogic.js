@@ -6,14 +6,15 @@ $.get("/checkplayers").then(function(response){
   //do something
   });
 $.get("/pullchance").then(function(response){
-  console.log(response);
+  var randomNumber = Math.floor(Math.random() * (response.length)+1);
+  var randomChance = response[randomNumber-1];
+  console.log(randomChance);
 });
 $.get("/pullcommunity").then(function(response){
-  console.log(response);
+  var randomNumber = Math.floor(Math.random() * (response.length)+1);
+  var randomCommunity = response[randomNumber-1];
+  console.log(randomCommunity);
 });
-
-/*AJAX UPDATE pases the move variable through and sends information to the api routes. triggering the database the upset targeting the current player with the "active" boolean set to true*/
-//this variable should be set to the players new location via a function
 
 //this function will update the players new location
   function updateMove(move) {
@@ -24,7 +25,6 @@ $.get("/pullcommunity").then(function(response){
       data: {move:move}
     }).done(console.log("finished"));
 }
-
 
 //dice
 var dbl = 0;
@@ -82,19 +82,16 @@ function rolldice() {
       $("#dice-2 img").attr('src', "./assets/images/dice-sides/side6.jpg");
     }
 
-
-    // $('#dice-1').attr('id', "dice" + x);
-    // $('#dice-2').attr('id', "dice" + y);
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
         alert("Doubles! Roll again. Double count: " + dbl);
         if(dbl%3==0){
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
-        }
-    }
+        };
+    };
       });
-}
+};
 //dice button onclick
 $(".dice-btn").click(function(){
   rolldice();
