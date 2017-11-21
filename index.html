@@ -164,7 +164,7 @@
                   service.nearbySearch({
                       location: austin,
                       radius: 5000,
-                      type: ['movie_theater']       
+                      type: ['store']       
                   }, callbackEntertainment);   
             }
 
@@ -180,7 +180,7 @@
                         }  
                      }
 
-                  }else{
+                  }else{   //if a town doesn't have movie theaters it will theme police
                      arr.push('St. James Place');
                      arr.push('Tennessee Avenue');
                      arr.push('New York Avenue');
@@ -194,6 +194,11 @@
                   }, callbackRestaurant);   
 
             }
+
+
+
+
+
 
             function callbackRestaurant(results, status) {
               if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
@@ -235,9 +240,12 @@
                      }
 
                   }else{         //This needs to look for liquor stores instead
-                     arr.push('Atlantic Avenue');
-                     arr.push('Ventnor Avenue');
-                     arr.push('Marvin Gardens');
+                     var service = new google.maps.places.PlacesService(map);
+                     service.nearbySearch({
+                         location: austin,
+                         radius: 5000,
+                         type: ['liquor_store']       
+                     }, callbackBeerStore);   
                   }
 
                   var service = new google.maps.places.PlacesService(map);
@@ -246,6 +254,25 @@
                       radius: 5000,
                       type: ['gym']       
                   }, callbackGym);   
+
+            }
+
+            function callbackBeerStore(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+               }else{      
+                  arr.push('Pacific Avenue');
+                  arr.push('North Carolina Avenue');
+                  arr.push('Pennsylvania Avenue');
+               }
 
             }
 
@@ -376,6 +403,8 @@
                   }
                   //======================================
                   //======================================
+
+                  //BEFORE POOPING OUT ARRAY TO THE NEXT PERSON CHECK IT'S THE CORRECT SIZE
 
             }
 
