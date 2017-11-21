@@ -71,10 +71,46 @@ function rolldice() {
 // socket listener
 
 
-socket.on('roll', function(newPos){
+socket.on('roll', function(newPos, x, y){
   console.log(newPos);
+  if(x == 1){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
+  }
+  if(x == 2){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side2.jpg");
+  }
+  if(x == 3){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side3.jpg");
+  }
+  if(x == 4){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side4.jpg");
+  }
+  if(x == 5){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side5.jpg");
+  }
+  if(x == 6){
+    $("#dice-1 img").attr('src', "./assets/images/dice-sides/side6.jpg");
+  }
+  if(y == 1){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side1.jpg");
+  }
+  if(y == 2){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side2.jpg");
+  }
+  if(y == 3){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side3.jpg");
+  }
+  if(y == 4){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side4.jpg");
+  }
+  if(y == 5){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side5.jpg");
+  }
+  if(y == 6){
+    $("#dice-2 img").attr('src', "./assets/images/dice-sides/side6.jpg");
+  }
 });
-
+}
 
 //dice button onclick
 $(".dice-btn").click(function(){
