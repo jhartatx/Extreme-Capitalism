@@ -1,5 +1,6 @@
 
-
+var socket = io();
+console.log("connected");
 /*get request sent to api routes requesting */
 $.get("/checkplayers").then(function(response){
   console.log(response);
@@ -35,6 +36,7 @@ $.get("/pullcommunity").then(function(response){
 //dice
 var dbl = 0;
 function rolldice() {
+  console.log("rolled");
   $.get("/checkactiveplayer").then(function(response){
     currentLoc = response[0].pos_id;
     console.log("current "+ currentLoc);
@@ -47,7 +49,9 @@ function rolldice() {
 
     var diceTotal = x + y;
     var newPos = currentLoc + diceTotal;
-
+    if(newPos > 40){
+      newPos -= 40;
+    }
     console.log("newPos"+newPos);
     updateMove(newPos);
     console.log("dice total: " + diceTotal);
@@ -64,10 +68,22 @@ function rolldice() {
         //Now reroll the dice, but if you hit 3 doubles in a row, you get message go to jail.
 
     }
+    //trying to get this to emit to everyone
+    socket.emit("roll", newPos);
       });
 }
+
+// socket listener
+
+
+socket.on('roll', function(newPos){
+  console.log(newPos);
+});
+
+
 //dice button onclick
 $(".dice-btn").click(function(){
+  console.log("clicked");
   rolldice();
 });
 
