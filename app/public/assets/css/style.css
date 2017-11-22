@@ -1,11 +1,11 @@
 /* PIECES & POSITIONS ---------------------------------------------------------------------- */
 /* board posiion settings */
 .row{
-  margin-top:1.5%;
+  margin-top:4%;
 }
 
-.right-col-md{
-
+.left-col-md{
+  margin-left:-2%;
 }
 
  
@@ -42,7 +42,7 @@
 /* =================================================== */
 /* POSITIONING BUTTONS */
 #game-rules-btn{
-  margin-left:35%;
+  margin-left:10%;
 }
 
 #info-btn{
@@ -142,21 +142,33 @@
   cursor:pointer;
 }
 
+
 /* ------------------------------------------ */
 /* + & x icon for user-btn information */
 .user-btn i{
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
   transform: rotate(45deg);
+  margin-left:2%;
 }
 
-/* addition user-btn styling */
-#user-information-left i { margin-left:3%; }
+user-btn i.active{
+  animation: spin .3s ease-in-out linear;
+}
 
-#user-information-right .user-btn { text-align:left; }
-#user-information-right .pnl { text-align:left; }
-#user-information-right i { margin-right:3%; }
-#user-information-right ul { margin-left:-17.5%; }
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(45deg); }
+  100% { -moz-transform: rotate(0deg); }
+}
+@-webkit-keyframes spin {
+  0%{ -webkit-transform: rotate(45deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+@keyframes spin {
+  0% {transform:rotate(45deg);}
+  100% {transform:rotate(0deg);}
+}
+
 
 /* ---------------------------------------------------------- */
 /* Style the accordion panel. Note: hidden by default */
@@ -176,22 +188,25 @@
 .game-piece-title{
   padding-top:15px;
   font-size:14px;
+  margin-bottom:5px;
 }
 
 .game-piece img{
-  margin-top:-15px;
-  width:18%;
+  margin-left:78%;
+  margin-bottom:5px;
+  width:19%;
+
 }
 
 /* ------------------------------------------------------- */
 /* game money */
 .user-money-title{
-  margin-top:-5px;
+  margin-top:10px;
   font-size:14px;
 }
 
 .user-money{
-  margin-top:-15px;
+  margin-bottom:5px;
   font-size:14px;
   color:green;
   text-transform:none;
@@ -200,7 +215,8 @@
 /* ------------------------------------------------------- */
 /* game piece */
 .user-property-title{
-  margin-top:-5px;
+  margin-top:10px;
+  margin-bottom:20px;
   font-size:14px;
 }
 
@@ -215,23 +231,35 @@
 
 /* ------------------------------------------------------- */
 /* trade and mortgage button */
-.mortgage-btn, .trade-btn{
+.user-property-btn {
   background:none;
-  border: 1px solid black;
-  font-size:10px;
-  border-radius:50%;
-  padding:2% 4%;
-  margin:3px;
-  transition:.24s ease-in-out;
+  border: 1px solid #444;
+  font-size:14px;
+  width:120%;
+  padding:5% 10%;
+  margin-left:-20%;
+  margin-top:5%;
+  transition:.4s ease-in-out;
 }
 
-.mortgage-btn:hover, .trade-btn:hover{
-  border: 1px solid green;
-  color:green;
-  transition:.24s ease-in-out;
+.user-property-btn:hover {
+  border: 1px solid #444;
+  color:white;
+  background:#444;
+  transition:.4s ease-in-out;
 }
 
+.property-ave{
+  border: 1px solid #d2eaf5;
+  background:#d2eaf5;
+  color:white
+}
 
+.property-railroad{
+  border: 1px solid #cfcfcf;
+  background:#cfcfcf;
+  color:white
+}
 
 /* ================================================================================= */
 /* GAME RULES ---------------------------------------------------------------------- */
