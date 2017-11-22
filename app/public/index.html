@@ -28,7 +28,7 @@
    		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 	<!-- JavaScript & jQuery & Firebase Links -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> -->
+		<!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> --> 
 
 	</head>
 
@@ -622,53 +622,122 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--  ============================================================================== -->
 <!-- =============================================================================== -->
+<!-- SECTION CONTAINING ALL BOTTOM NAVBAR BUTTONS -->
+<section id="bottom-nav">
 <!-- Info Modal Button And Content-->
-<section>
-	<!-- info button -->
-	<button id="info-btn" type="button"> <i class="fa fa-info-circle" aria-hidden="true"></i></button>
+	<div>
+		<!-- info button -->
+		<button id="game-rules-btn" type="button"> <i class="fa fa-registered" aria-hidden="true"></i></button>
 
-	<div id="myModal" class="modal">
-	<!-- Modal content -->
-	  	<div class="modal-content">
-	    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-	    <!-- Game Rules -->
-	    	<h1> Monopoly Game Rules: </h1>
-	    	<p>Monopoly is a game played by two to eight players. Like many games, each person has his own game token that he moves on the board. The goal of this game is to be the last person with most money at the end of the game.
-	    	<br>
-	    	<ol>
-	    		<li> Each player rolls the dice to see who goes first. The person who rolls the largest number goes first. Everyone starts on the space that says, “Go”. </li>
-	    		<br>
-	    		<li> Whenever you land on a property that no one owns, you can buy it from the bank. If you do not want to buy it the Banker sells it at an auction. (Not everyone plays by the auction rule). </li>
-	    		<br>
-	    		<li> All of the prices for the land are on the board. Once you own the land, players must pay a rent if they are waiting on your land. </li>
-	    		<br>
-	    		<li> If you land on a Chance or a Community Chest card, you must do what it says. For example, “Go to Jail, Directly to Jail”, “Advance to Go” or “Go to Pall Mall”. </li>
-	    		<br>
-	    		<li> If you roll doubles (the same number on both dice) you get to roll again. If you roll doubles three times in a row you must go to jail. </li>
-	    		<br>
-	    		<li> When you pass go, you collect £200 from the bank. (Unless you have to jail). </li>
-	    		<br>
-	    		<li> “Free Parking” is an area that is free to be in. If you land in the area you do not have to worry about paying for anything.</li>
-	    		<br>
-	    		<li> Jail- There are three ways to get into jail 1) you land on the space labeled “Go to Jail” 2). You pick a Chance or Community Chest card that says “Go to Jail” or 3) you roll doubles three times. And there are also three ways to get out of jail: 1) you get three turns to roll a double, if you do not roll a double in the three turns you must pay the fine 2) using a “Get out of Jail Free” card (can be found in Chance or Community Chest), 3) pay a fine of £50. </li>
-	    		<br>
-	    		<li> Once you own all of one color, you can start to build houses. Houses make the land more costly and every time you add a house the price goes up more. Once there are four houses on each land you can get a hotel (there can only be one hotel on any land). </li>
-	    		<br>
-	    		<li> You can sell any land to another play (at any cost). But if you have houses or a hotel you must sell them back to the bank before you can sell the land. One house at a time. </li>
-	    		<br>
-	    		<li> If you are going to mortgage land to the bank, you have to sell houses or hotels back first. You can find the price of the mortgage on the back of the deed card. If the land is mortgage rent cannot be collected. To unmortgage land, you have to pay the mortgage plus 10% interest. For example if the mortgage were £100, 10% would be £10. So you would have to pay £110. </li>
-	    		<br>
-	    		<li> Bankruptcy. If you are bankrupt, you cannot pay someone rent or cannot pay a tax. If you declare bankruptcy you are done with the game. </li>
-	    	</ol>
+		<div id="game-rules-modal" class="modal">
+		<!-- Modal content -->
+		  	<div class="modal-content">
+		    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+		    <!-- Game Rules -->
+		    	<h1> Monopoly: </h1>
+		    	<p>Monopoly is a game played by two to four players. Like many games, each person has his own game token that he moves on the board. The goal of this game is to be the last person with most money at the end of the game.
+		    	<br>
+		    	<h2> Rules of The Game: </h2>
+		    	<ol>
+		    		<li> Each player rolls the dice to see who goes first. The person who rolls the largest number goes first. Everyone starts on the space that says, “Go”. </li>
+		    		<br>
+		    		<li> Whenever you land on a property that no one owns, you can buy it from the bank. If you do not want to buy it the Banker sells it at an auction. (Not everyone plays by the auction rule). </li>
+		    		<br>
+		    		<li> All of the prices for the land are on the board. Once you own the land, players must pay a rent if they are waiting on your land. </li>
+		    		<br>
+		    		<li> If you land on a Chance or a Community Chest card, you must do what it says. For example, “Go to Jail, Directly to Jail”, “Advance to Go” or “Go to Pall Mall”. </li>
+		    		<br>
+		    		<li> If you roll doubles (the same number on both dice) you get to roll again. If you roll doubles three times in a row you must go to jail. </li>
+		    		<br>
+		    		<li> When you pass go, you collect £200 from the bank. (Unless you have to jail). </li>
+		    		<br>
+		    		<li> “Free Parking” is an area that is free to be in. If you land in the area you do not have to worry about paying for anything.</li>
+		    		<br>
+		    		<li> Jail- There are three ways to get into jail 1) you land on the space labeled “Go to Jail” 2). You pick a Chance or Community Chest card that says “Go to Jail” or 3) you roll doubles three times. And there are also three ways to get out of jail: 1) you get three turns to roll a double, if you do not roll a double in the three turns you must pay the fine 2) using a “Get out of Jail Free” card (can be found in Chance or Community Chest), 3) pay a fine of £50. </li>
+		    		<br>
+		    		<li> Once you own all of one color, you can start to build houses. Houses make the land more costly and every time you add a house the price goes up more. Once there are four houses on each land you can get a hotel (there can only be one hotel on any land). </li>
+		    		<br>
+		    		<li> You can sell any land to another play (at any cost). But if you have houses or a hotel you must sell them back to the bank before you can sell the land. One house at a time. </li>
+		    		<br>
+		    		<li> If you are going to mortgage land to the bank, you have to sell houses or hotels back first. You can find the price of the mortgage on the back of the deed card. If the land is mortgage rent cannot be collected. To unmortgage land, you have to pay the mortgage plus 10% interest. For example if the mortgage were £100, 10% would be £10. So you would have to pay £110. </li>
+		    		<br>
+		    		<li> Bankruptcy. If you are bankrupt, you cannot pay someone rent or cannot pay a tax. If you declare bankruptcy you are done with the game. </li>
+		    	</ol>
 
-	  	</div>
+		  	</div>
+		</div>
 	</div>
-</section>
+
+<!-- =============================================================================== -->
+<!-- Info Modal Button And Content-->
+	<div>
+		<!-- info button -->
+		<button id="info-btn" type="button"> <i class="fa fa-info-circle" aria-hidden="true"></i></button>
+
+		<div id="info-modal" class="modal">
+		<!-- Modal content -->
+		  	<div class="modal-content">
+		    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+		    <!-- Game Rules -->
+		    	<h1> INFO: How To Play  </h1>
+		    	<p> more information goes here </p>
+
+		  	</div>
+		</div>
+	</div>
+
+<!-- =============================================================================== -->
+<!-- Info Modal Button And Content-->
+	<div>
+		<!-- info button -->
+		<button id="auction-house-btn" type="button"> <i class="fa fa-university" aria-hidden="true"></i></button>
+
+		<div id="auction-house-modal" class="modal">
+		<!-- Modal content -->
+		  	<div class="modal-content">
+		    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+		    <!-- Game Rules -->
+		    	<h1> Property Auction House: </h1>
+		    	<p> more info on the auction house will go here </p>
+
+		  	</div>
+		</div>
+	</div>
 
 
-<!-- chatbox ============================================================================== -->
+<!-- =============================================================================== -->
+<!-- auction house button  -->
+		<button id="end-game-btn" type="button"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+
+
+</section> <!-- end nav bar section -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- chatbox ======================================================================= -->
 <!--  ============================================================================== -->
 <div id="live-chat">
 
@@ -722,6 +791,20 @@
 		</form>
 	</div> <!-- end chat -->
 </div> <!-- end live-chat -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--  ============================================================================== -->

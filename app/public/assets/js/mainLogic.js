@@ -178,13 +178,24 @@ $(".dice-btn").click(function(){
 
 
 // INFO BUTTON ON CLICK FUNCTION ============================================
-// display and hide modal content for user instructions
+// display and hide modal content for USER INSTRUCTIONS
 $("#info-btn").click(function (){
-  $("#myModal").show(300);
+  $("#info-modal").show(300);
 });
 
+// display and hide modal content for GAME RULES
+$("#game-rules-btn").click(function (){
+  $("#game-rules-modal").show(300);
+});
+
+// display and hide modal content for PROPERTY AUCTION HOUSE
+$("#auction-house-btn").click(function (){
+  $("#auction-house-modal").show(300);
+});
+
+// close my modal (universal)
 $(".close").click (function(){
-  $("#myModal").hide(300);
+  $(".modal").hide(300);
 });
 
 // CHATBOX FUNCTIONALITY ====================================================
