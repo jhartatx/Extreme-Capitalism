@@ -1,11 +1,13 @@
 
 var socket = io();
-console.log("connected");
+var activePlayer;
+var previousPlayer;
+var p1Info;
+var p2Info;
+var p3Info;
+var p4Info;
 /*get request sent to api routes requesting */
-$.get("/checkplayers").then(function(response){
-  console.log(response);
-  //do something
-  });
+
 $.get("/pullchance").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomChance = response[randomNumber-1];
@@ -17,9 +19,13 @@ $.get("/pullcommunity").then(function(response){
   console.log(randomCommunity);
 });
 
+/*==============================================================================
+-------------------------Move the Active Player---------------------------------
+===============================================================================*/
+
 //this function will update the players new location
   function updateMove(move) {
-    console.log(move);
+    // console.log(move);
     $.ajax({
       method: "PUT",
       url: "/playermove",
@@ -32,27 +38,22 @@ var dbl = 0;
 function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
     currentLocation = response[0].pos_id;
-    console.log("current location: "+ currentLocation);
+    // console.log("current location: "+ currentLocation);
 
     var x = Math.floor(Math.random() * 6 + 1);
     var y = Math.floor(Math.random() * 6 + 1);
 
-    console.log("dice1: " + x);
-    console.log("dice2: " + y);
+    // console.log("dice1: " + x);
+    // console.log("dice2: " + y);
 
     var diceTotal = x + y;
     var newPosition = currentLocation + diceTotal;
     if(newPosition > 40){
       newPosition -= 40;
     }
-<<<<<<< HEAD
-    console.log("newPos"+newPosition);
-=======
-    console.log("newPosition: "+newPosition);
->>>>>>> ffa6d31067652fba7450d6bc0d45bcb9c34c3910
+    // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
-    console.log("dice total: " + diceTotal);
-    
+
 
 
 
@@ -63,7 +64,7 @@ function rolldice() {
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
-        
+
 
     }
     //trying to get this to emit to everyone
@@ -114,45 +115,55 @@ socket.on('roll', function(newPosition, x, y){
   }
 });
 
+/*==============================================================================
+-------------------------Change the Active Player-------------------------------
+===============================================================================*/
+//Invoke this function when you want the next player to be "active"
+function endTurn(){
+  $.get("/checkactiveplayer").then(function(response){
+    console.log(response);
+    console.log(response[0]);
+    previousPlayer = response[0].user_id;
+    activePlayer = response[0].user_id + 1;
+    if(activePlayer === 5){
+      activePlayer = 1;
+    }
+  }).then(function (){
+    console.log("turning current player off");
+    activeOn(activePlayer);
+    activeOff(previousPlayer);
 
-function activeOff(current) {
-  console.log('');
+  });
+}
+function activeOn(current) {
+  console.log(current);
   $.ajax({
     method: "PUT",
     url: "/activeon",
     data: {current:current}
-  }).done(console.log("finished"));
+  });
 }
 
-function activeOn(previous) {
-  console.log('');
+function activeOff(previous) {
+  console.log(previous);
   $.ajax({
     method: "PUT",
     url: "/activeoff",
     data: {previous:previous}
-  }).done(console.log("finished"));
-}
-//TURN THE CURRENT ACTIVE PLAYER
-function endTurn(){
-  var activePlayer;
-  var previousPlayer;
-  $.get("/checkactiveplayer").then(function(response){
-    console.log(response);
-    previousPlayer = response[0].user_id;
-    activePlayer = response[0].user_id + 1;
-    // var status = {
-    //   activePlayer:activePlayer,
-    //   previousPlayer:response[0].user_id
-    // };
-    //do something
-  }).then(function (){
-    activeOff(previousPlayer);
-  }).then(function(){
-    activeOn(activePlayer);
   });
 }
-
-
+/*==============================================================================
+-------------------------Pull Players Information-------------------------------
+===============================================================================*/
+//this function sets each variable as an object equal to the players db info
+function playersInfo(){
+  $.get("/checkplayers").then(function(response){
+    p1Info = response[0];
+    p2Info = response[1];
+    p3Info = response[2];
+    p4Info = response[3];
+  });
+}
 
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
@@ -187,7 +198,6 @@ for (i = 0; i < userInfo.length; i++) {
       panel.style.maxHeight = null;
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  }
+    }
+  };
 }
-
