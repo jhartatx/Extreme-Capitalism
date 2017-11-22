@@ -30,7 +30,6 @@ $.get("/pullcommunity").then(function(response){
 //dice
 var dbl = 0;
 function rolldice() {
-  console.log("rolled");
   $.get("/checkactiveplayer").then(function(response){
     currentLocation = response[0].pos_id;
     console.log("current location: "+ currentLocation);
@@ -46,11 +45,10 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-    console.log("newPos"+newPosition);
+    console.log("newPosition: "+newPosition);
     updateMove(newPosition);
     console.log("dice total: " + diceTotal);
-    $('.dice1').attr('id', "dice" + x);
-    $('.dice2').attr('id', "dice" + y);
+
 
 
 
@@ -61,7 +59,7 @@ function rolldice() {
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
-        //Now reroll the dice, but if you hit 3 doubles in a row, you get message go to jail.
+
 
     }
     //trying to get this to emit to everyone
@@ -150,6 +148,9 @@ function endTurn(){
   });
 }
 
+
+
+// DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
   console.log("clicked");
@@ -157,6 +158,8 @@ $(".dice-btn").click(function(){
   endTurn();
 });
 
+
+// INFO BUTTON ON CLICK FUNCTION ============================================
 // display and hide modal content for user instructions
 $("#info-btn").click(function (){
   $("#myModal").show(300);
@@ -165,3 +168,21 @@ $("#info-btn").click(function (){
 $(".close").click (function(){
   $("#myModal").hide(300);
 });
+
+
+// USER BUTTON ON CLICK FUNCTION ============================================
+// user info panel drop down
+var userInfo = $(".user-btn");
+var i;
+
+for (i = 0; i < userInfo.length; i++) {
+  userInfo[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  };
+}
