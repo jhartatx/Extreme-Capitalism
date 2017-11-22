@@ -6,6 +6,8 @@
 
 	<!-- Bootstrap Css Link -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!-- CHATBOX CSS LINK -->
+	<link rel="stylesheet" type="text/css" href="assets/css/chat.css">
 	<!-- BOARD CSS Stylesheet Link -->
 		<link rel="stylesheet" type="text/css" href="assets/css/board.css">
 	<!-- MAIN CSS Stylesheet Links -->
@@ -41,7 +43,7 @@
 <!-- user info - left sectin 3 -->
 
     <div class="col-md-3 left-col-md">
-    	<div id="user-information-left"> 
+    	<div id="user-information-left">
 
 	       	<!-- User 1 -->
 			<button class="user-1 user-btn" type="button"> Paul <i class="fa fa-times" aria-hidden="true"></i> </button>
@@ -60,7 +62,7 @@
 
 				  	<!-- User Properties Owned Amount -->
 				  	<p class="user-property-title"> Properties Owned: </p>
-				  	<div class="user-property"> 
+				  	<div class="user-property">
 				  		<ul>
 				  			<li> Connecticut Avenue <br>
 				  				<button class="mortgage-btn" type="button"> <i class="fa fa-university" aria-hidden="true"></i> </button>
@@ -84,7 +86,7 @@
 			<button class="user-2 user-btn" type="button"> David <i class="fa fa-times" aria-hidden="true"></i> </button>
 			<!-- User 2 Panel -->
 				<div class="panel-2 pnl">
-				  	
+
 				  	<!-- User Game Piece -->
 				  	<p class="game-piece-title"> Game Piece: </p>
 				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
@@ -97,7 +99,7 @@
 
 				  	<!-- User Properties Owned Amount -->
 				  	<p class="user-property-title"> Properties Owned: </p>
-				  	<div class="user-property"> 
+				  	<div class="user-property">
 				  		<ul>
 				  			<li> Connecticut Avenue <br>
 				  				<button class="mortgage-btn" type="button"> <i class="fa fa-university" aria-hidden="true"></i> </button>
@@ -153,12 +155,12 @@
 					<button class="dice-btn"> ROLL THE DICE </button>
 						<div class="dice-div">
 							<!-- Dice 1 -->
-							<div id="dice-1"> 
+							<div id="dice-1">
 								<img>
 							</div>
 
 							<!-- Dice 2 -->
-							<div id="dice-2"> 
+							<div id="dice-2">
 								<img>
 							</div>
 						</div>
@@ -525,7 +527,7 @@
 					</div>
 				</div>
 		</div>
-		      
+
 	</div>
 
 
@@ -535,13 +537,13 @@
 <!-- user info - right sectin 3 -->
 
 		<div class="col-md-3 right-col-md">
-		    <div id="user-information-right"> 
+		    <div id="user-information-right">
 
 				<!-- User 3 -->
 				<button class="user-3 user-btn" type="button"><i class="fa fa-times" aria-hidden="true"></i> Justin </button>
 				<!-- User 3 Panel -->
 				<div class="panel-3 pnl">
-				  	
+
 				  	<!-- User Game Piece -->
 				  	<p class="game-piece-title"> Game Piece: </p>
 				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
@@ -554,7 +556,7 @@
 
 				  	<!-- User Properties Owned Amount -->
 				  	<p class="user-property-title"> Properties Owned: </p>
-				  	<div class="user-property"> 
+				  	<div class="user-property">
 				  		<ul>
 				  			<li> Connecticut Avenue <br>
 				  				<button class="mortgage-btn" type="button"> <i class="fa fa-university" aria-hidden="true"></i> </button>
@@ -578,7 +580,7 @@
 				<button class="user-4 user-btn" type="button"> <i class="fa fa-times" aria-hidden="true"></i> Andrew </button>
 				<!-- User 4 Panel -->
 				<div class="panel-4 pnl">
-				  	
+
 				  	<!-- User Game Piece -->
 				  	<p class="game-piece-title"> Game Piece: </p>
 				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
@@ -591,7 +593,7 @@
 
 				  	<!-- User Properties Owned Amount -->
 				  	<p class="user-property-title"> Properties Owned: </p>
-				  	<div class="user-property"> 
+				  	<div class="user-property">
 				  		<ul>
 				  			<li> Connecticut Avenue <br>
 				  				<button class="mortgage-btn" type="button"> <i class="fa fa-university" aria-hidden="true"></i> </button>
@@ -666,18 +668,60 @@
 </section>
 
 
+<!-- chatbox ============================================================================== -->
 <!--  ============================================================================== -->
-<!--  ============================================================================== -->
+<div id="live-chat">
 
+	<header class="clearfix">
+		<a href="#" class="chat-close">x</a>
+			<h4>John Doe</h4>
+	</header>
 
+	<div class="chat">
+		<div class="chat-history">
+			<div class="chat-message clearfix">
+				<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
+				<div class="chat-message-content clearfix">
+					<span class="chat-time">13:35</span>
+					<h5>John Doe</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>
+				</div> <!-- end chat-message-content -->
+			</div> <!-- end chat-message -->
 
+			<hr>
 
+			<div class="chat-message clearfix">
+				<img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
+				<div class="chat-message-content clearfix">
+					<span class="chat-time">13:37</span>
+					<h5>Marco Biedermann</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>
+				</div> <!-- end chat-message-content -->
+			</div> <!-- end chat-message -->
 
+			<hr>
 
+			<div class="chat-message clearfix">
+				<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
+				<div class="chat-message-content clearfix">
+					<span class="chat-time">13:38</span>
+					<h5>John Doe</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+				</div> <!-- end chat-message-content -->
+			</div> <!-- end chat-message -->
 
+			<hr>
+		</div> <!-- end chat-history -->
 
-
-
+		<p class="chat-feedback">Your partner is typing…</p>
+		<form action="#" method="post">
+			<fieldset>
+				<input type="text" placeholder="Type your message…" autofocus>
+				<input type="hidden">
+			</fieldset>
+		</form>
+	</div> <!-- end chat -->
+</div> <!-- end live-chat -->
 
 
 <!--  ============================================================================== -->
