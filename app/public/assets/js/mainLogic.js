@@ -51,8 +51,14 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-    // console.log("newPosition: "+newPosition);
+
+    console.log("newPosition: "+newPosition);
     updateMove(newPosition);
+    console.log("dice total: " + diceTotal);
+
+
+
+
 
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
@@ -178,14 +184,38 @@ $(".dice-btn").click(function(){
 
 
 // INFO BUTTON ON CLICK FUNCTION ============================================
-// display and hide modal content for user instructions
+// display and hide modal content for USER INSTRUCTIONS
 $("#info-btn").click(function (){
-  $("#myModal").show(300);
+  $("#info-modal").show(300);
 });
 
-$(".close").click (function(){
-  $("#myModal").hide(300);
+// display and hide modal content for GAME RULES
+$("#game-rules-btn").click(function (){
+  $("#game-rules-modal").show(300);
 });
+
+// display and hide modal content for PROPERTY AUCTION HOUSE
+$("#auction-house-btn").click(function (){
+  $("#auction-house-modal").show(300);
+});
+
+// close my modal (universal)
+$(".close").click (function(){
+  $(".modal").hide(300);
+});
+
+// CHATBOX FUNCTIONALITY ====================================================
+(function() {
+	$('#live-chat header').on('click', function() {
+		$('.chat').slideToggle(300, 'swing');
+		$('.chat-message-counter').fadeToggle(300, 'swing');
+	});
+
+	$('.chat-close').on('click', function(e) {
+		e.preventDefault();
+		$('#live-chat').fadeOut(300);
+	});
+}) ();
 
 
 // USER BUTTON ON CLICK FUNCTION ============================================
@@ -202,5 +232,7 @@ for (i = 0; i < userInfo.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     }
+
   };
+
 }
