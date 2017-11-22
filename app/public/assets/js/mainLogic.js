@@ -51,17 +51,8 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-<<<<<<< HEAD
-    console.log("newPosition: "+newPosition);
-    updateMove(newPosition);
-    console.log("dice total: " + diceTotal);
-=======
     // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
->>>>>>> workingBranch
-
-
-
 
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
@@ -70,8 +61,6 @@ function rolldice() {
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
-
-
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
@@ -136,10 +125,14 @@ function endTurn(){
     }
   }).then(function (){
     console.log("turning current player off");
+      // socket.emit("newPlayers", newPosition, x, y);
+  }).then( function(){
     activeOn(activePlayer);
+  }).then( function (){
     activeOff(previousPlayer);
-
   });
+
+  // socket.on('roll', function(newPosition, x, y){});
 }
 function activeOn(current) {
   console.log(current);
@@ -170,6 +163,10 @@ function playersInfo(){
     p4Info = response[3];
   });
 }
+
+/*==============================================================================
+-------------------------Pull Players Information-------------------------------
+===============================================================================*/
 
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
