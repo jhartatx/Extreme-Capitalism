@@ -46,6 +46,7 @@ module.exports = function(app) {
         is_turn: true
       }
     }).then(function(results){
+      res.json(results);
       //property check function
       //function based on property check
     });
@@ -58,6 +59,7 @@ module.exports = function(app) {
         pos_id: req.body.newActive
       }
     }).then(function(results){
+      res.json(results);
       //property check function
       //function based on property check
     });

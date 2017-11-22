@@ -48,7 +48,7 @@ function rolldice() {
     console.log("newPosition: "+newPosition);
     updateMove(newPosition);
     console.log("dice total: " + diceTotal);
-    
+
 
 
 
@@ -59,7 +59,7 @@ function rolldice() {
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
-        
+
 
     }
     //trying to get this to emit to everyone
@@ -152,6 +152,19 @@ $(".close").click (function(){
   $("#myModal").hide(300);
 });
 
+// CHATBOX FUNCTIONALITY ====================================================
+(function() {
+	$('#live-chat header').on('click', function() {
+		$('.chat').slideToggle(300, 'swing');
+		$('.chat-message-counter').fadeToggle(300, 'swing');
+	});
+
+	$('.chat-close').on('click', function(e) {
+		e.preventDefault();
+		$('#live-chat').fadeOut(300);
+	});
+}) ();
+
 
 // USER BUTTON ON CLICK FUNCTION ============================================
 // user info panel drop down
@@ -166,7 +179,6 @@ for (i = 0; i < userInfo.length; i++) {
       panel.style.maxHeight = null;
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
+    }
   }
 }
-
