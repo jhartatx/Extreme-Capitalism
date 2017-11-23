@@ -192,6 +192,13 @@ $("#game-rules-btn").click(function (){
 $("#auction-house-btn").click(function (){
   $("#auction-house-modal").show(300);
 });
+$('#auction-house-btn').mouseover(function() {
+$('.text').css("visibility","visible");
+});
+
+$('#auction-house-btn').mouseout(function() {
+$('.text').css("visibility","hidden");
+});
 
 // close my modal (universal)
 $(".close").click (function(){
