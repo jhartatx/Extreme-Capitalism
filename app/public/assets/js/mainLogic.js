@@ -193,6 +193,17 @@ $("#auction-house-btn").click(function (){
   $("#auction-house-modal").show(300);
 });
 
+// display and hide modal content for EXIT GAME
+$("#end-game-btn").click(function (){
+  $("#end-game-modal").show(300);
+});
+
+// close my modal (for EXIT GAME ONLY)
+$("#no-end-game").click(function (){
+  $("#end-game-modal").hide(300);
+});
+
+
 // close my modal (universal)
 $(".close").click (function(){
   $(".modal").hide(300);

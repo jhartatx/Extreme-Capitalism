@@ -1,4 +1,4 @@
-/* PIECES & POSITIONS ---------------------------------------------------------------------- */
+/* PIECES & POSITIONS ============================================================== */
 /* board posiion settings */
 .row{
   margin-top:4%;
@@ -8,25 +8,30 @@
   margin-left:-2%;
 }
 
- 
-
-
-
-
 
 /* ================================================================================= */
 /* CONTROL BTNS -------------------------------------------------------------------- */
 /* nav control buttons at the bottom of page */
+#right-nav-bar{
+  border:1px solid white;
+  background:white;
+  height:80px;
+  margin-left:7%;
+  margin-right:-6%;
+  border-radius:8px;
+
+}
+
 #game-rules-btn, #info-btn, #end-game-btn, #auction-house-btn{
   list-style-type: none;
   text-decoration: none;
   border-radius: 50px;
-  border:2px solid white;
+  border:2px solid #444;
   background:none;
-  margin:2% 1.5%;
-  color:white;
+  margin:6% 2.5%;
+  color:#444;
   position:relative;
-  padding:3px 10px;
+  padding:2px 10px;
   transition: .3s ease-in-out;
   font-size: 24px;
   float:left;
@@ -34,23 +39,41 @@
 
 #game-rules-btn:hover, #info-btn:hover, #end-game-btn:hover, #auction-house-btn:hover{
   transition: .3s ease-in-out;
-  box-shadow:0 0 15px black;
+  border:2px solid #444;
+  background: #444;
+  color:white;
   cursor:pointer;
 }
 
-
-/* =================================================== */
-/* POSITIONING BUTTONS */
+/* -------------------------------------------------------- */
+/* individual button adjustments */
 #game-rules-btn{
-  margin-left:10%;
+  font-size:24px;
+  padding: 2px 8px;
+  margin-left:7%;
 }
 
-#info-btn{
-  
+#auction-house-btn{
+  font-size:20px;
+  padding:5px 8px;
+}
+
+#end-game-btn{
+  color:#C50000;
+  border:2px solid #C50000;
 }
 
 
-/* ---------------------------------------------- */
+#end-game-btn:hover{
+  cursor:pointer;
+  background-color:#C50000;
+  color:white;
+  border:2px solid #C50000;
+  transition:.3s ease-in-out;
+}
+
+/* ================================================================================= */
+/* GENERAL MODAL SETTINGS ========================================================== */
 /* modal settings for game rules */
 .modal {
   display: none;
@@ -66,7 +89,7 @@
   background-color: rgba(0,0,0,0.4);
 }
 
-/* modal Content/Box */
+/* modal content / box */
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto;
@@ -97,7 +120,7 @@
   font-weight:bold;
 }
 
-/* The Close Button */
+/* modal close cutton */
 .close {
   color: #aaa;
   float: right;
@@ -118,8 +141,62 @@
 
 
 /* ================================================================================= */
+/* SPECIFIC SETTINGS FOR MODALS ==================================================== */
+/* end game modal settings */
+#end-game-modal .modal-content{
+  width:60%;
+  margin-top:13%;
+  text-align:center;
+
+}
+
+/* NO end game button settings */
+#end-game-modal .modal-content #no-end-game{
+  width:50%;
+  margin-top: 3%;
+  margin-left:25%;
+  padding:10px 15px;
+  border:1px solid #444;
+  background:none;
+  color:#444;
+  transition: .3s ease-in-out;
+}
+
+#end-game-modal .modal-content #no-end-game:hover{
+  border:1px solid #aaa;
+  background:#aaa;
+  color:white;
+  transition: .3s ease-in-out;
+}
+
+/* CONFIRM end game button settings */
+#end-game-modal .modal-content #confirm-end-game{
+  width:50%;
+  margin-top:5%;
+  margin-left:25%;
+  padding:10px 15px;
+  border:1px solid #C50000;
+  background:none;
+  color:#C50000;
+  transition: .3s ease-in-out;
+}
+
+#end-game-modal .modal-content #confirm-end-game:hover{
+  border:1px solid #C50000;
+  background:#C50000;
+  color:white;
+  transition: .3s ease-in-out;
+}
+
+
+
+
+
+
+
+/* ================================================================================= */
 /* USER INFO BTNS & PANEL ---------------------------------------------------------- */
-/* info button settings */
+
 /* panel user-btns */
 .user-btn {
   background-color: white;
@@ -171,7 +248,7 @@ user-btn i.active{
 
 
 /* ---------------------------------------------------------- */
-/* Style the accordion panel. Note: hidden by default */
+/* Style the accordion panel with user info. Note: hidden by default */
 .pnl {
   padding: 0 18px;
   text-align:right;
@@ -182,8 +259,10 @@ user-btn i.active{
 
 }
 
-/* ============================================================================= */
-/* User Information Text Styling ----------------------------- */
+/* =================================================================================== */
+/* PLAYER INFO STYLING  ============================================================== */
+
+/* ------------------------------------------------------- */
 /* game piece */
 .game-piece-title{
   padding-top:15px;
@@ -195,7 +274,6 @@ user-btn i.active{
   margin-left:78%;
   margin-bottom:5px;
   width:19%;
-
 }
 
 /* ------------------------------------------------------- */
@@ -213,7 +291,7 @@ user-btn i.active{
 }
 
 /* ------------------------------------------------------- */
-/* game piece */
+/* property owned */
 .user-property-title{
   margin-top:10px;
   margin-bottom:20px;
@@ -230,7 +308,7 @@ user-btn i.active{
 }
 
 /* ------------------------------------------------------- */
-/* trade and mortgage button */
+/* property modal buttons */
 .user-property-btn {
   background:none;
   border: 1px solid #444;
@@ -249,6 +327,10 @@ user-btn i.active{
   transition:.4s ease-in-out;
 }
 
+
+/* -------------------------------------------------------------------- */
+/* speecific styling for background color of coresponding properties */
+
 .property-ave{
   border: 1px solid #d2eaf5;
   background:#d2eaf5;
@@ -262,8 +344,8 @@ user-btn i.active{
 }
 
 /* ================================================================================= */
-/* GAME RULES ---------------------------------------------------------------------- */
-/* info button settings */
+/* ---------------------------------------------------------------------- */
+/*  */
 
 
 
