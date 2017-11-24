@@ -69,6 +69,7 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
+    
 });
 // socket listener
 }
