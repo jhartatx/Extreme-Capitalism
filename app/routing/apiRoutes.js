@@ -12,7 +12,7 @@ module.exports = function(app) {
 
 
 /*==============================================================================
-------------------------------PLAYERS TABLES------------------------------------
+------------------------------PLAYERS DATABASE----------------------------------
 ===============================================================================*/
 
 
@@ -46,7 +46,6 @@ module.exports = function(app) {
         is_turn: 1
       }
     }).then(function(results){
-      res.json(results);
       //property check function
       //function based on property check
     });
@@ -61,12 +60,6 @@ module.exports = function(app) {
     },{where:{
         user_id: req.body.current
       }
-
-    }).then(function(results){
-      res.json(results);
-      //property check function
-      //function based on property check
-
     }).then(function(){
 
     }).catch(function(err){
@@ -86,14 +79,13 @@ module.exports = function(app) {
 
     }).catch(function(err){
       console.error(err);
-
     });
   });
 
 
 
   /*============================================================================
-  ------------------------------PLACES TABLES-----------------------------------
+  ------------------------------PLACES DATABASE---------------------------------
   =============================================================================*/
   //runs the
 
@@ -109,7 +101,7 @@ module.exports = function(app) {
 
 
   /*============================================================================
-  ------------------------------CHANCE TABLES-----------------------------------
+  ------------------------------CHANCE DATABASE---------------------------------
   =============================================================================*/
 
 

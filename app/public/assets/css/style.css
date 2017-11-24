@@ -8,47 +8,36 @@
 
 }
 
- 
+
 
 
 
 
 
 /* ================================================================================= */
-/* CONTROL BTNS -------------------------------------------------------------------- */
-/* nav control buttons at the bottom of page */
-#game-rules-btn, #info-btn, #end-game-btn, #auction-house-btn{
+/* GAME RULES ---------------------------------------------------------------------- */
+/* info button settings */
+
+
+#info-btn{
   list-style-type: none;
   text-decoration: none;
   border-radius: 50px;
   border:2px solid white;
   background:none;
-  margin:2% 1.5%;
+  margin:3%;
   color:white;
   position:relative;
   padding:3px 10px;
   transition: .3s ease-in-out;
-  font-size: 24px;
-  float:left;
+  font-size: 25px;
 }
 
-#game-rules-btn:hover, #info-btn:hover, #end-game-btn:hover, #auction-house-btn:hover{
+#info-btn:hover{
   transition: .3s ease-in-out;
   box-shadow:0 0 15px black;
   cursor:pointer;
 }
-
-
-/* =================================================== */
-/* POSITIONING BUTTONS */
-#game-rules-btn{
-  margin-left:35%;
-}
-
-#info-btn{
-  
-}
-
 
 /* ---------------------------------------------- */
 /* modal settings for game rules */
@@ -77,21 +66,6 @@
   text-transform: none;
 }
 
-.modal-content h1{
-  font-size:30px;
-  font-weight:bold;
-  text-transform:uppercase;
-
-  margin-bottom:1%;
-}
-
-.modal-content h2{
-  font-size:24px;
-  font-weight:bold;
-  text-transform:uppercase;
-  margin-bottom:1%;
-}
-
 .modal-content p{
   font-size:16px;
   font-weight:bold;
@@ -103,8 +77,7 @@
   float: right;
   font-size: 20px;
   font-weight: bold;
-  margin:-2% 0 0 100%;
-  transition: .2s ease-in-out;
+  margin:-3% -2%;
 }
 
 .close:hover,
@@ -112,7 +85,6 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
-  transition: .2s ease-in-out;
 }
 
 

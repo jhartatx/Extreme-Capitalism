@@ -1,18 +1,11 @@
 
 var socket = io();
-
-//used to change who the active player is
 var activePlayer;
 var previousPlayer;
-
-//holds all players information as an object
 var p1Info;
 var p2Info;
 var p3Info;
 var p4Info;
-
-//used to change the icon of a players piece in diceroll function
-var activePosition;
 /*get request sent to api routes requesting */
 
 $.get("/pullchance").then(function(response){
@@ -37,7 +30,7 @@ $.get("/pullcommunity").then(function(response){
       method: "PUT",
       url: "/playermove",
       data: {move:move}
-    }).done();
+    }).done(console.log("finished"));
 }
 
 //dice
@@ -58,11 +51,8 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-
-    console.log("newPosition: "+newPosition);
+    // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
-    console.log("dice total: " + diceTotal);
-
 
 
 
@@ -74,14 +64,12 @@ function rolldice() {
           alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
+
+
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
-    activePosition = $("<img class="+response[0].user_id+" src='assets/images/game-pieces/dog.jpg' width='20%' height='20%'>");
-    $("#"+response[0].user_position).append(activePosition);
 });
-
-
 // socket listener
 }
 
@@ -141,16 +129,14 @@ function endTurn(){
       activePlayer = 1;
     }
   }).then(function (){
-      // socket.emit("newPlayers", newPosition, x, y);
-  }).then( function(){
+    console.log("turning current player off");
     activeOn(activePlayer);
-  }).then( function (){
     activeOff(previousPlayer);
-  });
 
-  // socket.on('roll', function(newPosition, x, y){});
+  });
 }
 function activeOn(current) {
+  console.log(current);
   $.ajax({
     method: "PUT",
     url: "/activeon",
@@ -159,6 +145,7 @@ function activeOn(current) {
 }
 
 function activeOff(previous) {
+  console.log(previous);
   $.ajax({
     method: "PUT",
     url: "/activeoff",
@@ -178,10 +165,6 @@ function playersInfo(){
   });
 }
 
-/*==============================================================================
--------------------------Pull Players Information-------------------------------
-===============================================================================*/
-
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
@@ -192,66 +175,14 @@ $(".dice-btn").click(function(){
 
 
 // INFO BUTTON ON CLICK FUNCTION ============================================
-// display and hide modal content for USER INSTRUCTIONS
+// display and hide modal content for user instructions
 $("#info-btn").click(function (){
-  $("#info-modal").show(300);
+  $("#myModal").show(300);
 });
 
-// display and hide modal content for GAME RULES
-$("#game-rules-btn").click(function (){
-  $("#game-rules-modal").show(300);
-});
-
-// display and hide modal content for PROPERTY AUCTION HOUSE
-$("#auction-house-btn").click(function (){
-  $("#auction-house-modal").show(300);
-});
-
-// close my modal (universal)
 $(".close").click (function(){
-  $(".modal").hide(300);
+  $("#myModal").hide(300);
 });
-
-/*==============================================================================
--------------------------------------Chatbox------------------------------------
-===============================================================================*/
-// $("#message").on("keypress",function(Enter, event){
-//   event.preventDefault();
-//   console.log("you tried to submit a message!");
-// });
-
-
-  $('#message').on('keypress', function(e){
-    if (e.which === 13) {
-      $("#inputfield").submit(function(e){
-        e.preventDefault();
-        var message = $("#message").val();
-        var newMsg = $("<div class='chat-message clearfix'><img src='http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32' alt='' width='32' height ='32'><div class='chat-message-content clearfix'><span class='chat-time'>13:38</span><h5>Marco Biedermann</h5><p>"+message+"</p></div></div>");
-      $(".chat-history").append(newMsg);
-      newMsg = "";
-      $("#message").val("");
-      return;
-      });
-    }
-  });
-
-
-/*==============================================================================
--------------------------Player Dropdown Information----------------------------
-===============================================================================*/
-// CHATBOX FUNCTIONALITY ====================================================
-(function() {
-	$('#live-chat header').on('click', function() {
-		$('.chat').slideToggle(300, 'swing');
-		$('.chat-message-counter').fadeToggle(300, 'swing');
-	});
-
-	$('.chat-close').on('click', function(e) {
-		e.preventDefault();
-		$('#live-chat').fadeOut(300);
-	});
-}) ();
-
 
 
 // USER BUTTON ON CLICK FUNCTION ============================================
@@ -268,7 +199,5 @@ for (i = 0; i < userInfo.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     }
-
   };
-
 }
