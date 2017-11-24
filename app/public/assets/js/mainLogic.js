@@ -69,6 +69,10 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
+    var imgPosition;
+    imgPosition = $("<img class="+response[0].user_id+" src=assets/images/game-pieces/car.jpg");
+    console.log(imgPosition);
+    $("#"+response[0].user_position).append(imgPosition);
 
 });
 // socket listener
