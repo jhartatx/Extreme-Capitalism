@@ -28,7 +28,7 @@
    		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 	<!-- JavaScript & jQuery & Firebase Links -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> --> 
+		<!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> -->
 
 	</head>
 
@@ -761,6 +761,7 @@
 
 			<div class="chat-message clearfix">
 				<img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
+
 				<div class="chat-message-content clearfix">
 					<span class="chat-time">13:37</span>
 					<h5>Marco Biedermann</h5>
@@ -783,10 +784,11 @@
 		</div> <!-- end chat-history -->
 
 		<p class="chat-feedback">Your partner is typing…</p>
-		<form action="#" method="post">
+		<!-- <form action="#" method="post"> -->
+			<form action="" id="inputfield">
 			<fieldset>
-				<input type="text" placeholder="Type your message…" autofocus>
-				<input type="hidden">
+				<input type="text" placeholder="Type your message…" autofocus id="message">
+				<!-- <input type="hidden"> -->
 			</fieldset>
 		</form>
 	</div> <!-- end chat -->

@@ -1,11 +1,18 @@
 
 var socket = io();
+
+//used to change who the active player is
 var activePlayer;
 var previousPlayer;
+
+//holds all players information as an object
 var p1Info;
 var p2Info;
 var p3Info;
 var p4Info;
+
+//used to change the icon of a players piece in diceroll function
+var activePosition;
 /*get request sent to api routes requesting */
 
 $.get("/pullchance").then(function(response){
@@ -30,7 +37,7 @@ $.get("/pullcommunity").then(function(response){
       method: "PUT",
       url: "/playermove",
       data: {move:move}
-    }).done(console.log("finished"));
+    }).done();
 }
 
 //dice
@@ -70,7 +77,11 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
+    activePosition = $("<img class="+response[0].user_id+" src='assets/images/game-pieces/dog.jpg' width='20%' height='20%'>");
+    $("#"+response[0].user_position).append(activePosition);
 });
+
+
 // socket listener
 }
 
@@ -130,7 +141,6 @@ function endTurn(){
       activePlayer = 1;
     }
   }).then(function (){
-    console.log("turning current player off");
       // socket.emit("newPlayers", newPosition, x, y);
   }).then( function(){
     activeOn(activePlayer);
@@ -141,7 +151,6 @@ function endTurn(){
   // socket.on('roll', function(newPosition, x, y){});
 }
 function activeOn(current) {
-  console.log(current);
   $.ajax({
     method: "PUT",
     url: "/activeon",
@@ -150,7 +159,6 @@ function activeOn(current) {
 }
 
 function activeOff(previous) {
-  console.log(previous);
   $.ajax({
     method: "PUT",
     url: "/activeoff",
@@ -204,6 +212,33 @@ $(".close").click (function(){
   $(".modal").hide(300);
 });
 
+/*==============================================================================
+-------------------------------------Chatbox------------------------------------
+===============================================================================*/
+// $("#message").on("keypress",function(Enter, event){
+//   event.preventDefault();
+//   console.log("you tried to submit a message!");
+// });
+
+
+  $('#message').on('keypress', function(e){
+    if (e.which === 13) {
+      $("#inputfield").submit(function(e){
+        e.preventDefault();
+        var message = $("#message").val();
+        var newMsg = $("<div class='chat-message clearfix'><img src='http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32' alt='' width='32' height ='32'><div class='chat-message-content clearfix'><span class='chat-time'>13:38</span><h5>Marco Biedermann</h5><p>"+message+"</p></div></div>");
+      $(".chat-history").append(newMsg);
+      newMsg = "";
+      $("#message").val("");
+      return;
+      });
+    }
+  });
+
+
+/*==============================================================================
+-------------------------Player Dropdown Information----------------------------
+===============================================================================*/
 // CHATBOX FUNCTIONALITY ====================================================
 (function() {
 	$('#live-chat header').on('click', function() {
@@ -216,6 +251,7 @@ $(".close").click (function(){
 		$('#live-chat').fadeOut(300);
 	});
 }) ();
+
 
 
 // USER BUTTON ON CLICK FUNCTION ============================================
