@@ -6,17 +6,21 @@ var p1Info;
 var p2Info;
 var p3Info;
 var p4Info;
+
+var activePlayer;
+
+var imgPosition;
 /*get request sent to api routes requesting */
 
 $.get("/pullchance").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomChance = response[randomNumber-1];
-  console.log(randomChance);
+  // console.log(randomChance);
 });
 $.get("/pullcommunity").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomCommunity = response[randomNumber-1];
-  console.log(randomCommunity);
+  // console.log(randomCommunity);
 });
 
 /*==============================================================================
@@ -37,6 +41,7 @@ $.get("/pullcommunity").then(function(response){
 var dbl = 0;
 function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
+    activePlayer = response[0];
     currentLocation = response[0].pos_id;
     // console.log("current location: "+ currentLocation);
 
@@ -69,7 +74,9 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
-    
+    console.log(activePlayer);
+    imgPosition = $('<img class="'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
+    $("#p"+activePlayer.pos_id).append(imgPosition);
 });
 // socket listener
 }
@@ -77,7 +84,7 @@ function rolldice() {
 
 //socket listener logic.
 socket.on('roll', function(newPosition, x, y){
-  console.log(newPosition);
+  // console.log(newPosition);
   if(x == 1){
     $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
   }
@@ -122,22 +129,22 @@ socket.on('roll', function(newPosition, x, y){
 //Invoke this function when you want the next player to be "active"
 function endTurn(){
   $.get("/checkactiveplayer").then(function(response){
-    console.log(response);
-    console.log(response[0]);
+    // console.log(response);
+    // console.log(response[0]);
     previousPlayer = response[0].user_id;
     activePlayer = response[0].user_id + 1;
     if(activePlayer === 5){
       activePlayer = 1;
     }
   }).then(function (){
-    console.log("turning current player off");
+    // console.log("turning current player off");
     activeOn(activePlayer);
     activeOff(previousPlayer);
 
   });
 }
 function activeOn(current) {
-  console.log(current);
+  // console.log(current);
   $.ajax({
     method: "PUT",
     url: "/activeon",
@@ -146,7 +153,7 @@ function activeOn(current) {
 }
 
 function activeOff(previous) {
-  console.log(previous);
+  // console.log(previous);
   $.ajax({
     method: "PUT",
     url: "/activeoff",
@@ -169,9 +176,9 @@ function playersInfo(){
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
-  console.log("clicked");
   rolldice();
-  endTurn();
+  
+    // endTurn();
 });
 
 
