@@ -13,7 +13,8 @@ user_name VARCHAR (50) NOT NULL,
 user_money INTEGER (255),
 is_turn BOOLEAN,
 pos_id INTEGER (2) NOT NULL,
-in_jail INTEGER (1) NOT NULL
+in_jail INTEGER (1) NOT NULL,
+user_image VARCHAR (255) NOT NULL
 );
 
 
@@ -76,11 +77,11 @@ VALUES ("Advance to Go", "Advance to Go. Collect $200", 200),
 ("Advance to <PLACE>", "See the sights, look at the stuff, locations are dynamically generated so pretend I said something fitting.", NULL),
 ("Advance to <PLACE2>", "See the sights, look at the stuff, locations are dynamically generated so pretend I said something fitting.", NULL);
 
-INSERT INTO players(user_name, user_money, is_turn, pos_id, in_jail)
-VALUES("Paul1", 1500, true, 1, 0),
-("Emma2", 1500, false, 1, 0),
-("David", 1500, false, 1, 0),
-("Just Justin", 1500, false, 1, 0);
+INSERT INTO players(user_name, user_money, is_turn, pos_id, in_jail, user_image)
+VALUES("Paul1", 1500, true, 1, 0, "assets/images/game-pieces/car.jpg"),
+("Emma2", 1500, false, 1, 0, "assets/images/game-pieces/dog.jpg"),
+("David", 1500, false, 1, 0, "assets/images/game-pieces/ship.jpg"),
+("Just Justin", 1500, false, 1, 0, "assets/images/game-pieces/hat.jpg");
 
 INSERT INTO places(id_grp, c_owner, rent_lvl, name, rent, active)
 VALUES
