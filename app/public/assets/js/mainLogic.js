@@ -6,17 +6,21 @@ var p1Info;
 var p2Info;
 var p3Info;
 var p4Info;
+
+var activePlayer;
+
+var imgPosition;
 /*get request sent to api routes requesting */
 
 $.get("/pullchance").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomChance = response[randomNumber-1];
-  console.log(randomChance);
+  // console.log(randomChance);
 });
 $.get("/pullcommunity").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomCommunity = response[randomNumber-1];
-  console.log(randomCommunity);
+  // console.log(randomCommunity);
 });
 
 /*==============================================================================
@@ -37,6 +41,7 @@ $.get("/pullcommunity").then(function(response){
 var dbl = 0;
 function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
+    activePlayer = response[0];
     currentLocation = response[0].pos_id;
     // console.log("current location: "+ currentLocation);
 
@@ -51,11 +56,8 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-
-    console.log("newPosition: "+newPosition);
+    // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
-    console.log("dice total: " + diceTotal);
-
 
 
 
@@ -72,6 +74,9 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
+    console.log(activePlayer);
+    imgPosition = $('<img class="'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
+    $("#p"+activePlayer.pos_id).append(imgPosition);
 });
 // socket listener
 }
@@ -79,7 +84,7 @@ function rolldice() {
 
 //socket listener logic.
 socket.on('roll', function(newPosition, x, y){
-  console.log(newPosition);
+  // console.log(newPosition);
   if(x == 1){
     $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
   }
@@ -124,22 +129,22 @@ socket.on('roll', function(newPosition, x, y){
 //Invoke this function when you want the next player to be "active"
 function endTurn(){
   $.get("/checkactiveplayer").then(function(response){
-    console.log(response);
-    console.log(response[0]);
+    // console.log(response);
+    // console.log(response[0]);
     previousPlayer = response[0].user_id;
     activePlayer = response[0].user_id + 1;
     if(activePlayer === 5){
       activePlayer = 1;
     }
   }).then(function (){
-    console.log("turning current player off");
+    // console.log("turning current player off");
     activeOn(activePlayer);
     activeOff(previousPlayer);
 
   });
 }
 function activeOn(current) {
-  console.log(current);
+  // console.log(current);
   $.ajax({
     method: "PUT",
     url: "/activeon",
@@ -148,7 +153,7 @@ function activeOn(current) {
 }
 
 function activeOff(previous) {
-  console.log(previous);
+  // console.log(previous);
   $.ajax({
     method: "PUT",
     url: "/activeoff",
@@ -171,26 +176,16 @@ function playersInfo(){
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
-  console.log("clicked");
   rolldice();
-  endTurn();
+
+    // endTurn();
 });
 
 
 // INFO BUTTON ON CLICK FUNCTION ============================================
-// display and hide modal content for USER INSTRUCTIONS
+// display and hide modal content for user instructions
 $("#info-btn").click(function (){
-  $("#info-modal").show(300);
-});
-
-// display and hide modal content for GAME RULES
-$("#game-rules-btn").click(function (){
-  $("#game-rules-modal").show(300);
-});
-
-// display and hide modal content for PROPERTY AUCTION HOUSE
-$("#auction-house-btn").click(function (){
-  $("#auction-house-modal").show(300);
+  $("#myModal").show(300);
 });
 $('#auction-house-btn').mouseover(function() {
 $('.text').css("visibility","visible");
@@ -211,23 +206,9 @@ $("#no-end-game").click(function (){
 });
 
 
-// close my modal (universal)
 $(".close").click (function(){
-  $(".modal").hide(300);
+  $("#myModal").hide(300);
 });
-
-// CHATBOX FUNCTIONALITY ====================================================
-(function() {
-	$('#live-chat header').on('click', function() {
-		$('.chat').slideToggle(300, 'swing');
-		$('.chat-message-counter').fadeToggle(300, 'swing');
-	});
-
-	$('.chat-close').on('click', function(e) {
-		e.preventDefault();
-		$('#live-chat').fadeOut(300);
-	});
-}) ();
 
 
 // USER BUTTON ON CLICK FUNCTION ============================================
@@ -244,7 +225,5 @@ for (i = 0; i < userInfo.length; i++) {
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     }
-
   };
-
 }
