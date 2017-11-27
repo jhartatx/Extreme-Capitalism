@@ -19,6 +19,9 @@ user_id: {
   },
   in_jail:{
     type: DataTypes.INTEGER
+  },
+  user_image:{
+    type: DataTypes.STRING
   }
 }, {
   timestamps: false

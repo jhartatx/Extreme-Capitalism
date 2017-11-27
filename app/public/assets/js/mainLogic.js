@@ -34,7 +34,10 @@ $.get("/pullcommunity").then(function(response){
 var dbl = 0;
 function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
-    currentLocation = response[0].pos_id;
+    activePlayer = response[0];
+
+    console.log(activePlayer);
+    var currentLocation = activePlayer.pos_id;
     // console.log("current location: "+ currentLocation);
     var x = Math.floor(Math.random() * 6 + 1);
     var y = Math.floor(Math.random() * 6 + 1);
@@ -45,6 +48,12 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
+
+    console.log(activePlayer.user_id);
+    console.log(activePlayer.user_image);
+    var newImagePosition = $(`<img id="player${activePlayer.user_id}" src="${activePlayer.user_image}">`);
+    console.log(newImagePosition);
+    $("#p"+newPosition).append(newImagePosition);
     // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
     // console.log("dice total: " + diceTotal);
@@ -151,7 +160,6 @@ function playersInfo(){
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
-  console.log("clicked");
   rolldice();
 });
 // INFO BUTTON ON CLICK FUNCTION ============================================
@@ -256,7 +264,7 @@ var stopwatch = {
       currentBid = 0;     //set the bid vack to 0 for the next auction
       $(".inputField").html('<input type="text" id="bidAmount" placeholder=' + currentBid + '><button id="bid-btn">$BID</button>');
       stopwatch.time = 30;      //set the time back to 30 and rewrite the button and input field
-      $("#auctionAction").hide(300); 
+      $("#auctionAction").hide(300);
       //change the modal back
     }
   },
@@ -274,17 +282,17 @@ var stopwatch = {
 
 
 //This will eventually be set by the seller in the MIDDLE SCREEN
-var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP 
+var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP
 
  $(document).on("click","#bid-btn",function() {     //TODO: This needs to include logic to check if the user has THAT much money to bid
-  //define a newBid  
+  //define a newBid
   console.log("bid-btn was pressed");
   var newBid = parseInt($("#bidAmount").val());//take the value from bid amount and save it to currentBid
   if(newBid > currentBid){  //checks if the users bid was more than the current bid
     currentBid = newBid;
     $(".inputField").html('<input type="text" id="bidAmount" placeholder=' + currentBid + '><button id="bid-btn">$BID</button>');
     console.log("new bid is: " + currentBid);
-  } 
+  }
   else{
     $(".inputField").html('<input type="text" id="bidAmount" placeholder= "Minimum bid: ' + currentBid + '""><button id="bid-btn">$BID</button>');
   }
