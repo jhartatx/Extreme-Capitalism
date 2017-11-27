@@ -9,9 +9,6 @@ var db = require("../models");
 // var Chance = require("../models/chance.js");
 
 module.exports = function(app) {
-
-
-
 /*==============================================================================
 ------------------------------PLAYERS DATABASE----------------------------------
 ===============================================================================*/
@@ -20,9 +17,9 @@ module.exports = function(app) {
 
   //localhost:8081/checkplayers pulls up all player details
   app.get("/checkplayers", function(req, res) {
-    console.log("CHECKING ALL PLAYERS");
     db.players.findAll({}).then(function(results) {
       res.json(results);
+      res.end();
       // console.log(res.json(results));
     });
   });
@@ -70,6 +67,7 @@ module.exports = function(app) {
     }).catch(function(err){
       console.error(err);
     });
+  });
 
   app.put("/activeoff",function(req, res){
     console.log("====================================================");
@@ -92,21 +90,28 @@ module.exports = function(app) {
   /*============================================================================
   ------------------------------PLACES DATABASE---------------------------------
   =============================================================================*/
-  //runs the
-
-
   //localhost:8081/checkplaces pulls up locations on the board
+  // app.get("/checkplaces", function(req, res) {
+  //   db.places.findAll({}).then(function(results) {
+  //     res.json(results);
+  //     res.end();
+  //     // console.log(res.json(results));
+  //   });
+  // });
   app.get("/checkplaces", function(req, res) {
     db.places.findAll({}).then(function(results) {
       res.json(results);
+      res.end();
       // console.log(res.json(results));
     });
   });
 
-  app.get("/checkcurrentplace", function(req, res) {
+
+  app.get("/checkcurrentplace/:position", function(req, res) {
+    var position = req.params.position;
     db.places.findAll({
       where:{
-          pos_id: 1
+          pos_id: position
         }
     }).then(function(results) {
       res.json(results);
@@ -124,7 +129,7 @@ module.exports = function(app) {
 
   //localhost:8081/checkchance pulls up the chance cards
   app.get("/checkchance", function(req, res) {
-    db.chance.findAll({}).then(function(results) {
+    db.chance_cards.findAll({}).then(function(results) {
       res.json(results);
       // console.log(res.json(results));
     });
@@ -133,7 +138,7 @@ module.exports = function(app) {
 
   //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullchance", function(req, res){
-    db.chance.findAll({
+    db.chance_cards.findAll({
       // where:{
       //   // MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
       //   cha_id: 2
@@ -156,7 +161,7 @@ module.exports = function(app) {
 
   //localhost:8081/checkcommunity pulls up the community cards
   app.get("/checkcommunity", function(req, res) {
-    db.community.findAll({}).then(function(results) {
+    db.community_cards.findAll({}).then(function(results) {
       res.json(results);
       // console.log(res.json(results));
     });
@@ -164,7 +169,7 @@ module.exports = function(app) {
 
 //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullcommunity", function(req, res){
-    db.community.findAll({
+    db.community_cards.findAll({
       // where:{
       //   //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
       //   com_id: 2
@@ -174,6 +179,4 @@ module.exports = function(app) {
       res.json(results);
     });
   });
-
-});
 };
