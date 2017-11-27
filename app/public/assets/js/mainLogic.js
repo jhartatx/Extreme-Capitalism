@@ -6,16 +6,16 @@ var p2Info;
 var p3Info;
 var p4Info;
 /*get request sent to api routes requesting */
-$.get("/pullchance").then(function(response){
-  var randomNumber = Math.floor(Math.random() * (response.length)+1);
-  var randomChance = response[randomNumber-1];
-  // console.log(randomChance);
-});
-$.get("/pullcommunity").then(function(response){
-  var randomNumber = Math.floor(Math.random() * (response.length)+1);
-  var randomCommunity = response[randomNumber-1];
-  // console.log(randomCommunity);
-});
+// $.get("/pullchance").then(function(response){
+//   var randomNumber = Math.floor(Math.random() * (response.length)+1);
+//   var randomChance = response[randomNumber-1];
+//   // console.log(randomChance);
+// });
+// $.get("/pullcommunity").then(function(response){
+//   var randomNumber = Math.floor(Math.random() * (response.length)+1);
+//   var randomCommunity = response[randomNumber-1];
+//   // console.log(randomCommunity);
+// });
 
 /*==============================================================================
 -------------------------Move the Active Player---------------------------------
@@ -159,6 +159,28 @@ function playersInfo(){
     console.log(response[3]);
   });
 }
+
+
+/*==============================================================================
+ ---------------------------------Transfer money--------------------------------
+ ===============================================================================*/
+ //use the variable "activePlayer" which was designed in the dice roll
+
+ //player purchases property
+ $("#purchase").click(function(){
+     //get request where property is equal to the user_position
+    // -= cost from user_money
+    // put request to change the owner
+});
+
+//transfer money from the active player to a single other player
+$("#payPlayers").click(function(){
+
+
+});
+
+
+
 
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
