@@ -36,6 +36,7 @@ module.exports = function(app) {
         }
     }).then(function(results) {
       res.json(results);
+      res.end();
       // console.log(res.json(results));
     });
   });
@@ -49,6 +50,7 @@ module.exports = function(app) {
         is_turn: 1
       }
     }).then(function(results){
+      res.end();
       //property check function
       //function based on property check
     });
@@ -64,7 +66,7 @@ module.exports = function(app) {
         user_id: req.body.current
       }
     }).then(function(){
-
+      res.end();
     }).catch(function(err){
       console.error(err);
     });
@@ -79,7 +81,7 @@ module.exports = function(app) {
           user_id: req.body.previous
         }
     }).then(function(){
-
+      res.end();
     }).catch(function(err){
       console.error(err);
     });

@@ -125,8 +125,8 @@ function endTurn(){
       activePlayer = 1;
     }
   }).then(function (){
-    // console.log("turning current player off");
     activeOn(activePlayer);
+  }).then(function(){
     activeOff(previousPlayer);
   });
 }
@@ -186,6 +186,10 @@ $("#payPlayers").click(function(){
 //dice button onclick
 $(".dice-btn").click(function(){
   rolldice();
+});
+
+$(".end-btn").click(function(){
+  endTurn();
 });
 // INFO BUTTON ON CLICK FUNCTION ============================================
 // display and hide modal content for USER INSTRUCTIONS
