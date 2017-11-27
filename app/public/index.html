@@ -850,15 +850,35 @@
 			<div id="auction-house-modal" class="modal">
 			<!-- Modal Content -->
 			  	<div class="modal-content">
-			    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-			    <!-- auction house -->
-			    	<h1> Property Auction House: </h1>
-			    	<p> more info on the auction house will go here </p>
-
+	    			<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+	    <!-- Game Rules -->
+			    	<h1 style="text-align: center;"> Auction House </h1>
+			    	<p style="text-align: center;">There is currently not an ongoing auction.</p>
+			    	<br>
+			    	<p style="text-align: center;">Press the POST button to auction one of your properties.</p>
+					<div  style="text-align: center;">
+						<button id="post-btn">POST</button>
+					</div>
 			  	</div>
 			</div>
 		</div>
-
+		<!--AUCTIONHOUSE ACTION SCREEN -->
+		<div id="auctionAction" class="modal">
+		<!-- Modal content -->
+		  	<div class="modal-content">
+				<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+				<h1 style="text-align: center;"> Auction House </h1>
+				<p style="text-align: center;">Auction ends in: <span class = "auctionEnd">00:30</span></p>
+				<br>
+				<div class="bidBox"></div>
+				<div style="text-align: center;">
+					<div class = "inputField">
+						<input type="text" id="bidAmount" placeholder=0>
+						<button id="bid-btn">$BID</button>
+					</div>
+				</div>
+		  	</div>
+		</div>
 
 	<!-- =============================================================================== -->
 	<!-- Exit Game Button & Modal Content  -->
