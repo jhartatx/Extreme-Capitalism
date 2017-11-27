@@ -28,7 +28,7 @@ pos_id: {
 });
 
 // Syncs with DB
-//Places.sync();
+Places.sync();
 return Places;
 // Makes the Book Model available for other files (will also create a table)
 //module.exports = Places;
