@@ -43,7 +43,9 @@ function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
     activePlayer = response[0];
     currentLocation = response[0].pos_id;
-    // console.log("current location: "+ currentLocation);
+
+    imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
+    $(".player"+activePlayer.user_id).remove();
 
     var x = Math.floor(Math.random() * 6 + 1);
     var y = Math.floor(Math.random() * 6 + 1);
@@ -74,8 +76,8 @@ function rolldice() {
     }
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);
+    //update piece location
     console.log(activePlayer);
-    imgPosition = $('<img class="'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
     $("#p"+activePlayer.pos_id).append(imgPosition);
 });
 // socket listener
@@ -173,13 +175,38 @@ function playersInfo(){
   });
 }
 
+
+
+/*==============================================================================
+-------------------------Transfer from player to bank---------------------------
+===============================================================================*/
+//use the variable "activePlayer" which was designed in the dice roll
+
+//player purchases property
+$("#purchase").click(function(){
+    //get request where property is equal to the user_position
+    // -= cost from user_money
+    // put request to change the owner
+});
+
+//transfer money from the active player to a single other player
+$("#payPlayers").click(function(){
+
+
+});
+
+
+
+
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
   rolldice();
-
-    // endTurn();
 });
+
+
+//ends the players turn
+$(".end-btn").click(function(){endTurn();});
 
 
 // INFO BUTTON ON CLICK FUNCTION ============================================
