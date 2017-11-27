@@ -3,11 +3,23 @@
 
 <!-- Head Of Website -->
 	<head>
-	<!-- My CSS Stylesheet Links -->
+
+	<!-- Bootstrap Css Link -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!-- CHATBOX CSS LINK -->
+	<link rel="stylesheet" type="text/css" href="assets/css/chat.css">
+	<!-- BOARD CSS Stylesheet Link -->
+		<link rel="stylesheet" type="text/css" href="assets/css/board.css">
+	<!-- MAIN CSS Stylesheet Links -->
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 		<title> Extreme Capitalism </title>
+
+	<!-- Bootstrap Script Links -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 	<!-- Google Font Links & Icon Links-->
 		<script src="https://use.fontawesome.com/92c41c2648.js"></script>
@@ -22,59 +34,160 @@
 
 <!-- Body of Website -->
 <body>
-
 <!--  ============================================================================== -->
-<!-- =============================================================================== -->
-<!-- Info Modal Button And Content-->
-<section>
-	<!-- info button -->
-	<button id="info-btn" type="button"> <i class="fa fa-info-circle" aria-hidden="true"></i></button>
+<!-- bootstrap container -->
+<div class="container">
+  	<div class="row">
 
-	<div id="myModal" class="modal">
-	<!-- Modal content -->
-	  	<div class="modal-content">
-	    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-	    <!-- Game Rules -->
-	    	<h1> Monopoly Game Rules: </h1>
-	    	<p>Monopoly is a game played by two to eight players. Like many games, each person has his own game token that he moves on the board. The goal of this game is to be the last person with most money at the end of the game.
-	    	<br>
-	    	<ol>
-	    		<li> Each player rolls the dice to see who goes first. The person who rolls the largest number goes first. Everyone starts on the space that says, “Go”. </li>
-	    		<br>
-	    		<li> Whenever you land on a property that no one owns, you can buy it from the bank. If you do not want to buy it the Banker sells it at an auction. (Not everyone plays by the auction rule). </li>
-	    		<br>
-	    		<li> All of the prices for the land are on the board. Once you own the land, players must pay a rent if they are waiting on your land. </li>
-	    		<br>
-	    		<li> If you land on a Chance or a Community Chest card, you must do what it says. For example, “Go to Jail, Directly to Jail”, “Advance to Go” or “Go to Pall Mall”. </li>
-	    		<br>
-	    		<li> If you roll doubles (the same number on both dice) you get to roll again. If you roll doubles three times in a row you must go to jail. </li>
-	    		<br>
-	    		<li> When you pass go, you collect £200 from the bank. (Unless you have to jail). </li>
-	    		<br>
-	    		<li> “Free Parking” is an area that is free to be in. If you land in the area you do not have to worry about paying for anything.</li>
-	    		<br>
-	    		<li> Jail- There are three ways to get into jail 1) you land on the space labeled “Go to Jail” 2). You pick a Chance or Community Chest card that says “Go to Jail” or 3) you roll doubles three times. And there are also three ways to get out of jail: 1) you get three turns to roll a double, if you do not roll a double in the three turns you must pay the fine 2) using a “Get out of Jail Free” card (can be found in Chance or Community Chest), 3) pay a fine of £50. </li>
-	    		<br>
-	    		<li> Once you own all of one color, you can start to build houses. Houses make the land more costly and every time you add a house the price goes up more. Once there are four houses on each land you can get a hotel (there can only be one hotel on any land). </li>
-	    		<br>
-	    		<li> You can sell any land to another play (at any cost). But if you have houses or a hotel you must sell them back to the bank before you can sell the land. One house at a time. </li>
-	    		<br>
-	    		<li> If you are going to mortgage land to the bank, you have to sell houses or hotels back first. You can find the price of the mortgage on the back of the deed card. If the land is mortgage rent cannot be collected. To unmortgage land, you have to pay the mortgage plus 10% interest. For example if the mortgage were £100, 10% would be £10. So you would have to pay £110. </li>
-	    		<br>
-	    		<li> Bankruptcy. If you are bankrupt, you cannot pay someone rent or cannot pay a tax. If you declare bankruptcy you are done with the game. </li>
-	    	</ol>
+<!-- USER INFORMATION LEFT========================================================== -->
+<!-- user info - left sectin 3 -->
 
-	  	</div>
-	</div>
-</section>
+    	<div class="col-md-3 left-col-md">
 
+    <!-- ================================================ -->
 
-<!--  ============================================================================== -->
-<!--  ============================================================================== -->
-<!-- user information -->
+	    <!-- User 1 -->
+			<button class="user-1 user-btn" type="button"> Paul <i class="fa fa-times" aria-hidden="true"></i> </button>
+			<!-- User 1 Panel -->
+				<div class="panel-1 pnl">
 
+				  	<!-- User Game Piece -->
+				  	<p class="game-piece-title"> Game Piece: </p>
+				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
+				  	<hr>
 
+				  	<!-- User Monitary Amount -->
+				  	<p class="user-money-title"> Money In The Bank: </p>
+				  	<div class="user-money"> <p> $600.00 </p> </div>
+				  	<hr>
 
+				  	<!-- User Properties Owned Amount -->
+				  	<p class="user-property-title"> Properties Owned: </p>
+				  	<div class="user-property">
+				  		<ul>
+				  			<li>
+				  				<button class="user-property-btn property-ave" type="button"> Connecticut Avenue </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn property-railroad" type="button"> Reading Railroad </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn property-ave" type="button"> Baltic Avenue </button>
+				  			</li>
+				  		</ul>
+				  	</div>
+
+				</div>
+				<br>
+
+	<!-- ================================================ -->
+
+		<!-- User 2 -->
+			<button class="user-2 user-btn" type="button"> David <i class="fa fa-times" aria-hidden="true"></i> </button>
+			<!-- User 2 Panel -->
+				<div class="panel-2 pnl">
+
+				  	<!-- User Game Piece -->
+				  	<p class="game-piece-title"> Game Piece: </p>
+				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
+				  	<hr>
+
+				  	<!-- User Monitary Amount -->
+				  	<p class="user-money-title"> Money In The Bank: </p>
+				  	<div class="user-money"> <p> $600.00 </p> </div>
+				  	<hr>
+
+				  	<!-- User Properties Owned Amount -->
+				  	<p class="user-property-title"> Properties Owned: </p>
+				  	<div class="user-property">
+				  		<ul>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Connecticut Avenue </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Reading Railroad </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Baltic Avenue </button>
+				  			</li>
+				  		</ul>
+				  	</div>
+
+				</div>
+				<br>
+
+		<!-- ================================================ -->
+
+		<!-- User 3 -->
+			<button class="user-3 user-btn" type="button"> Justin <i class="fa fa-times" aria-hidden="true"></i> </button>
+				<!-- User 3 Panel -->
+				<div class="panel-3 pnl">
+
+				  	<!-- User Game Piece -->
+				  	<p class="game-piece-title"> Game Piece: </p>
+				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
+				  	<hr>
+
+				  	<!-- User Monitary Amount -->
+				  	<p class="user-money-title"> Money In The Bank: </p>
+				  	<div class="user-money"> <p> $600.00 </p> </div>
+				  	<hr>
+
+				  	<!-- User Properties Owned Amount -->
+				  	<p class="user-property-title"> Properties Owned: </p>
+				  	<div class="user-property">
+				  		<ul>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Connecticut Avenue </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Reading Railroad </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Baltic Avenue </button>
+				  			</li>
+				  		</ul>
+				  	</div>
+
+				</div>
+				<br>
+
+		<!-- ================================================ -->
+
+		<!-- User 4 -->
+			<button class="user-4 user-btn" type="button"> Andrew <i class="fa fa-times" aria-hidden="true"></i> </button>
+				<!-- User 4 Panel -->
+				<div class="panel-4 pnl">
+
+				  	<!-- User Game Piece -->
+				  	<p class="game-piece-title"> Game Piece: </p>
+				  	<div class="game-piece"> <img src="assets/images/game-pieces/boot.jpg"> </div>
+				  	<hr>
+
+				  	<!-- User Monitary Amount -->
+				  	<p class="user-money-title"> Money In The Bank: </p>
+				  	<div class="user-money"> <p> $600.00 </p> </div>
+				  	<hr>
+
+				  	<!-- User Properties Owned Amount -->
+				  	<p class="user-property-title"> Properties Owned: </p>
+				  	<div class="user-property">
+				  		<ul>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Connecticut Avenue </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Reading Railroad </button>
+				  			</li>
+				  			<li>
+				  				<button class="user-property-btn" type="button"> Baltic Avenue </button>
+				  			</li>
+				  		</ul>
+				  	</div>
+
+				</div>
+
+			</div>
 
 
 
@@ -84,407 +197,783 @@
 
 <!--  ============================================================================== -->
 <!-- GAME BOARD ==================================================================== -->
-<!-- game board setup -->
-<div class="table">
-	<div class="board">
-		<!-- Center Square - Community Chest and Card/Dice Pieces -->
-		<div class="center">
-			<!-- Game Title -->
-			<h1 class="title">EXTREME CAPITALISM</h1>
-			<!-- Community Chest Card Deck -->
-			<div class="community-chest-deck">
-				<div class="deck">
-					<h2 class="label">Community Chest</h2>
-					<i class="drawing fa fa-cube"></i>
-				</div>
-			</div>
-			<!-- Chance Card Deck -->
-			<div class="chance-deck">
-				<div class="deck">
-					<h2 class="label">Chance</h2>
-					<i class="drawing fa fa-question"></i>
-				</div>
-			</div>
-			<!-- Dice Div -->
-			<div class="dice">
-				<button class="dice-btn"> ROLL THE DICE </button>
-				<div class="dice-div">
-					<!-- Dice 1 -->
-					<div id="dice-1"> </div>
-					<!-- Dice 2 -->
-					<div id="dice-2"> </div>
+<!-- game board setup - median sectin 6 -->
 
-				</div>
-			</div>
-		</div>
+	<div class="col-md-6">
 
-	<!-- ========================================================================== -->
-
-		<!-- GO Game Corner 1 -->
-		<div id="1" class="space corner go">
-			<div class="container">
-				<div class="instructions">Collect $200.00 salary as you pass</div>
-				<div class="go-word">go</div>
-			</div>
-			<div class="arrow fa fa-long-arrow-left"></div>
-		</div>
-
-	<!-- ========================================================================== -->
-
-		<!-- Horrizontal Bottom Row -->
-		<div class="row horizontal-row bottom-row">
-			<!-- Tile Piece 10 (Light-Blue) -->
-			<div id="10" class="space property">
-				<div class="container">
-					<div class="color-bar light-blue"></div>
-					<div class="name">Connecticut Avenue</div>
-					<div class="price">PRICE $120</div>
-				</div>
-			</div>
-			<!-- Tile Piece 9 (Light-Blue) -->
-			<div id="9" class="space property">
-				<div class="container">
-					<div class="color-bar light-blue"></div>
-					<div class="name">Vermont Avenue</div>
-					<div class="price">Price $100</div>
-				</div>
-			</div>
-			<!-- Tile Piece 8 (Chance) -->
-			<div id="8" class="space chance">
-				<div class="container">
-					<div class="name">Chance</div>
-					<i class="drawing fa fa-question"></i>
-				</div>
-			</div>
-			<!-- Tile Piece 7 (Light-Blue) -->
-			<div id="7" class="space property">
-				<div class="container">
-					<div class="color-bar light-blue"></div>
-					<div class="name">Oriental Avenue</div>
-					<div class="price">Price $100</div>
-				</div>
-			</div>
-			<!-- Tile Piece 6 (Rail Road) -->
-			<div id="6" class="space railroad">
-				<div class="container">
-					<div class="name">Reading Railroad</div>
-					<i class="drawing fa fa-subway"></i>
-					<div class="price">Price $200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 5 (Income-Tax) -->
-			<div id="5" class="space fee income-tax">
-				<div class="container">
-					<div class="name">Income Tax</div>
-					<div class="diamond"></div>
-					<div class="instructions">Pay 10%<br>or<br>$200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 4 (Purple) -->
-			<div id="4" class="space property">
-				<div class="container">
-					<div class="color-bar dark-purple"></div>
-					<div class="name">Baltic Avenue</div>
-					<div class="price">Price $50</div>
-				</div>
-			</div>
-			<!-- Tile Piece 3 (Community Chest) -->
-			<div id="3" class="space community-chest">
-				<div class="container">
-					<div class="name">Community Chest</div>
-					<i class="drawing fa fa-cube"></i>
-					<div class="instructions">Follow instructions on top card</div>
-				</div>
-			</div>
-			<!-- Tile Piece 2 (Light-Blue) -->
-			<div id="2" class="space property">
-				<div class="container">
-					<div class="color-bar dark-purple"></div>
-					<div class="name three-line-name">Mediter-<br>ranean<br>Avenue</div>
-					<div class="price">Price $50</div>
-				</div>
-			</div>
-		</div>
-
-	<!-- ========================================================================== -->
-
-		<!-- Jail Corner 11 -->
-		<div id="11" class="space corner jail">
-			<div class="just">Just</div>
-			<div class="drawing">
-				<div class="container">
-					<div class="name">In</div>
-					<div class="window">
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<i class="person fa fa-frown-o"></i>
+		<div class="board">
+			<!-- Center Square - Community Chest and Card/Dice Pieces -->
+			<div class="center">
+				<!-- Game Title -->
+				<h1 class="title">EXTREME CAPITALISM</h1>
+				<!-- Community Chest Card Deck -->
+				<div class="community-chest-deck">
+					<div class="deck">
+						<h2 class="label">Community Chest</h2>
+						<i class="drawing fa fa-cube"></i>
 					</div>
-					<div class="name">Jail</div>
 				</div>
-			</div>
-			<div class="visiting">Visiting</div>
+				<!-- Chance Card Deck -->
+				<div class="chance-deck">
+					<div class="deck">
+						<h2 class="label">Chance</h2>
+						<i class="drawing fa fa-question"></i>
+					</div>
+				</div>
+				<!-- Dice Div -->
+				<div class="dice">
+					<button class="dice-btn"> ROLL THE DICE </button>
+					<button class="end-btn"> END YO TURN</button>
+						<div class="dice-div">
+							<!-- Dice 1 -->
+							<div id="dice-1">
+								<img>
+							</div>
+
+							<!-- Dice 2 -->
+							<div id="dice-2">
+								<img>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- ===================================================================== -->
+
+				<!-- GO Game Corner 1 -->
+				<div class="space corner go">
+					<div class="container-game">
+
+						<div class="instructions">Collect $200.00 salary as you pass</div>
+						<div class="go-word">go</div>
+					</div>
+					<div class="arrow fa fa-long-arrow-left"></div>
+
+				<!-- throw piece into corner go -->
+				<div id="1" class="corner-position-piece"> </div>
+
+				</div>
+
+			<!-- ===================================================================== -->
+
+				<!-- Horrizontal Bottom Row -->
+				<div class="row-tbl horizontal-row bottom-row">
+					<!-- Tile Piece 10 (Light-Blue) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar light-blue"></div>
+							<div class="name">Connecticut Avenue</div>
+							<div class="price">PRICE $120</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p10" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 9 (Light-Blue) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar light-blue"></div>
+							<div class="name">Vermont Avenue</div>
+							<div class="price">Price $100</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p9" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 8 (Chance) -->
+					<div class="space chance">
+						<div class="container-game">
+							<div class="name">Chance</div>
+							<i class="drawing fa fa-question"></i>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p8" class="board-position-piece">
+						<!-- <img class="+response[0].user_id+" src="assets/images/game-pieces/car.jpg"> -->
+					</div>
+
+					</div>
+					<!-- Tile Piece 7 (Light-Blue) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar light-blue"></div>
+							<div class="name">Oriental Avenue</div>
+							<div class="price">Price $100</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p7" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 6 (Rail Road) -->
+					<div class="space railroad">
+						<div class="container-game">
+							<div class="name">Reading Railroad</div>
+							<i class="drawing fa fa-subway"></i>
+							<div class="price">Price $200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p6" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 5 (Income-Tax) -->
+					<div class="space fee income-tax">
+						<div class="container-game">
+							<div class="name">Income Tax</div>
+							<div class="diamond"></div>
+							<div class="instructions">Pay 10%<br>or<br>$200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p5" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 4 (Purple) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar dark-purple"></div>
+							<div class="name">Baltic Avenue</div>
+							<div class="price">Price $50</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p4" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 3 (Community Chest) -->
+					<div class="space community-chest">
+						<div class="container-game">
+							<div class="name">Community Chest</div>
+							<i class="drawing fa fa-cube"></i>
+							<div class="instructions">Follow instructions on top card</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p3" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 2 (Light-Blue) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar dark-purple"></div>
+							<div class="name three-line-name">Mediter-<br>ranean<br>Avenue</div>
+							<div class="price">Price $50</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p2" class="board-position-piece"> </div>
+
+					</div>
+				</div>
+
+			<!-- ===================================================================== -->
+
+				<!-- Jail Corner 11 -->
+				<div class="space corner jail">
+					<div class="just">Just</div>
+					<div class="drawing">
+						<div class="container-game">
+							<div class="name">In</div>
+							<div class="window">
+								<div class="bar"></div>
+								<div class="bar"></div>
+								<div class="bar"></div>
+								<i class="person fa fa-frown-o"></i>
+							</div>
+							<div class="name">Jail</div>
+						</div>
+					</div>
+					<div class="visiting">Visiting</div>
+
+				<!-- throw piece into corner jail -->
+				<div id="p11" class="corner-position-piece"> </div>
+
+				</div>
+
+			<!-- ===================================================================== -->
+				<!-- Vertical Left Row -->
+				<div class="row-tbl vertical-row left-row">
+					<!-- Tile Piece 20 (Orange) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar orange"></div>
+							<div class="name">New York Avenue</div>
+							<div class="price">Price $200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p20" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 19 (Orange) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar orange"></div>
+							<div class="name">Tennessee Avenue</div>
+							<div class="price">Price $180</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p19" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 18 (Community Chest) -->
+					<div class="space community-chest">
+						<div class="container-game">
+							<div class="name">Community Chest</div>
+							<i class="drawing fa fa-cube"></i>
+							<div class="instructions">Follow instructions on top card</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p18" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 17 (Orange) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar orange"></div>
+							<div class="name">St. James Avenue</div>
+							<div class="price">Price $180</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p17" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 16 (Rail Road) -->
+					<div class="space railroad">
+						<div class="container-game">
+							<div class="name long-name">Pennsylvania Railroad</div>
+							<i class="drawing fa fa-subway"></i>
+							<div class="price">Price $200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p16" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 15 (Purple/Pink) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar purple"></div>
+							<div class="name">Virginia Avenue</div>
+							<div class="price">Price $160</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p15" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 14 (Purple/Pink) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar purple"></div>
+							<div class="name">States Avenue</div>
+							<div class="price">Price $140</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p14" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 13 (Electric Company) -->
+					<div class="space utility electric-company">
+						<div class="container-game">
+							<div class="name">Electric Company</div>
+							<i class="drawing fa fa-lightbulb-o"></i>
+							<div class="price">Price $150</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p13" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 12 (Purple/Pink) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar purple"></div>
+							<div class="name">St. Charles Place</div>
+							<div class="price">Price $140</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p12" class="board-position-piece"> </div>
+
+					</div>
+				</div>
+
+			<!-- ===================================================================== -->
+
+				<!-- Free Parking Corner 21 -->
+				<div class="space corner free-parking">
+					<div class="container-game">
+						<div class="name">Free</div>
+						<i class="drawing fa fa-car"></i>
+						<div class="name">Parking</div>
+					</div>
+
+				<!-- throw piece into corner free parking -->
+				<div id="p21" class="corner-position-piece"> </div>
+
+				</div>
+
+			<!-- ===================================================================== -->
+				<!-- Horizontal Top Row -->
+				<div class="row-tbl horizontal-row top-row">
+					<!-- Tile Piece 22 (Red) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar red"></div>
+							<div class="name">Kentucky Avenue</div>
+							<div class="price">Price $220</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p22" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 23 (Chance) -->
+					<div class="space chance">
+						<div class="container-game">
+							<div class="name">Chance</div>
+							<i class="drawing fa fa-question blue"></i>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p23" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 24 (Red) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar red"></div>
+							<div class="name">Indiana Avenue</div>
+							<div class="price">Price $220</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p24" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 25 (Red) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar red"></div>
+							<div class="name">Illinois Avenue</div>
+							<div class="price">Price $200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p25" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 26 (Rail Road) -->
+					<div class="space railroad">
+						<div class="container-game">
+							<div class="name">B &amp; O Railroad</div>
+							<i class="drawing fa fa-subway"></i>
+							<div class="price">Price $200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p26" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 27 (Yellow) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar yellow"></div>
+							<div class="name">Atlantic Avenue</div>
+							<div class="price">Price $260</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p27" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 28 (Yellow) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar yellow"></div>
+							<div class="name">Ventnor Avenue</div>
+							<div class="price">Price $260</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p28" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 29 (Waterworks) -->
+					<div class="space utility waterworks">
+						<div class="container-game">
+							<div class="name">Waterworks</div>
+							<i class="drawing fa fa-tint"></i>
+							<div class="price">Price $120</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p29" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 30 (Yellow) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar yellow"></div>
+							<div class="name">Marvin Gardens</div>
+							<div class="price">Price $280</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p30" class="board-position-piece"> </div>
+
+					</div>
+				</div>
+
+			<!-- ====================================================================== -->
+
+				<!-- Go To Jail Corner 31 -->
+				<div class="space corner go-to-jail">
+					<div class="container-game">
+						<div class="name">Go To</div>
+						<i class="drawing fa fa-gavel"></i>
+						<div class="name">Jail</div>
+					</div>
+
+				<!-- throw piece into corner go -->
+				<div id="p31" class="corner-position-piece"> </div>
+
+				</div>
+
+			<!-- ===================================================================== -->
+				<!-- Vertical Left Row -->
+				<div class="row-tbl vertical-row right-row">
+					<!-- Tile Piece 32 (Green) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar green"></div>
+							<div class="name">Pacific Avenue</div>
+							<div class="price">Price $300</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p32" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 33 (Green) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar green"></div>
+							<div class="name three-line-name">North Carolina Avenue</div>
+							<div class="price">Price $300</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p33" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 34 (Community Chest) -->
+					<div class="space community-chest">
+						<div class="container-game">
+							<div class="name">Community Chest</div>
+							<i class="drawing fa fa-cube"></i>
+							<div class="instructions">Follow instructions on top card</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p34" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 35 (Green) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar green"></div>
+							<div class="name long-name">Pennsylvania Avenue</div>
+							<div class="price">Price $320</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p35" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 36 (Rail Road) -->
+					<div class="space railroad">
+						<div class="container-game">
+							<div class="name">Short Line</div>
+							<i class="drawing fa fa-subway"></i>
+							<div class="price">Price $200</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p36" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 37 (Chance) -->
+					<div class="space chance">
+						<div class="container-game">
+							<div class="name">Chance</div>
+							<i class="drawing fa fa-question"></i>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p37" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 38 (Dark-Blue) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar dark-blue"></div>
+							<div class="name">Park Place</div>
+							<div class="price">Price $350</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p38" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 39 (Luxury-Tax) -->
+					<div class="space fee luxury-tax">
+						<div class="container-game">
+							<div class="name">Luxury Tax</div>
+							<div class="drawing fa fa-diamond"></div>
+							<div class="instructions">Pay $75.00</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p39" class="board-position-piece"> </div>
+
+					</div>
+					<!-- Tile Piece 40 (Dark-Blue) -->
+					<div class="space property">
+						<div class="container-game">
+							<div class="color-bar dark-blue"></div>
+							<div class="name">Boardwalk</div>
+							<div class="price">Price $400</div>
+						</div>
+
+					<!-- throw piece into game board -->
+					<div id="p40" class="board-position-piece"> </div>
+
+					</div>
+				</div>
 		</div>
 
-	<!-- ========================================================================== -->
-		<!-- Vertical Left Row -->
-		<div class="row vertical-row left-row">
-			<!-- Tile Piece 20 (Orange) -->
-			<div id="20" class="space property">
-				<div class="container">
-					<div class="color-bar orange"></div>
-					<div class="name">New York Avenue</div>
-					<div class="price">Price $200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 19 (Orange) -->
-			<div id="19" class="space property">
-				<div class="container">
-					<div class="color-bar orange"></div>
-					<div class="name">Tennessee Avenue</div>
-					<div class="price">Price $180</div>
-				</div>
-			</div>
-			<!-- Tile Piece 18 (Community Chest) -->
-			<div id="18" class="space community-chest">
-				<div class="container">
-					<div class="name">Community Chest</div>
-					<i class="drawing fa fa-cube"></i>
-					<div class="instructions">Follow instructions on top card</div>
-				</div>
-			</div>
-			<!-- Tile Piece 17 (Orange) -->
-			<div id="17" class="space property">
-				<div class="container">
-					<div class="color-bar orange"></div>
-					<div class="name">St. James Avenue</div>
-					<div class="price">Price $180</div>
-				</div>
-			</div>
-			<!-- Tile Piece 16 (Rail Road) -->
-			<div id="16" class="space railroad">
-				<div class="container">
-					<div class="name long-name">Pennsylvania Railroad</div>
-					<i class="drawing fa fa-subway"></i>
-					<div class="price">Price $200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 15 (Purple/Pink) -->
-			<div id="15" class="space property">
-				<div class="container">
-					<div class="color-bar purple"></div>
-					<div class="name">Virginia Avenue</div>
-					<div class="price">Price $160</div>
-				</div>
-			</div>
-			<!-- Tile Piece 14 (Purple/Pink) -->
-			<div id="14" class="space property">
-				<div class="container">
-					<div class="color-bar purple"></div>
-					<div class="name">States Avenue</div>
-					<div class="price">Price $140</div>
-				</div>
-			</div>
-			<!-- Tile Piece 13 (Electric Company) -->
-			<div id="13" class="space utility electric-company">
-				<div class="container">
-					<div class="name">Electric Company</div>
-					<i class="drawing fa fa-lightbulb-o"></i>
-					<div class="price">Price $150</div>
-				</div>
-			</div>
-			<!-- Tile Piece 12 (Purple/Pink) -->
-			<div id="12" class="space property">
-				<div class="container">
-					<div class="color-bar purple"></div>
-					<div class="name">St. Charles Place</div>
-					<div class="price">Price $140</div>
-				</div>
+	</div> <!-- end col-md-6 -->
+
+
+
+
+
+
+
+<!--  ============================================================================== -->
+	<div class="col-md-3 right-col-md">
+
+
+
+<!-- =============================================================================== -->
+<!-- =============================================================================== -->
+<!-- SECTION CONTAINING ALL BOTTOM NAVBAR BUTTONS -->
+	<section id="right-nav-bar">
+
+	<!-- Game Rules Button & Modal Content-->
+		<div>
+			<!-- game rules button -->
+			<button id="game-rules-btn" type="button"> <i class="fa fa-registered" aria-hidden="true"></i></button>
+
+			<div id="game-rules-modal" class="modal">
+			<!-- Modal Content -->
+			  	<div class="modal-content">
+			    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+			    <!-- Game Rules -->
+			    	<h1> Monopoly: </h1>
+			    	<p>Monopoly is a game played by two to four players. Like many games, each person has his own game token that he moves on the board. The goal of this game is to be the last person with most money at the end of the game.
+			    	<br>
+			    	<h2> Rules of The Game: </h2>
+			    	<ol>
+			    		<li> Each player rolls the dice to see who goes first. The person who rolls the largest number goes first. Everyone starts on the space that says, “Go”. </li>
+			    		<br>
+			    		<li> Whenever you land on a property that no one owns, you can buy it from the bank. If you do not want to buy it the Banker sells it at an auction. (Not everyone plays by the auction rule). </li>
+			    		<br>
+			    		<li> All of the prices for the land are on the board. Once you own the land, players must pay a rent if they are waiting on your land. </li>
+			    		<br>
+			    		<li> If you land on a Chance or a Community Chest card, you must do what it says. For example, “Go to Jail, Directly to Jail”, “Advance to Go” or “Go to Pall Mall”. </li>
+			    		<br>
+			    		<li> If you roll doubles (the same number on both dice) you get to roll again. If you roll doubles three times in a row you must go to jail. </li>
+			    		<br>
+			    		<li> When you pass go, you collect £200 from the bank. (Unless you have to jail). </li>
+			    		<br>
+			    		<li> “Free Parking” is an area that is free to be in. If you land in the area you do not have to worry about paying for anything.</li>
+			    		<br>
+			    		<li> Jail- There are three ways to get into jail 1) you land on the space labeled “Go to Jail” 2). You pick a Chance or Community Chest card that says “Go to Jail” or 3) you roll doubles three times. And there are also three ways to get out of jail: 1) you get three turns to roll a double, if you do not roll a double in the three turns you must pay the fine 2) using a “Get out of Jail Free” card (can be found in Chance or Community Chest), 3) pay a fine of £50. </li>
+			    		<br>
+			    		<li> Once you own all of one color, you can start to build houses. Houses make the land more costly and every time you add a house the price goes up more. Once there are four houses on each land you can get a hotel (there can only be one hotel on any land). </li>
+			    		<br>
+			    		<li> You can sell any land to another play (at any cost). But if you have houses or a hotel you must sell them back to the bank before you can sell the land. One house at a time. </li>
+			    		<br>
+			    		<li> If you are going to mortgage land to the bank, you have to sell houses or hotels back first. You can find the price of the mortgage on the back of the deed card. If the land is mortgage rent cannot be collected. To unmortgage land, you have to pay the mortgage plus 10% interest. For example if the mortgage were £100, 10% would be £10. So you would have to pay £110. </li>
+			    		<br>
+			    		<li> Bankruptcy. If you are bankrupt, you cannot pay someone rent or cannot pay a tax. If you declare bankruptcy you are done with the game. </li>
+			    	</ol>
+
+			  	</div>
 			</div>
 		</div>
 
-	<!-- ========================================================================== -->
+	<!-- =============================================================================== -->
+	<!-- Info Modal Button & Modal Content-->
+		<div>
+			<!-- info button -->
+			<button id="info-btn" type="button"> <i class="fa fa-info-circle" aria-hidden="true"></i></button>
 
-		<!-- Free Parking Corner 21 -->
-		<div id="21" class="space corner free-parking">
-			<div class="container">
-				<div class="name">Free</div>
-				<i class="drawing fa fa-car"></i>
-				<div class="name">Parking</div>
+			<div id="info-modal" class="modal">
+			<!-- Modal Content -->
+			  	<div class="modal-content">
+			    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+			    <!-- info -->
+			    	<h1> INFO: How To Play  </h1>
+			    	<p> more information goes here </p>
+
+			  	</div>
 			</div>
 		</div>
 
-	<!-- ========================================================================== -->
-		<!-- Horizontal Top Row -->
-		<div class="row horizontal-row top-row">
-			<!-- Tile Piece 22 (Red) -->
-			<div id="22" class="space property">
-				<div class="container">
-					<div class="color-bar red"></div>
-					<div class="name">Kentucky Avenue</div>
-					<div class="price">Price $220</div>
-				</div>
-			</div>
-			<!-- Tile Piece 23 (Chance) -->
-			<div id="23" class="space chance">
-				<div class="container">
-					<div class="name">Chance</div>
-					<i class="drawing fa fa-question blue"></i>
-				</div>
-			</div>
-			<!-- Tile Piece 24 (Red) -->
-			<div id="24" class="space property">
-				<div class="container">
-					<div class="color-bar red"></div>
-					<div class="name">Indiana Avenue</div>
-					<div class="price">Price $220</div>
-				</div>
-			</div>
-			<!-- Tile Piece 25 (Red) -->
-			<div id="25" class="space property">
-				<div class="container">
-					<div class="color-bar red"></div>
-					<div class="name">Illinois Avenue</div>
-					<div class="price">Price $200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 26 (Rail Road) -->
-			<div id="26" class="space railroad">
-				<div class="container">
-					<div class="name">B &amp; O Railroad</div>
-					<i class="drawing fa fa-subway"></i>
-					<div class="price">Price $200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 27 (Yellow) -->
-			<div id="27" class="space property">
-				<div class="container">
-					<div class="color-bar yellow"></div>
-					<div class="name">Atlantic Avenue</div>
-					<div class="price">Price $260</div>
-				</div>
-			</div>
-			<!-- Tile Piece 28 (Yellow) -->
-			<div id="28" class="space property">
-				<div class="container">
-					<div class="color-bar yellow"></div>
-					<div class="name">Ventnor Avenue</div>
-					<div class="price">Price $260</div>
-				</div>
-			</div>
-			<!-- Tile Piece 29 (Waterworks) -->
-			<div id="29" class="space utility waterworks">
-				<div class="container">
-					<div class="name">Waterworks</div>
-					<i class="drawing fa fa-tint"></i>
-					<div class="price">Price $120</div>
-				</div>
-			</div>
-			<!-- Tile Piece 30 (Yellow) -->
-			<div id="30" class="space property">
-				<div class="container">
-					<div class="color-bar yellow"></div>
-					<div class="name">Marvin Gardens</div>
-					<div class="price">Price $280</div>
-				</div>
+	<!-- =============================================================================== -->
+	<!-- Auction House Button & Modal Content-->
+		<div>
+			<!-- auction house button -->
+			<button id="auction-house-btn" type="button"> <i class="fa fa-university" aria-hidden="true"></i></button>
+
+			<div id="auction-house-modal" class="modal">
+			<!-- Modal Content -->
+			  	<div class="modal-content">
+			    	<span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
+			    <!-- auction house -->
+			    	<h1> Property Auction House: </h1>
+			    	<p> more info on the auction house will go here </p>
+
+			  	</div>
 			</div>
 		</div>
 
-	<!-- ========================================================================== -->
 
-		<!-- Go To Jail Corner 31 -->
-		<div id="31" class="space corner go-to-jail">
-			<div class="container">
-				<div class="name">Go To</div>
-				<i class="drawing fa fa-gavel"></i>
-				<div class="name">Jail</div>
+	<!-- =============================================================================== -->
+	<!-- Exit Game Button & Modal Content  -->
+		<div>
+			<!-- end game button -->
+			<button id="end-game-btn" type="button"> <i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+
+			<div id="end-game-modal" class="modal">
+			<!-- Modal Content -->
+			  	<div class="modal-content">
+
+			    <!-- end game intro -->
+			    	<h1> End Game </h1>
+			    	<p> Are you sure you would like to end the game. This will stop the game for not only yourself, but all other players as well. </p>
+					<!-- NO end game btn -->
+					<button id="no-end-game" type="button"> No thanks, I'll to back to the game </button>
+					<!-- CONFIRM end game btn -->
+			    	<button id="confirm-end-game" type="button"> Yes I would like to end the game </button>
+
+			  	</div>
 			</div>
 		</div>
 
-	<!-- ========================================================================== -->
-		<!-- Vertical Left Row -->
-		<div class="row vertical-row right-row">
-			<!-- Tile Piece 32 (Green) -->
-			<div id="32" class="space property">
-				<div class="container">
-					<div class="color-bar green"></div>
-					<div class="name">Pacific Avenue</div>
-					<div class="price">Price $300</div>
-				</div>
-			</div>
-			<!-- Tile Piece 33 (Green) -->
-			<div id="33" class="space property">
-				<div class="container">
-					<div class="color-bar green"></div>
-					<div class="name three-line-name">North Carolina Avenue</div>
-					<div class="price">Price $300</div>
-				</div>
-			</div>
-			<!-- Tile Piece 34 (Community Chest) -->
-			<div id="34" class="space community-chest">
-				<div class="container">
-					<div class="name">Community Chest</div>
-					<i class="drawing fa fa-cube"></i>
-					<div class="instructions">Follow instructions on top card</div>
-				</div>
-			</div>
-			<!-- Tile Piece 35 (Green) -->
-			<div id="35" class="space property">
-				<div class="container">
-					<div class="color-bar green"></div>
-					<div class="name long-name">Pennsylvania Avenue</div>
-					<div class="price">Price $320</div>
-				</div>
-			</div>
-			<!-- Tile Piece 36 (Rail Road) -->
-			<div id="36" class="space railroad">
-				<div class="container">
-					<div class="name">Short Line</div>
-					<i class="drawing fa fa-subway"></i>
-					<div class="price">Price $200</div>
-				</div>
-			</div>
-			<!-- Tile Piece 37 (Chance) -->
-			<div id="37" class="space chance">
-				<div class="container">
-					<div class="name">Chance</div>
-					<i class="drawing fa fa-question"></i>
-				</div>
-			</div>
-			<!-- Tile Piece 38 (Dark-Blue) -->
-			<div id="38" class="space property">
-				<div class="container">
-					<div class="color-bar dark-blue"></div>
-					<div class="name">Park Place</div>
-					<div class="price">Price $350</div>
-				</div>
-			</div>
-			<!-- Tile Piece 39 (Luxury-Tax) -->
-			<div id="39" class="space fee luxury-tax">
-				<div class="container">
-					<div class="name">Luxury Tax</div>
-					<div class="drawing fa fa-diamond"></div>
-					<div class="instructions">Pay $75.00</div>
-				</div>
-			</div>
-			<!-- Tile Piece 40 (Dark-Blue) -->
-			<div id="40" class="space property">
-				<div class="container">
-					<div class="color-bar dark-blue"></div>
-					<div class="name">Boardwalk</div>
-					<div class="price">Price $400</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/mainLogic.js"></script>
+	</section> <!-- end nav bar section -->
+	<br>
 
-	</body>
+
+
+<!-- CHATBOX LEFT ================================================================ -->
+<!-- chat box information -->
+		<div id="live-chat">
+
+			<header class="clearfix">
+
+					<h4>John Doe</h4>
+			</header>
+
+			<div class="chat">
+				<div class="chat-history">
+					<div class="chat-message clearfix">
+						<!-- <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32"> -->
+						<div class="chat-message-content clearfix">
+							<span class="chat-time">13:35</span>
+							<h5>John Doe</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>
+						</div> <!-- end chat-message-content -->
+					</div> <!-- end chat-message -->
+
+					<hr>
+
+					<div class="chat-message clearfix">
+						<img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
+						<div class="chat-message-content clearfix">
+							<span class="chat-time">13:37</span>
+							<h5>Marco Biedermann</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>
+						</div> <!-- end chat-message-content -->
+					</div> <!-- end chat-message -->
+
+					<hr>
+
+					<div class="chat-message clearfix">
+						<!-- <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32"> -->
+						<div class="chat-message-content clearfix">
+							<span class="chat-time">13:38</span>
+							<h5>John Doe</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+						</div> <!-- end chat-message-content -->
+					</div> <!-- end chat-message -->
+
+					<hr>
+				</div> <!-- end chat-history -->
+
+				<p class="chat-feedback">Your partner is typing…</p>
+				<form action="#" method="post">
+					<fieldset>
+						<input type="text" placeholder="Type your message…" autofocus>
+						<input type="hidden">
+					</fieldset>
+				</form>
+			</div> <!-- end chat -->
+		</div> <!-- end live-chat -->
+
+
+
+
+		</div> <!-- end right col-md-3 -->
+
+	</div> <!-- end bootstrap row -->
+
+</div> <!-- end bootstrap  collumn -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  ============================================================================== -->
+<!-- SCRIPT LINKS ================================================== -->
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="./assets/js/mainLogic.js"></script>
+
+
+</body>
 
 </html>

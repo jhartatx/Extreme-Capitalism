@@ -1,83 +1,99 @@
-/* ================================================================================= */
-/* General Page Settings */ 
-* {
-  box-sizing: border-box;
+/* PIECES & POSITIONS ============================================================== */
+/* board posiion settings */
+.row{
+  margin-top:4%;
 }
 
-body {
-  margin: 0;
-  background-image:url("../images/background.jpg");
-  background-position: center;
-  background-repeat: repeat;
-  background-attachment:fixed;
-  background-size:100%;
-  font-family: 'Raleway', sans-serif;;
-  font-size: 4px;
-  color: #080808;
-  text-transform: uppercase;
+.left-col-md{
+  margin-left:-2%;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
-
-/* ---------------------------------------------- */
-/* Property Colors */
-.dark-purple { background: #5e3577; }
-.light-blue  { background: #d2eaf5; }
-.purple      { background: #b02f7c; }
-.orange      { background: #fa811d; }
-.red         { background: #f50c2b; }
-.yellow      { background: #ffed20; }
-.green       { background: #41994e; }
-.dark-blue   { background: #5a6dba; }
-
 
 
 /* ================================================================================= */
-/* GAME RULES ---------------------------------------------------------------------- */
-/* info button settings */
-#info-btn{
+/* CONTROL BTNS -------------------------------------------------------------------- */
+/* nav control buttons at the bottom of page */
+#right-nav-bar{
+  border:1px solid white;
+  background:white;
+  height:80px;
+  margin-left:7%;
+  margin-right:-6%;
+  border-radius:8px;
+
+}
+
+#game-rules-btn, #info-btn, #end-game-btn, #auction-house-btn{
   list-style-type: none;
   text-decoration: none;
   border-radius: 50px;
-  border:2px solid white;
+  border:2px solid #444;
   background:none;
-  margin:3%;
-  color:white;
+  margin:6% 2.5%;
+  color:#444;
   position:relative;
-  padding:3px 7px;
+  padding:2px 10px;
   transition: .3s ease-in-out;
-  font-size: 25px;
-  float
+  font-size: 24px;
+  float:left;
 }
 
-#info-btn:hover{
+#game-rules-btn:hover, #info-btn:hover, #end-game-btn:hover, #auction-house-btn:hover{
   transition: .3s ease-in-out;
-  box-shadow:0 0 15px black;
+  border:2px solid #444;
+  background: #444;
+  color:white;
   cursor:pointer;
 }
 
-/* ---------------------------------------------- */
-/* modal settings */
+/* =================================================== */
+/* POSITIONING BUTTONS */
+
+#game-rules-btn{
+  font-size:24px;
+  padding: 2px 8px;
+  margin-left:7%;
+}
+
+#auction-house-btn{
+  font-size:20px;
+  padding:5px 8px;
+}
+
+#end-game-btn{
+  color:#C50000;
+  border:2px solid #C50000;
+}
+
+
+#end-game-btn:hover{
+  cursor:pointer;
+  background-color:#C50000;
+  color:white;
+  border:2px solid #C50000;
+  transition:.3s ease-in-out;
+}
+
+/* ================================================================================= */
+/* GENERAL MODAL SETTINGS ========================================================== */
+/* modal settings for game rules */
 .modal {
   display: none;
-  position: fixed; 
-  z-index: 20; 
+  position: fixed;
+  z-index: 20;
   left: 0;
   top: 0;
   width: 100%;
-  margin:0; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
+  margin:0;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
 
-/* odal Content/Box */
+/* modal content / box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto; 
+  margin: 5% auto;
   padding: 5%;
   border: 1px solid white;
   width: 90%;
@@ -85,18 +101,34 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: none;
 }
 
+.modal-content h1{
+  font-size:30px;
+  font-weight:bold;
+  text-transform:uppercase;
+
+  margin-bottom:1%;
+}
+
+.modal-content h2{
+  font-size:24px;
+  font-weight:bold;
+  text-transform:uppercase;
+  margin-bottom:1%;
+}
+
 .modal-content p{
   font-size:16px;
   font-weight:bold;
 }
 
-/* The Close Button */
+/* modal close cutton */
 .close {
   color: #aaa;
   float: right;
   font-size: 20px;
   font-weight: bold;
-  margin:-3% -2%;
+  margin:-2% 0 0 100%;
+  transition: .2s ease-in-out;
 }
 
 .close:hover,
@@ -104,554 +136,220 @@ h1, h2, h3, h4, h5, h6 {
   color: black;
   text-decoration: none;
   cursor: pointer;
+  transition: .2s ease-in-out;
 }
 
 
 
 /* ================================================================================= */
-/* MAIN LAYOUT BOARD GAME ---------------------------------------------------------- */
-/* table settings */
-
-.table {
-  padding-left: 20%;
-  padding-right: 20%;
-  margin-top:-5%;
-}
-
-/* coard settings */
-.board {
-  display: grid;
-  grid-template-columns: 65px repeat(9, 41.6px) 65px;
-  grid-template-rows: 65px repeat(9, 41.6px) 65px;
-  grid-gap: 1px;
-  margin: 2% auto;
-  width: 516.88px;
-  height: 516.88px;
-  background: black;
-  border: 1px solid black;
-  box-shadow:0px 0px 50px black;
-}
-
-/* center grid block with title and card deck */
-.center {
-  grid-column: 2 / 11;
-  grid-row: 2 / 11;
-  background:#fafaf8; /* table color */
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  align-items: center;
-}
-
-/* page game board title */
-.title {
-  grid-column: 1 / 9;
-  grid-row: 2;
-  margin-top:5%;
-  font-size: 30px;
-  letter-spacing: 12px;
+/* SPECIFIC SETTINGS FOR MODALS ==================================================== */
+/* end game modal settings */
+#end-game-modal .modal-content{
+  width:60%;
+  margin-top:13%;
   text-align:center;
-}
-
-/* ---------------------------------------------- */
-/* card deck title lable */
-.label {
-  text-align: center;
-  letter-spacing: 2px;
-  padding: 5px;
 
 }
 
-/* card deck box */
-.deck {
-  border: 1.3px dashed black;
-  width: 100px;
-  height:60px;
-}
-
-/* ---------------------------------------------- */
-/* community chest card deck */
-.community-chest-deck {
-  grid-column: 3;
-  grid-row: 3;
-  margin-top:10%;
-  margin-left:50px;
-}
-
-/* community chest card image */
-.community-chest-deck .drawing {
-  font-size: 25px;
-  margin-left:35%;
-  color: #d2eaf5; /* light blue */
-}
-
-/* ---------------------------------------------- */
-/* chance card deck */
-.chance-deck {
-  grid-column: 4;
-  grid-row: 3;
-  margin-top:8%;
-  margin-left:20px;
-} 
-
-/* chance card deck image */
-.chance-deck .drawing {
-  font-size: 38px;
-  margin-left:37%;
-  margin-top:-3px;
-  color: #5a6dba;
-}
-
-/* ---------------------------------------------- */
-/* game dice */
-.dice {
-  grid-column: 4;
-  grid-row: 4;
-  margin-top:5%;
-}
-
-.dice-btn{
-  background:none;
-  color:black;
-  border: 1px solid black;
-  padding:5px 10px;
+/* NO end game button settings */
+#end-game-modal .modal-content #no-end-game{
   width:50%;
-  font-size:8px;
-  margin:2% 16%;
-  box-shadow: -4px 5px 20px #dbdbdb;
-  transition:.3s ease-in-out;
-}
-
-.dice-btn:hover{
+  margin-top: 3%;
+  margin-left:25%;
+  padding:10px 15px;
+  border:1px solid #444;
   background:none;
-  border: 1px solid #257EC2;
-  color:#257EC2;
-  box-shadow: -4px 10px 10px #dbdbdb;
-  transition:.3s ease-in-out;
-   cursor:pointer;
+  color:#444;
+  transition: .3s ease-in-out;
 }
 
-.dice-div {
-  width: 170px;
-  height: 70px;
+#end-game-modal .modal-content #no-end-game:hover{
+  border:1px solid #aaa;
+  background:#aaa;
+  color:white;
+  transition: .3s ease-in-out;
 }
 
-#dice-1{
-
+/* CONFIRM end game button settings */
+#end-game-modal .modal-content #confirm-end-game{
+  width:50%;
+  margin-top:5%;
+  margin-left:25%;
+  padding:10px 15px;
+  border:1px solid #C50000;
+  background:none;
+  color:#C50000;
+  transition: .3s ease-in-out;
 }
 
-#dice-2{
-
+#end-game-modal .modal-content #confirm-end-game:hover{
+  border:1px solid #C50000;
+  background:#C50000;
+  color:white;
+  transition: .3s ease-in-out;
 }
+
+
+
+
+
+
 
 /* ================================================================================= */
-/* ROW ORIENTATION ----------------------------------------------------------------- */
-/* rows */
-.row {
-  display: grid;
-  grid-gap: 1px;
-}
+/* USER INFO BTNS & PANEL ---------------------------------------------------------- */
 
-/* horizontal row */
-.horizontal-row {
-  grid-template-columns: repeat(9, 41.6px);
-  grid-template-rows: 65px;
-}
-
-/* ---------------------------------------------- */
-/* vertical row */
-.vertical-row {
-  grid-template-columns: 65px;
-  grid-template-rows: repeat(9, 41.6px);
-}
-
-.vertical-row .container {
-  top: 50%;
-  left: 50%;
-}
-
-/* ---------------------------------------------- */
-/* bottom row */
-.bottom-row {
-  grid-column: 2 / 11;
-  grid-row: 11;
-}
-
-/* ---------------------------------------------- */
-/* left row */
-.left-row {
-  grid-column: 1;
-  grid-row: 2 / 11;
-}
-
-.left-row .container {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-/* ---------------------------------------------- */
-/* top row */
-.top-row {
-  grid-column: 2 / 11;
-  grid-row: 1;
-}
-
-.top-row .container {
-  transform: rotate(180deg);
-}
-
-/* ---------------------------------------------- */
-/* right row */
-.right-row {
-  grid-column: 11;
-  grid-row: 2 / 11;
-} 
-.right-row  .container {
-  transform: translate(-50%, -50%) rotate(270deg);
-}
-
-/* ================================================================================= */
-/* INDIVIDUAL TILE PIECE ----------------------------------------------------------- */
-/* general space settings */
-.space {
-  background: #fafaf8; /* board color */
-  text-align: center;
-}
-
-.space .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  transform-origin: center;
-  height: 65px;
-  width: 41.6px;
-}
-
-/* main space name */
-.space .name,
-.space .instructions {
-  padding-left:5px;
-  padding-right:5px;
-}
-
-/* main space price */
-.space .price {
-  font-size: 5px;
-  padding-bottom: 5px;
-} 
-
-.space .corner .container {
-  justify-content: space-around;
-  height: 100%;
+/* panel user-btns */
+.user-btn {
+  background-color: white;
+  color: #444;
+  cursor: pointer;
+  padding: 15px 20px;
   width: 100%;
+  font-size:13px;
+  text-align: right;
+  border: none;
+  outline: none;
+  text-transform:uppercase;
+  transition: 0.4s ease-in-out;
+  margin-bottom:2%;
 }
 
-.space.name {
-  padding: 0;
+/* adding hover effects to btns */
+.user-btn.active, .user-btn:hover {
+  background-color: #ccc;
+  cursor:pointer;
 }
 
-/* ---------------------------------------------- */
-/* corner pieces */
-.corner .container {
-  justify-content: space-around;
-  height: 100%;
-  width: 100%;
+
+/* ------------------------------------------ */
+/* + & x icon for user-btn information */
+.user-btn i{
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+  margin-left:2%;
 }
 
-.corner .name {
-  padding: 0;
+user-btn i.active{
+  animation: spin .3s ease-in-out linear;
 }
 
-/* ---------------------------------------------- */
-/* property color bar */
-.property .color-bar {
-  height: 14px;
-  border-bottom:1px solid black;
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(45deg); }
+  100% { -moz-transform: rotate(0deg); }
+}
+@-webkit-keyframes spin {
+  0%{ -webkit-transform: rotate(45deg); }
+  100% { -webkit-transform: rotate(0deg); }
+}
+@keyframes spin {
+  0% {transform:rotate(45deg);}
+  100% {transform:rotate(0deg);}
 }
 
-.property .name {
-  padding-bottom: 22px;
+
+/* ---------------------------------------------------------- */
+/* Style the accordion panel with user info. Note: hidden by default */
+.pnl {
+  padding: 0 18px;
+  text-align:right;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+
 }
 
-/* ---------------------------------------------- */
-/* rail road */
-.railroad .name {
-  padding-top: 5px;
+/* =================================================================================== */
+/* PLAYER INFO STYLING  ============================================================== */
+
+/* ------------------------------------------------------- */
+/* game piece */
+.game-piece-title{
+  padding-top:15px;
+  font-size:14px;
+  margin-bottom:5px;
 }
 
-.railroad .drawing {
-  font-size: 25px;
-  color: #080808;
+.game-piece img{
+  margin-left:78%;
+  margin-bottom:5px;
+  width:19%;
 }
 
-/* ---------------------------------------------- */
-/* utility */
-.utility .name {
-  padding-top: 5px;
+/* ------------------------------------------------------- */
+/* game money */
+.user-money-title{
+  margin-top:10px;
+  font-size:14px;
 }
 
-.utility .drawing {
-  font-size: 25px;
+.user-money{
+  margin-bottom:5px;
+  font-size:14px;
+  color:green;
+  text-transform:none;
 }
 
-/* ---------------------------------------------- */
-/* fee */
-.fee .name {
-  padding-top: 5px;
-  font-size: 8px;
+/* ------------------------------------------------------- */
+/* property owned */
+.user-property-title{
+  margin-top:10px;
+  margin-bottom:20px;
+  font-size:14px;
 }
 
-.fee .instructions {
-  font-size: 6px;
-}
-
-/* ================================================================================= */
-/* SPECIFIC SPACES ----------------------------------------------------------------- */
-/* go corner piece */
-.go {
-  grid-column: 11;
-  grid-row: 11 / 12;
-  position: relative;  
-}
-
-.go .container {
-  justify-content: flex-start;
-  transform: rotate(315deg);
-}
-
-/* go instructions */
-.go .instructions {
-  width:90%;
-  padding: 5px 5px;
-  margin-top:4px;
-  margin-left:5%;
-}
-
-/* "GO" */
-.go .go-word {
-  font-size: 25px;
-  color: #f50c2b; /* red */
-}
-
-/* go arrow */
-.arrow {
-  font-size: 15px;
-  color: #f50c2b;
-  position: absolute;
+.user-property ul{
+  list-style-type:none;
+  text-decoration:none;
   margin-top:-15px;
-  margin-left:20px;
-  transform: rotate(315deg);
+  font-size:14px;
+  color:purple;
+  text-transform:none;
 }
 
-/* ---------------------------------------------- */
-/* jail (corner piece) */
-.jail {
-  grid-column: 1;
-  grid-row: 11 / 12;
-  display: grid;
-  grid-template-columns: repeat(10, 6.4px);
-  grid-template-rows: repeat(10, 6.3px);
-  align-items: center;
+/* ------------------------------------------------------- */
+/* property modal buttons */
+.user-property-btn {
+  background:none;
+  border: 1px solid #444;
+  font-size:14px;
+  width:120%;
+  padding:5% 10%;
+  margin-left:-20%;
+  margin-top:5%;
+  transition:.4s ease-in-out;
 }
 
-/* jail drawing */
-.jail .drawing {
-  grid-column: 4 / 11;
-  grid-row: 1 / 8;
-  width: 46px;
-  border-top:1px splid black;
-  height: 46px;
-  background: #fa811d; /* orange */
-  border-bottom: 1px solid #080808;
-  border-left: 1px solid #080808;
-}
-
-.jail .just {
-  grid-column: 3;
-  grid-row: 3;
-  transform: rotate(90deg);
-  padding-top: 5px;
-}
-
-.jail .visiting {
-  grid-column: 5;
-  grid-row: 8;
-  padding-top: 5px;
-}
-
-.jail .container {
-  align-items: center;
-  transform: rotate(45deg);
-}
-
-.jail .name {
-  font-size: 8px;
-}
-
-/* jail window drawing */
-.jail .window {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  width: 25px;
-  height: 25px;
-  background: #fafaf8;
-  border: 1px solid #080808;
-}
-
-/* jail person */
-.jail .person {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  font-size: 20px;
-}
-
-/* jail bars */
-.jail .bar {
-  height: 25px;
-  width: 1px;
-  background: #080808;
+.user-property-btn:hover {
+  border: 1px solid #444;
+  color:white;
+  background:#444;
+  transition:.4s ease-in-out;
 }
 
 
-/* ---------------------------------------------- */
-/* free parking (corner piece) */
-.free-parking {
-  grid-column: 1;
-  grid-column: 1 / 2;
+/* -------------------------------------------------------------------- */
+/* speecific styling for background color of coresponding properties */
+
+.property-ave{
+  border: 1px solid #d2eaf5;
+  background:#d2eaf5;
+  color:white
 }
 
-.free-parking  .container {
-  justify-content: center; 
-  transform: rotate(135deg);
-  margin-left:4px;
-  margin-top:4px;
-}
-
-.free-parking  .name {
-  font-size: 8px;
-}
-
-.free-parking  .drawing {
-  font-size: 25px;
-  color: #f50c2b;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-/* ---------------------------------------------- */
-/* go to jail (corner piece) */
-.go-to-jail {
-  grid-column: 11;
-  grid-row: 1 / 1;
-}
-
-.go-to-jail .container {
-  justify-content: center;
-  transform: rotate(225deg);
-}
-
-.go-to-jail .name {
-  font-size: 8px;
-}
-
-.go-to-jail .drawing {
-  font-size: 30px;
-  color: #640303;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-/* ---------------------------------------------- */
-/* chance piece */
-.chance .container {
-  justify-content: center;
-}
-
-.chance .drawing {
-  font-size: 40px;
-  color: #f50c2b;
-}
-
-.chance .blue {
-  color: #5a6dba; /* dark blue */
-}
-
-/* ---------------------------------------------- */
-/* community chest piece */
-.community-chest .container {
-  justify-content: space-around;
-}
-
-.community-chest .drawing {
-  font-size: 25px;
-  color: #d2eaf5; /* light blue */
-}
-
-.community-chest .instructions {
-  font-size: 4px;
-}
-
-/* ---------------------------------------------- */
-/* electric company piece */
-.electric-company .drawing {
-  color: #ffed20;
-}
-
-/* ---------------------------------------------- */
-/* waterworks piece */
-.waterworks .drawing {
-  color: #5a6dba;
-}
-
-/* ---------------------------------------------- */
-/* income tax piece */
-.income-tax .container {
-  justify-content: center;
-  align-items: center;
-}
-
-/* income tax piece name */
-.income-tax .name {
-  padding-bottom: 5px;
-}
-
-/* tax income diamond */
-.income-tax .diamond {
-  width: 5px;
-  height: 5px;
-  background: #080808;
-  transform: rotate(45deg);
-  display: inline-block
-}
-
-.income-tax .instructions {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-/* luxury tax piece */
-.luxury-tax .drawing {
-  font-size: 20px;
-}
-
-.luxury-tax .instructions {
-  padding-bottom: 5px;
+.property-railroad{
+  border: 1px solid #cfcfcf;
+  background:#cfcfcf;
+  color:white
 }
 
 /* ================================================================================= */
-/* NAME WRAP ----------------------------------------------------------------------- */
-/* long name - wrap */
-.long-name {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 
-/* Three Line Name - Wrap */
-.three-line-name {
-  position: relative;
-  top: 5px;
+/* ---------------------------------------------------------------------- */
+/*  */
+#p8{
+  /*background-color: black;*/
+  height: 50px;
+  width:50px;
 }

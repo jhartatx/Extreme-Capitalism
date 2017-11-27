@@ -26,6 +26,9 @@ user_id: {
   },
   in_jail:{
     type: Sequelize.INTEGER
+  },
+  user_image:{
+    type: Sequelize.STRING
   }
 }, {
   timestamps: false

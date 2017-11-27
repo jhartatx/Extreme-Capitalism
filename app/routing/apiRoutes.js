@@ -29,7 +29,7 @@ module.exports = function(app) {
   app.get("/checkactiveplayer", function(req, res) {
     Players.findAll({
       where:{
-          is_turn: true
+          is_turn: 1
         }
     }).then(function(results) {
       res.json(results);
@@ -43,11 +43,42 @@ module.exports = function(app) {
     Players.update({
       pos_id: req.body.move
     },{where:{
-        is_turn: true
+        is_turn: 1
       }
     }).then(function(results){
       //property check function
       //function based on property check
+    });
+  });
+
+  app.put("/activeon", function(req, res){
+    console.log("====================================================");
+    console.log(req.body.current);
+    console.log("====================================================");
+    Players.update({
+      is_turn: 1
+    },{where:{
+        user_id: req.body.current
+      }
+    }).then(function(){
+
+    }).catch(function(err){
+      console.error(err);
+    });
+
+  app.put("/activeoff",function(req, res){
+    console.log("====================================================");
+    console.log(req.body.previous);
+    console.log("====================================================");
+      Players.update({
+        is_turn: 0
+      },{where:{
+          user_id: req.body.previous
+        }
+    }).then(function(){
+
+    }).catch(function(err){
+      console.error(err);
     });
   });
 
@@ -87,10 +118,10 @@ module.exports = function(app) {
   //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullchance", function(req, res){
     Chance.findAll({
-      where:{
-        //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
-        cha_id: 2
-      },
+      // where:{
+      //   // MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
+      //   cha_id: 2
+      // },
     }).then(function(results){
       //card functionality will then occur in here based on cha_id
       res.json(results);
@@ -118,14 +149,15 @@ module.exports = function(app) {
 //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullcommunity", function(req, res){
     Community.findAll({
-      where:{
-        //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
-        com_id: 2
-      },
+      // where:{
+      //   //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
+      //   com_id: 2
+      // },
     }).then(function(results){
       //card functionality will then occur in here based on cha_id
       res.json(results);
     });
   });
 
+});
 };

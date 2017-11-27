@@ -13,7 +13,8 @@ user_name VARCHAR (50) NOT NULL,
 user_money INTEGER (255),
 is_turn BOOLEAN,
 pos_id INTEGER (2) NOT NULL,
-in_jail INTEGER (1) NOT NULL
+in_jail INTEGER (1) NOT NULL,
+user_image VARCHAR (255) NOT NULL
 );
 
 
