@@ -2,10 +2,11 @@
 ------------------------------CONNECTIONS---------------------------------------
 ===============================================================================*/
 
-var Players = require("../models/players.js");
-var Places = require("../models/places.js");
-var Community = require("../models/community.js");
-var Chance = require("../models/chance.js");
+var db = require("../models");
+//var Players = require("../models/players.js");
+// var Places = require("../models/places.js");
+// var Community = require("../models/community.js");
+// var Chance = require("../models/chance.js");
 
 module.exports = function(app) {
 
@@ -19,7 +20,8 @@ module.exports = function(app) {
 
   //localhost:8081/checkplayers pulls up all player details
   app.get("/checkplayers", function(req, res) {
-    Players.findAll({}).then(function(results) {
+    console.log("CHECKING ALL PLAYERS");
+    db.players.findAll({}).then(function(results) {
       res.json(results);
       // console.log(res.json(results));
     });
@@ -27,7 +29,8 @@ module.exports = function(app) {
 
 
   app.get("/checkactiveplayer", function(req, res) {
-    Players.findAll({
+
+    db.players.findAll({
       where:{
           is_turn: 1
         }
@@ -40,7 +43,7 @@ module.exports = function(app) {
   //pulls information of the current player
   app.put("/playermove", function(req, res){
     console.log(req.body);
-    Players.update({
+    db.players.update({
       pos_id: req.body.move
     },{where:{
         is_turn: 1
@@ -55,7 +58,7 @@ module.exports = function(app) {
     console.log("====================================================");
     console.log(req.body.current);
     console.log("====================================================");
-    Players.update({
+    db.players.update({
       is_turn: 1
     },{where:{
         user_id: req.body.current
@@ -70,7 +73,7 @@ module.exports = function(app) {
     console.log("====================================================");
     console.log(req.body.previous);
     console.log("====================================================");
-      Players.update({
+      db.players.update({
         is_turn: 0
       },{where:{
           user_id: req.body.previous
@@ -92,7 +95,7 @@ module.exports = function(app) {
 
   //localhost:8081/checkplaces pulls up locations on the board
   app.get("/checkplaces", function(req, res) {
-    Places.findAll({}).then(function(results) {
+    db.places.findAll({}).then(function(results) {
       res.json(results);
       // console.log(res.json(results));
     });
@@ -108,7 +111,7 @@ module.exports = function(app) {
 
   //localhost:8081/checkchance pulls up the chance cards
   app.get("/checkchance", function(req, res) {
-    Chance.findAll({}).then(function(results) {
+    db.chance.findAll({}).then(function(results) {
       res.json(results);
       // console.log(res.json(results));
     });
@@ -117,7 +120,7 @@ module.exports = function(app) {
 
   //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullchance", function(req, res){
-    Chance.findAll({
+    db.chance.findAll({
       // where:{
       //   // MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
       //   cha_id: 2
@@ -140,7 +143,7 @@ module.exports = function(app) {
 
   //localhost:8081/checkcommunity pulls up the community cards
   app.get("/checkcommunity", function(req, res) {
-    Community.findAll({}).then(function(results) {
+    db.community.findAll({}).then(function(results) {
       res.json(results);
       // console.log(res.json(results));
     });
@@ -148,7 +151,7 @@ module.exports = function(app) {
 
 //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullcommunity", function(req, res){
-    Community.findAll({
+    db.community.findAll({
       // where:{
       //   //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
       //   com_id: 2

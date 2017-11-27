@@ -9,12 +9,12 @@ var p4Info;
 $.get("/pullchance").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomChance = response[randomNumber-1];
-  console.log(randomChance);
+  // console.log(randomChance);
 });
 $.get("/pullcommunity").then(function(response){
   var randomNumber = Math.floor(Math.random() * (response.length)+1);
   var randomCommunity = response[randomNumber-1];
-  console.log(randomCommunity);
+  // console.log(randomCommunity);
 });
 /*==============================================================================
 -------------------------Move the Active Player---------------------------------
@@ -26,13 +26,18 @@ $.get("/pullcommunity").then(function(response){
       method: "PUT",
       url: "/playermove",
       data: {move:move}
-    }).done(console.log("finished"));
+    }).done(
+      // console.log("finished")
+    );
 }
 //dice
 var dbl = 0;
 function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
-    currentLocation = response[0].pos_id;
+    activePlayer = response[0];
+
+    console.log(activePlayer);
+    var currentLocation = activePlayer.pos_id;
     // console.log("current location: "+ currentLocation);
     var x = Math.floor(Math.random() * 6 + 1);
     var y = Math.floor(Math.random() * 6 + 1);
@@ -43,14 +48,20 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-    console.log("newPosition: "+newPosition);
+
+    console.log(activePlayer.user_id);
+    console.log(activePlayer.user_image);
+    var newImagePosition = $(`<img id="player${activePlayer.user_id}" src="${activePlayer.user_image}">`);
+    console.log(newImagePosition);
+    $("#p"+newPosition).append(newImagePosition);
+    // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
-    console.log("dice total: " + diceTotal);
+    // console.log("dice total: " + diceTotal);
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
-        alert("Doubles! Roll again. Double count: " + dbl);
+        // alert("Doubles! Roll again. Double count: " + dbl);
         if(dbl%3==0){
-          alert("Three doubles in a row, go to JAIL!");
+          // alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
     }
@@ -61,7 +72,7 @@ function rolldice() {
 }
 //socket listener logic.
 socket.on('roll', function(newPosition, x, y){
-  console.log(newPosition);
+  // console.log(newPosition);
   if(x == 1){
     $("#dice-1 img").attr('src', "./assets/images/dice-sides/side1.jpg");
   }
@@ -105,15 +116,15 @@ socket.on('roll', function(newPosition, x, y){
 //Invoke this function when you want the next player to be "active"
 function endTurn(){
   $.get("/checkactiveplayer").then(function(response){
-    console.log(response);
-    console.log(response[0]);
+    // console.log(response);
+    // console.log(response[0]);
     previousPlayer = response[0].user_id;
     activePlayer = response[0].user_id + 1;
     if(activePlayer === 5){
       activePlayer = 1;
     }
   }).then(function (){
-    console.log("turning current player off");
+    // console.log("turning current player off");
     activeOn(activePlayer);
     activeOff(previousPlayer);
   });
@@ -149,9 +160,7 @@ function playersInfo(){
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
-  console.log("clicked");
   rolldice();
-  endTurn();
 });
 // INFO BUTTON ON CLICK FUNCTION ============================================
 // display and hide modal content for USER INSTRUCTIONS
@@ -255,7 +264,7 @@ var stopwatch = {
       currentBid = 0;     //set the bid vack to 0 for the next auction
       $(".inputField").html('<input type="text" id="bidAmount" placeholder=' + currentBid + '><button id="bid-btn">$BID</button>');
       stopwatch.time = 30;      //set the time back to 30 and rewrite the button and input field
-      $("#auctionAction").hide(300); 
+      $("#auctionAction").hide(300);
       //change the modal back
     }
   },
@@ -273,17 +282,17 @@ var stopwatch = {
 
 
 //This will eventually be set by the seller in the MIDDLE SCREEN
-var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP 
+var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP
 
  $(document).on("click","#bid-btn",function() {     //TODO: This needs to include logic to check if the user has THAT much money to bid
-  //define a newBid  
+  //define a newBid
   console.log("bid-btn was pressed");
   var newBid = parseInt($("#bidAmount").val());//take the value from bid amount and save it to currentBid
   if(newBid > currentBid){  //checks if the users bid was more than the current bid
     currentBid = newBid;
     $(".inputField").html('<input type="text" id="bidAmount" placeholder=' + currentBid + '><button id="bid-btn">$BID</button>');
     console.log("new bid is: " + currentBid);
-  } 
+  }
   else{
     $(".inputField").html('<input type="text" id="bidAmount" placeholder= "Minimum bid: ' + currentBid + '""><button id="bid-btn">$BID</button>');
   }

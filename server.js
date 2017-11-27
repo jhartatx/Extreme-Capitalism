@@ -12,8 +12,10 @@ var http = require ('http').Server(app);
 var io = require("socket.io")(http);
 
 var connection ;
-
-
+//new
+var session = require("express-session");
+var passport = require("./app/config/passport.js");
+var db = require("./app/models");
 
 
 //CONNECTION TO DATABASE
@@ -29,7 +31,7 @@ else {
     database:"c6mw1yoy0se23py8"
   });
 }
-connection.connect();
+// connection.connect();
 module.exports = connection;
 
 
@@ -46,6 +48,10 @@ var PORT = process.env.PORT || 8081;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./app/public"));
+
+// app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 //ROUTING
 require("./app/routing/apiRoutes.js")(app);
@@ -71,8 +77,16 @@ io.on('connection', function(socket){
   });
 });
 
-
-http.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+//----------------------needs to be final line of server.js
+db.sequelize.sync().then(function() {
+	  http.listen(PORT, function(err){
+      if(err) throw err;
+	    console.log('Express server listening on port ' + PORT);
+	});
 });
+
+
+// http.listen(PORT, function() {
+//   console.log("App listening on PORT: " + PORT);
+// });
 //socket stuff
