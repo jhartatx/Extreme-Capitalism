@@ -153,7 +153,6 @@ function playersInfo(){
 $(".dice-btn").click(function(){
   console.log("clicked");
   rolldice();
-  endTurn();
 });
 // INFO BUTTON ON CLICK FUNCTION ============================================
 // display and hide modal content for USER INSTRUCTIONS
