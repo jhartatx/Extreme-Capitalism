@@ -6,16 +6,8 @@ var p2Info;
 var p3Info;
 var p4Info;
 /*get request sent to api routes requesting */
-$.get("/pullchance").then(function(response){
-  var randomNumber = Math.floor(Math.random() * (response.length)+1);
-  var randomChance = response[randomNumber-1];
-  // console.log(randomChance);
-});
-$.get("/pullcommunity").then(function(response){
-  var randomNumber = Math.floor(Math.random() * (response.length)+1);
-  var randomCommunity = response[randomNumber-1];
-  // console.log(randomCommunity);
-});
+
+
 $.get("/checkplayers").then(function(response){
   console.log(response);
 });
@@ -72,7 +64,28 @@ function rolldice() {
 
     $.get("/checkcurrentplace/"+newPosition, function (data)
     {
-        console.log(data);
+        console.log(data[0]);
+        if(data[0].c_owner === "bank" && data[0].rent != null){
+          console.log("would you like to purchase this place?");
+        }
+        if(data[0].pos_id ===8||data[0].pos_id ===23||data[0].pos_id ===37){
+          console.log("YOU HIT THE CHANCE!");
+          $.get("/pullchance").then(function(response){
+            var randomNumber = Math.floor(Math.random() * (response.length)+1);
+            var randomChance = response[randomNumber-1];
+            // console.log(randomChance);
+            console.log(randomChance);
+          });
+        }
+        if(data[0].pos_id ===3||data[0].pos_id ===18||data[0].pos_id ===34){
+          console.log("YOU HIT THE COMMUNITY!");
+          $.get("/pullcommunity").then(function(response){
+            var randomNumber = Math.floor(Math.random() * (response.length)+1);
+            var randomCommunity = response[randomNumber-1];
+            console.log(randomCommunity);
+            // console.log(randomCommunity);
+          });
+        }
     });
     //trying to get this to emit to everyone
     socket.emit("roll", newPosition, x, y);

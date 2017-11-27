@@ -146,6 +146,7 @@ module.exports = function(app) {
     }).then(function(results){
       //card functionality will then occur in here based on cha_id
       res.json(results);
+      res.end();
       // res.json(results[0].card_text);
       // res.json(results[0].card_value);
     });
@@ -177,6 +178,7 @@ module.exports = function(app) {
     }).then(function(results){
       //card functionality will then occur in here based on cha_id
       res.json(results);
+      res.end();
     });
   });
 };
