@@ -66,9 +66,9 @@ function rolldice() {
 
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
-        alert("Doubles! Roll again. Double count: " + dbl);
+        // alert("Doubles! Roll again. Double count: " + dbl);
         if(dbl%3==0){
-          alert("Three doubles in a row, go to JAIL!");
+          // alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
 
