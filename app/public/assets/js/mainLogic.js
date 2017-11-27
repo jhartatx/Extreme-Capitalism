@@ -162,9 +162,19 @@ $("#info-btn").click(function (){
 $("#game-rules-btn").click(function (){
   $("#game-rules-modal").show(300);
 });
+//-------------------The start of the auctionhouse clusterfuck--------------------------
+//-------------------------------------------------------------------------------------
+
 // display and hide modal content for PROPERTY AUCTION HOUSE
+var auctionGoing = false;
 $("#auction-house-btn").click(function (){
-  $("#auction-house-modal").show(300);
+  if(!auctionGoing){  //if there's not an ongoing auction
+    $("#auction-house-modal").show(300);
+    auctionGoing = true;
+  }
+  else{
+    $("#auctionAction").show(300);
+  }
 });
 $('#auction-house-btn').mouseover(function() {
 $('.text').css("visibility","visible");
@@ -183,6 +193,85 @@ $("#post-btn").click(function (){
   $(".auctionEnd").html(timeLeft);
   //put in logic here to rewrite the modal
 });
+// This code will run as soon as the page loads
+window.onload = function() {
+  $(document).on("click","#bid-btn", stopwatch.start);
+  $(document).on("click","#bid-btn", stopwatch.reset);
+};
+
+//  Variable that will hold our setInterval that runs the stopwatch
+var intervalId;
+
+//prevents the clock from being sped up unnecessarily
+var clockRunning = false;
+
+// Our stopwatch object
+var stopwatch = {
+
+  time: 30,
+
+  reset: function() {           //this calls when someone bids
+    if(stopwatch.time < 11){
+      stopwatch.time = 10;
+      // DONE: Change the .auctionEnd" div to "00:00."
+      $(".auctionEnd").text("00:10");
+    }
+  },
+  start: function() {
+
+    // DONE: Use setInterval to start the count here and set the clock to running.
+    if (!clockRunning) {
+        intervalId = setInterval(stopwatch.count, 1000);
+        clockRunning = true;
+    }
+
+  },
+  stop: function() {
+
+    // DONE: Use clearInterval to stop the count here and set the clock to not be running.
+    clearInterval(intervalId);
+    clockRunning = false;
+  },
+  count: function() {
+
+    // DONE: decrement time by 1, remember we cant use "this" here.
+    stopwatch.time--;
+
+    // DONE: Get the current time, pass that into the stopwatch.timeConverter function,
+    //       and save the result in a variable.
+    var converted = stopwatch.timeConverter(stopwatch.time);
+    console.log(converted);
+
+    // DONE: Use the variable we just created to show the converted time in the .auctionEnd" div.
+    $(".auctionEnd").text(converted);
+
+    if(stopwatch.time < 1){
+      //******************************This is where the logic gose for price sold! use currentBid
+      clearInterval(intervalId);
+      clockRunning = false;
+      console.log("The auction needs to stop here.");
+      alert("SOLD!");
+      auctionGoing = false; //end the auction logic
+      currentBid = 0;     //set the bid vack to 0 for the next auction
+      $(".inputField").html('<input type="text" id="bidAmount" placeholder=' + currentBid + '><button id="bid-btn">$BID</button>');
+      stopwatch.time = 30;      //set the time back to 30 and rewrite the button and input field
+      $("#auctionAction").hide(300); 
+      //change the modal back
+    }
+  },
+  timeConverter: function(t) {
+
+    var seconds = t;
+
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+
+    return "00:" + seconds;
+  }
+};
+
+
 //This will eventually be set by the seller in the MIDDLE SCREEN
 var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP 
 
@@ -199,6 +288,9 @@ var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP
     $(".inputField").html('<input type="text" id="bidAmount" placeholder= "Minimum bid: ' + currentBid + '""><button id="bid-btn">$BID</button>');
   }
 });
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+
 // display and hide modal content for EXIT GAME
 $("#end-game-btn").click(function (){
   $("#end-game-modal").show(300);
