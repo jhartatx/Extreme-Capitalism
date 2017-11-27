@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script>
+
+      var arr = [];
+      var addressarr = [];
+      var finaladdress = [];
+      var map;
+      var infowindow;
+
+      function initMap() {
+         $( document ).ready(function() {
+            $(".submit").on("click", function() {
+
+               var geocoder = new google.maps.Geocoder();
+               var address = $("#cityname").val();
+               var austin = {lat: 30.267153, lng: -97.7430608};     //default location is austin TX
+
+               geocoder.geocode( { 'address': address}, function(results, status) {
+
+               if (status == google.maps.GeocoderStatus.OK) {
+                     austin.lat = results[0].geometry.location.lat();
+                     austin.lng = results[0].geometry.location.lng();
+                   } 
+                   else{
+                     console.log("something's wrong with the google maps geocoder");
+                     arr = ['Mediterranean Avenue',
+                     'Baltic Avenue',
+                     'Oriental Avenue',
+                     'Vermont Avenue',
+                     'Connecticut Avenue',
+                     'St. Charles Place',
+                     'States Avenue',
+                     'Virginia Avenue',
+                     'St. James Place',
+                     'Tennessee Avenue',
+                     'New York Avenue',
+                     'Kentucky Avenue',
+                     'Indiana Avenue',
+                     'Illinois Avenue',
+                     'Atlantic Avenue',
+                     'Ventnor Avenue',
+                     'Marvin Gardens',
+                     'Pacific Avenue',
+                     'North Carolina Avenue',
+                     'Pennsylvania Avenue',
+                     'Park Place',
+                     'Boardwalk',
+                     'Reading Railroad',
+                     'Pennsylvania Railroad',
+                     'B&O Railroad',
+                     'Short Line Railroad'
+                     ]
+                   }
+
+                   next();
+               }); 
+
+            function next() {
+              map = new google.maps.Map(document.getElementById('map'), {
+                center: austin,
+                zoom: 15
+              });
+
+              infowindow = new google.maps.InfoWindow();
+
+              var service = new google.maps.places.PlacesService(map);
+              service.nearbySearch({
+                location: austin,
+                radius: 5000,
+                type: ['local_government_office']       
+              }, callbackGov);   
+            }
+
+            //----------The next several functions push names for each theme into our arr array
+            function callbackGov(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 1) { //checks to see if there are at least 2 google entries for gov buildings in location
+                     for (var i = 0; i < 2; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+                     //console.log(results);
+                     // for (var i = 0; i < results.length; i++) {
+                     // createMarker(results[i]);
+                     // }
+
+                  }else{
+                     arr.push('Mediterranean Avenue');
+                     arr.push('Baltic Avenue');
+                  }
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['park']       
+                  }, callbackPark);   
+            }
+
+            function callbackPark(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) { //checks to see if there are at least 3 google entries for parks in location
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+                  }else{
+                     arr.push('Oriental Avenue');
+                     arr.push('Vermont Avenue');
+                     arr.push('Connecticut Avenue');
+                  }
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['school']       
+                  }, callbackSchool);   
+            }
+
+            function callbackSchool(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     //change logic to only take name with school or university in the name
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+                  }else{
+                     arr.push('St. Charles Place');
+                     arr.push('States Avenue');
+                     arr.push('Virginia Avenue');
+                  }
+
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['store']       
+                  }, callbackEntertainment);   
+            }
+
+            function callbackEntertainment(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     //change logic to only make entertainment less specific
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+                  }else{   //if a town doesn't have movie theaters it will theme police
+                     arr.push('St. James Place');
+                     arr.push('Tennessee Avenue');
+                     arr.push('New York Avenue');
+                  }
+
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['restaurant']  //modify this to not take lodging in name
+                  }, callbackRestaurant);   
+
+            }
+
+
+
+
+
+
+            function callbackRestaurant(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     //modify this to not take lodging in name
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }                    
+                      }
+
+                  }else{
+                     arr.push('Kentucky Avenue');
+                     arr.push('Indiana Avenue');
+                     arr.push('Illinois Avenue');
+                  }
+
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['night_club']       
+                  }, callbackBar);   
+
+            }
+
+            function callbackBar(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     //modify this to not take lodging in name
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+                  }else{         //This needs to look for liquor stores instead
+                     var service = new google.maps.places.PlacesService(map);
+                     service.nearbySearch({
+                         location: austin,
+                         radius: 5000,
+                         type: ['liquor_store']       
+                     }, callbackBeerStore);   
+                  }
+
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['gym']       
+                  }, callbackGym);   
+
+            }
+
+            function callbackBeerStore(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+               }else{      
+                  arr.push('Pacific Avenue');
+                  arr.push('North Carolina Avenue');
+                  arr.push('Pennsylvania Avenue');
+               }
+
+            }
+
+            function callbackGym(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 2) {
+                     for (var i = 0; i < 3; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }  
+                     }
+
+               }else{      
+                  arr.push('Pacific Avenue');
+                  arr.push('North Carolina Avenue');
+                  arr.push('Pennsylvania Avenue');
+               }
+
+               var service = new google.maps.places.PlacesService(map);
+               service.nearbySearch({
+                   location: austin,
+                   radius: 5000,
+                   type: ['lodging']       
+               }, callbackHotels);   
+
+            }
+
+            function callbackHotels(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 1) {
+                     //modify this to not take lodging in name
+                     for (var i = 0; i < 2; i++) {
+                        if(arr.includes(results[i].name)){
+                           arr.push(results[i+3].name);
+                        }
+                        else{
+                           arr.push(results[i].name); 
+                        }
+
+                     }
+
+                  }else{         //This needs to look for liquor stores instead
+                     arr.push('Park Place');
+                     arr.push('Boardwalk');
+                  }
+
+                  var service = new google.maps.places.PlacesService(map);
+                  service.nearbySearch({
+                      location: austin,
+                      radius: 5000,
+                      type: ['store']       
+                  }, callbackRoad);  
+
+
+            }
+
+            function callbackRoad(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 3) {
+                     //modify this
+                     //console.log(results);
+                     //This for loop makes the street address consistent
+                     for (var i = 0; i < results.length; i++) {
+                        //console.log(results[i].vicinity);
+                        var chop = results[i].vicinity;
+                        //Take out all the Direction things off the streeet address
+                        chop = chop.replace(/ B | A | S | N | E | W |North|South|West|East/gi, "");
+
+                        //console.log(chop);
+
+                        for(var o = 1; o < 6; o++){
+                           if(chop[o] === " "){
+                               chop = chop.substring(o, chop.length);
+                               o = 6;
+                           }
+                        }
+                       
+                        //Take everything off the end of the address 
+                        chop = chop.substring(0, chop.indexOf(","));
+                        //Take any spaces of the front of the address
+                        while(chop[0] === " "){
+                              chop = chop.substring(1, chop.length);
+                        }
+                        //console.log(chop);
+
+                        if(addressarr.includes(chop)){          //if chop is already in address (there's more than 1 of that address...)
+                              if(!finaladdress.includes(chop)){
+                                 finaladdress.push(chop);  
+                              }
+                        }else{
+                           addressarr.push(chop);
+                        }
+
+                     }
+                     if(finaladdress.length < 4){  //if there still not enough names for the railroad... FIX IT
+                        //console.log("Our finaladdress array was not long enough. let's fix it.");
+                        //------------------fixing it---------------------
+                        var u = 0;
+                        while(finaladdress.length < 4){
+                           if(!finaladdress.includes(addressarr[u])){
+                              finaladdress.push(addressarr[u]);
+                           }
+                           else{
+                              u++
+                           }
+                        }
+                        //------------------------------------------------
+                     }
+                     arr.push(finaladdress[0]);
+                     arr.push(finaladdress[1]);
+                     arr.push(finaladdress[2]);
+                     arr.push(finaladdress[3]);
+                     //console.log(finaladdress); 
+
+                  }else{      //This needs to look for the roads on the stores instead
+                     arr.push('Reading Railroad');
+                     arr.push('Pennsylvania Railroad');
+                     arr.push('B&O Railroad');
+                     arr.push('Short Line Railroad');
+                  }
+
+                  //======================================
+                  //----This block is for testing (make sure it's in the last function)
+                  //========================================
+                  for(var i = 0; i < arr.length; i++){
+                     console.log(i + ". " + arr[i]);
+                     //console.log(address[i]);
+                  }
+                  //======================================
+                  //======================================
+
+                  //BEFORE POOPING OUT ARRAY TO THE NEXT PERSON CHECK IT'S THE CORRECT SIZE
+
+            }
+
+
+            //Draws the map (not necessary for our particular application)
+            // function createMarker(place) {
+            //   var placeLoc = place.geometry.location;
+            //   var marker = new google.maps.Marker({
+            //     map: map,
+            //     position: place.geometry.location
+            //   });
+
+            //   google.maps.event.addListener(marker, 'click', function() {
+            //     infowindow.setContent(place.name);
+            //     infowindow.open(map, this);
+            //   });
+            // }
+               });
+         });
+         }
+    </script>
+  </head>
+  <body>
+   <form>   
+      City name:<br>
+      <input type="text" name="cityname" id="cityname"><br>
+      </form>
+      <br>  
+      <button type="submit" class="submit">Submit</button>
+      <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDije1gHJ-JpNUMGPBbZl8Fq8c9tsu3COk&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>
