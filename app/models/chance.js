@@ -1,32 +1,27 @@
-// Dependencies
-// =============================================================
 
-// Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references my connection to the DB.
-var sequelize = require("../config/connection.js");
-
+module.exports = function(sequelize, DataTypes) {
 // Creates a "player" model
 var Chance = sequelize.define("chance_cards", {
 cha_id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     primaryKey: true
   },
 card_title: {
-    type: Sequelize.STRING
+    type: DataTypes.STRING
   },
 card_text:{
-    type: Sequelize.TEXT
+    type: DataTypes.TEXT
   },
 card_value:{
-    type: Sequelize.INTEGER
+    type: DataTypes.INTEGER
 }
 }, {
   timestamps: false
 });
 
 // Syncs with DB
-Chance.sync();
-
+//Chance.sync();
+return Chance;
 // Makes the Book Model available for other files (will also create a table)
-module.exports = Chance;
+//module.exports = Chance;
+};
