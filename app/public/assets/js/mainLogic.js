@@ -16,6 +16,7 @@ $.get("/pullcommunity").then(function(response){
   var randomCommunity = response[randomNumber-1];
   // console.log(randomCommunity);
 });
+
 /*==============================================================================
 -------------------------Move the Active Player---------------------------------
 ===============================================================================*/
@@ -35,9 +36,10 @@ var dbl = 0;
 function rolldice() {
   $.get("/checkactiveplayer").then(function(response){
     activePlayer = response[0];
-
-    console.log(activePlayer);
     var currentLocation = activePlayer.pos_id;
+
+    // imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
+    $(".player"+activePlayer.user_id).remove();
     // console.log("current location: "+ currentLocation);
     var x = Math.floor(Math.random() * 6 + 1);
     var y = Math.floor(Math.random() * 6 + 1);
@@ -51,9 +53,8 @@ function rolldice() {
 
     console.log(activePlayer.user_id);
     console.log(activePlayer.user_image);
-    var newImagePosition = $(`<img id="player${activePlayer.user_id}" src="${activePlayer.user_image}">`);
-    console.log(newImagePosition);
-    $("#p"+newPosition).append(newImagePosition);
+    imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
+    $("#p"+activePlayer.pos_id).append(imgPosition);
     // console.log("newPosition: "+newPosition);
     updateMove(newPosition);
     // console.log("dice total: " + diceTotal);
@@ -155,8 +156,10 @@ function playersInfo(){
     p2Info = response[1];
     p3Info = response[2];
     p4Info = response[3];
+    console.log(response[3]);
   });
 }
+
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
