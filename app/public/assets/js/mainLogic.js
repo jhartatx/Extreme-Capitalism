@@ -172,6 +172,33 @@ $('.text').css("visibility","visible");
 $('#auction-house-btn').mouseout(function() {
 $('.text').css("visibility","hidden");
 });
+// Continued auctionhouse code for second auctionhouse screen
+$("#post-btn").click(function (){
+  $("#auction-house-modal").hide(300);
+  $("#auctionAction").show(300);
+  //pressing the post button hide the current modal and brings up a new one.
+  //start the timer from 30
+  var timeLeft = "0:30";
+  //This will eventually be replacing every second
+  $(".auctionEnd").html(timeLeft);
+  //put in logic here to rewrite the modal
+});
+//This will eventually be set by the seller in the MIDDLE SCREEN
+var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP 
+
+ $(document).on("click","#bid-btn",function() {     //TODO: This needs to include logic to check if the user has THAT much money to bid
+  //define a newBid  
+  console.log("bid-btn was pressed");
+  var newBid = parseInt($("#bidAmount").val());//take the value from bid amount and save it to currentBid
+  if(newBid > currentBid){  //checks if the users bid was more than the current bid
+    currentBid = newBid;
+    $(".inputField").html('<input type="text" id="bidAmount" placeholder=' + currentBid + '><button id="bid-btn">$BID</button>');
+    console.log("new bid is: " + currentBid);
+  } 
+  else{
+    $(".inputField").html('<input type="text" id="bidAmount" placeholder= "Minimum bid: ' + currentBid + '""><button id="bid-btn">$BID</button>');
+  }
+});
 // display and hide modal content for EXIT GAME
 $("#end-game-btn").click(function (){
   $("#end-game-modal").show(300);
