@@ -168,6 +168,7 @@ function playersInfo(){
 
  //player purchases property
  $("#purchase").click(function(){
+   
      //get request where property is equal to the user_position
     // -= cost from user_money
     // put request to change the owner

@@ -103,6 +103,17 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/checkcurrentplace", function(req, res) {
+    db.places.findAll({
+      where:{
+          pos_id: 1
+        }
+    }).then(function(results) {
+      res.json(results);
+      // console.log(res.json(results));
+    });
+  });
+
 
 
   /*============================================================================
