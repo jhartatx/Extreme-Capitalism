@@ -6,6 +6,7 @@ var p2Info;
 var p3Info;
 var p4Info;
 var currentPosition;
+var systemMessage;
 /*get request sent to api routes requesting */
 
 playersInfo();
@@ -44,19 +45,25 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
+
+    //update the image on the board
     imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
     $("#p"+activePlayer.pos_id).append(imgPosition);
-    // console.log("newPosition: "+newPosition);
+
+    //run function
     updateMove(newPosition);
-    // console.log("dice total: " + diceTotal);
+    systemMessage = $('<div class="chat-message-content clearfix">'+'<span class="chat-time">'++'</span');
+    $(".chat-history").append(systemMessage);
+
+    //doubles calculation
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
-        // alert("Doubles! Roll again. Double count: " + dbl);
         if(dbl%3==0){
-          // alert("Three doubles in a row, go to JAIL!");
           dbl = 0;
         }
     }
+
+
 
     //CHECKS CURRENT LOCATION AND RUNS APPROPRIATE FUNCTION
     $.get("/checkcurrentplace/"+newPosition, function (data)
