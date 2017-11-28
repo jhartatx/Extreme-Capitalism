@@ -87,17 +87,22 @@ module.exports = function(app) {
   /*==============================================================================
   ----------------------------CURRENCY DATABASE---------------------------------
   ===============================================================================*/
-app.put("/player/:id", function(req,res){
+app.put("/player/:id/:position", function(req,res){
+  console.log
   var  player = req.params.id;
+  var position = req.params.position;
 
-  db.players.update({
-    user_money:req.body.data
-  },{where:{
-    user_id:player
-    }
-  }).then(function(){
-    res.end();
-  });
+  db.players.update({user_money:req.body.money},
+    {where:{user_id:player}
+  })
+  .then(function(){
+    db.places.update({c_owner: player},
+      {where:{pos_id:position}
+    });
+    })
+    .then(function(){
+      res.end();
+    });
 });
 
   /*============================================================================

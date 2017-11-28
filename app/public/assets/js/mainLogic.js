@@ -240,20 +240,20 @@ $("#payPlayers").click(function(){
 //
 function payBank(position, player){
 
-  console.log("payPlayers working");
-  console.log(position.c_owner);
-  console.log(position.rent);
+  //subtract cost of property from players account
   player.user_money -= position.rent;
-  console.log(player);
-  updatePlayerInfo(player.user_money, player.user_id);
-
+  //update changes to database
+  updatePlayerInfo(player.user_money, player.user_id, position.pos_id);
 }
-function updatePlayerInfo(data, player) {
-  console.log(data);
+function updatePlayerInfo(money, player, position) {
+  console.log(money);
+  console.log(player);
+  console.log(position);
   $.ajax({
     method: "PUT",
-    url: "/player/"+player,
-    data: {data:data}
+    url: "/player/"+player+"/"+position,
+    data: {money:money,
+    player:player}
   });
 }
 
