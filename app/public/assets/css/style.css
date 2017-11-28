@@ -353,3 +353,7 @@ user-btn i.active{
   height: 50px;
   width:50px;
 }
+
+.board-position-piece{
+  z-index: 1000px;
+}
