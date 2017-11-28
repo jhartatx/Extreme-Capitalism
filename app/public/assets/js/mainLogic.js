@@ -195,15 +195,19 @@ function playersInfo(){
     p3Info = response[2];
     p4Info = response[3];
     console.log(response[3]);
+    //prints information to player panels, should be able to clean this up somehow
     $("#user1Name").text(p1Info.user_name);
     $("#user1Piece").attr("src", p1Info.user_image);
     $("#user1Money").text(p1Info.user_money);
+
     $("#user2Name").text(p2Info.user_name);
     $("#user2Piece").attr("src", p2Info.user_image);
     $("#user2Money").text(p2Info.user_money);
+
     $("#user3Name").text(p3Info.user_name);
     $("#user3Piece").attr("src", p3Info.user_image);
     $("#user3Money").text(p3Info.user_money);
+
     $("#user4Name").text(p4Info.user_name);
     $("#user4Piece").attr("src", p4Info.user_image);
     $("#user4Money").text(p4Info.user_money);
@@ -241,14 +245,17 @@ function payBank(position, player){
   console.log(position.rent);
   player.user_money -= position.rent;
   console.log(player);
+  updatePlayerInfo(player.user_money, player.user_id);
 
+}
+function updatePlayerInfo(data, player) {
+  console.log(data);
   $.ajax({
     method: "PUT",
-    url: "/active/"+player.user_id,
-    data: {current:current}
+    url: "/player/"+player,
+    data: {data:data}
   });
 }
-
 
 
 // DICE BUTTON ON CLICK FUNCTION ============================================
