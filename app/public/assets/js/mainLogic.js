@@ -9,12 +9,7 @@ var currentPosition;
 /*get request sent to api routes requesting */
 
 playersInfo();
-$.get("/checkplayers").then(function(response){
-  console.log(response);
-});
-$.get("/checkplaces").then(function(response){
-  console.log(response);
-});
+
 
 /*==============================================================================
 -------------------------Move the Active Player---------------------------------
@@ -72,10 +67,11 @@ function rolldice() {
         //player lands on unowned, purchaseable property
         if(currentPosition.c_owner === "bank" && currentPosition.rent != null){
           console.log("would you like to purchase this place?");
+          //make the purchase button appear to the active player
         }
 
         //player lands on another players owned space
-        if(currentPosition.c_owner != "bank" && currentPosition.active === true){
+        if(currentPosition.c_owner != "bank" && current.Position.c_owner!= activePlayer.user_id &&currentPosition.active === true){
           console.log("YOU OWER PLAYER "+data[0].c_owner+"!");
             //pay another player function
         }
@@ -225,26 +221,29 @@ function playersInfo(){
  //player purchases property
 
  $("#purchase").click(function(){
+   //sends money to the bank to purchase property
     payBank(currentPosition, activePlayer);
-     //get request where property is equal to the user_position
-    // -= cost from user_money
-    // put request to change the owner
 });
 
 //transfer money from the active player to a single other player
 $("#payPlayers").click(function(){
+  if(activePlayer.user_money >= currentPosition.rent){
+      payPlayer();
+  }else{
+    console.log("you must mortage some of your property!");
+  }
 
 
 });
 
-//
-function payBank(position, player){
 
+function payBank(position, player){
   //subtract cost of property from players account
   player.user_money -= position.rent;
-  //update changes to database
+  //update database:players money, owner of tile
   updatePlayerInfo(player.user_money, player.user_id, position.pos_id);
 }
+//makes a put request changing the player table and places table after property purchase
 function updatePlayerInfo(money, player, position) {
   console.log(money);
   console.log(player);
@@ -256,6 +255,8 @@ function updatePlayerInfo(money, player, position) {
     player:player}
   });
 }
+
+function payPlayer(position,player){}
 
 
 // DICE BUTTON ON CLICK FUNCTION ============================================

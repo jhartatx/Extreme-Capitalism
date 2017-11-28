@@ -88,7 +88,6 @@ module.exports = function(app) {
   ----------------------------CURRENCY DATABASE---------------------------------
   ===============================================================================*/
 app.put("/player/:id/:position", function(req,res){
-  console.log
   var  player = req.params.id;
   var position = req.params.position;
 
