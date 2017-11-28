@@ -1,0 +1,24 @@
+.col-1, .col-2, .col-3, .col-4{
+    margin-top:5%;
+}
+
+.col-4{
+    margin-bottom:5%;
+}
+
+#cityName{
+    padding:5px 10px;
+    margin-right:1%;
+    border-radius:5px;
+    border:1px solid #eee;
+}
+
+.start-btn{
+    
+}
+
+.logout-btn{
+    margin: 1%;
+    margin-left:-33%;
+    
+}

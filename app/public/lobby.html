@@ -1,69 +1,141 @@
-<!-- changed the wolcome <h2> to show username and email -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Passport Authentication</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="assets/css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Linking Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <title>Passport Authentication</title>
+
+    <!-- Linking Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  	<!-- Linking Local CSS -->
+    <link href="assets/css/lobby-style.css" rel="stylesheet">
+
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
-    </div>
-  </div>
-</nav>
-  <div>
-    <div>
-      <button type="start" class="btn btn-default"><a href = "/game">Start Game</a></button>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row playerInfo">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-username"></span></h2>
-        <h2>Email <span class = "member-email"></span></h2>
-      </div>
-      <input type = "cityName" id = "cityName" placeholder = "City Name"></input>
-      <button type="submit" class="btn btn-default">Search City</a></button>
-    </div>
-    <div class="row playerInfo">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome Player 2: <span class="member-username"></span></h2>
-        <h2>Is ready to play</h2>
-      </div>
-    </div>
-    <div class="row playerInfo">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome Player 3: <span class="member-username"></span></h2>
-        <h2>Is ready to play</h2>
-      </div>
-    </div>
-    <div class="row playerInfo">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome Player 4: <span class="member-username"></span></h2>
-        <h2>Is ready to play</h2>
-      </div>
-    </div>
-  </div>
-</div>
+
+	<nav class="navbar navbar-light bg-light">
+	  	<a class="navbar-brand">EXTREME CAPITALISM - A MONOPOLY BASED GAME</a>
+	  	<button type="button" class="btn btn-success start-btn">START GAME</button>
+	  	<button type="button" class="btn btn-dark logout-btn" href="/logout">LOGOUT</button>
+	</nav>
+
+
+
+	<div class="container">
+
+	<!-- Begin Player 2 Info -->
+    	<div class="row playerInfo player-info-1">
+      		<div class="col-md-12 col-1">
+
+		<!-- Card for layer 1 --> 
+			<div class="card">
+			  	<div class="card-header">
+			    	Welcome Player 1
+			  	</div>
+
+			  	<div class="card-body">
+			    	<h4 class="card-title member-username member-username-1">Player User Name Here</h4>
+			    	<p class="card-text member-email member-email-1">Players Email Here</p>
+			    <!-- Specific to Player 1 - Board Theme -->
+			    	<hr>
+					<p class="card-text"> Player 1 has the authority to choose the city theme for the board game - Extreme Capitalism. Please enter the name of a city below and procede with further instructions to create the city theme. </p>
+					<br>
+			    	<input type = "cityName" id = "cityName" placeholder = "City Name"></input>
+            		<button type="submit" class="btn btn-primary">Search City</a></button>
+			  	</div>
+			</div>
+			</div> <!-- end col-md-12 -->
+		</div> <!-- end first row -->
+
+
+
+	<!-- Begin Player 2 Info -->
+		<div class="row playerInfo player-info-2">
+      		<div class="col-md-12 col-2">
+
+		<!-- Card for layer 2 --> 
+			<div class="card">
+			  	<div class="card-header">
+			    	Welcome Player 2
+			  	</div>
+
+			  	<div class="card-body">
+			    	<h4 class="card-title member-username member-username-2">Player User Name Here</h4>
+			    	<p class="card-text member-email member-email-2">Players Email Here</p>
+			  	</div>
+			</div>
+
+			</div> <!-- end col-md-12 -->
+		</div> <!-- end second row -->
+
+
+
+	<!-- Begin Player 3 Info -->
+		<div class="row playerInfo player-info-3">
+      		<div class="col-md-12 col-3">
+
+		<!-- Card for layer 3 --> 
+			<div class="card">
+			  	<div class="card-header">
+			    	Welcome Player 3
+			  	</div>
+
+			  	<div class="card-body">
+			    	<h4 class="card-title member-username member-username-3">Player User Name Here</h4>
+			    	<p class="card-text member-email member-email-3">Players Email Here</p>
+			  	</div>
+			</div>
+
+			</div> <!-- end col-md-12 -->
+		</div> <!-- end third row -->
+	
+
+
+
+	<!-- Begin Player 4 Info -->
+		<div class="row playerInfo player-info-2">
+      		<div class="col-md-12 col-4">
+
+		<!-- Card for layer 4 --> 
+			<div class="card">
+			  	<div class="card-header">
+			    	Welcome Player 4
+			  	</div>
+
+			  	<div class="card-body">
+			    	<h4 class="card-title member-username member-username-4">Player User Name Here</h4>
+			    	<p class="card-text member-email member-email-4">Players Email Here</p>
+			  	</div>
+			</div>
+
+			</div> <!-- end col-md-12 -->
+		</div> <!-- end fourth row -->
 
 
 
 
+     </div> <!-- end container -->
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/members.js"></script>
+
+
+<!-- Linking Local Script Tags -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/members.js"></script>
+
 
 </body>
 
 </html>
+
+
+
+
