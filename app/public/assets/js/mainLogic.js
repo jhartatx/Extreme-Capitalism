@@ -5,17 +5,11 @@ var p1Info;
 var p2Info;
 var p3Info;
 var p4Info;
+var currentPosition;
 /*get request sent to api routes requesting */
-// $.get("/pullchance").then(function(response){
-//   var randomNumber = Math.floor(Math.random() * (response.length)+1);
-//   var randomChance = response[randomNumber-1];
-//   // console.log(randomChance);
-// });
-// $.get("/pullcommunity").then(function(response){
-//   var randomNumber = Math.floor(Math.random() * (response.length)+1);
-//   var randomCommunity = response[randomNumber-1];
-//   // console.log(randomCommunity);
-// });
+
+playersInfo();
+
 
 /*==============================================================================
 -------------------------Move the Active Player---------------------------------
@@ -50,9 +44,6 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-
-    console.log(activePlayer.user_id);
-    console.log(activePlayer.user_image);
     imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
     $("#p"+activePlayer.pos_id).append(imgPosition);
     // console.log("newPosition: "+newPosition);
@@ -66,7 +57,50 @@ function rolldice() {
           dbl = 0;
         }
     }
-    //trying to get this to emit to everyone
+
+    //CHECKS CURRENT LOCATION AND RUNS APPROPRIATE FUNCTION
+    $.get("/checkcurrentplace/"+newPosition, function (data)
+    {
+        console.log(data[0]);
+        currentPosition = data[0];
+
+        //player lands on unowned, purchaseable property
+        if(currentPosition.c_owner === "bank" && currentPosition.rent != null){
+          console.log("would you like to purchase this place?");
+          //make the purchase button appear to the active player
+        }
+
+        //player lands on another players owned space
+        if(currentPosition.c_owner != "bank" && current.Position.c_owner!= activePlayer.user_id &&currentPosition.active === true){
+          console.log("YOU OWER PLAYER "+data[0].c_owner+"!");
+            //pay another player function
+        }
+
+        //player lands on chance
+        if(currentPosition.pos_id ===8||currentPosition.pos_id ===23||currentPosition.pos_id ===37){
+          console.log("YOU HIT THE CHANCE!");
+          $.get("/pullchance").then(function(response){
+            var randomNumber = Math.floor(Math.random() * (response.length)+1);
+            var randomChance = response[randomNumber-1];
+            // console.log(randomChance);
+            console.log(randomChance);
+          });
+        }
+
+        //player lands on community chest
+        if(currentPosition.pos_id ===3||currentPosition.pos_id ===18||currentPosition.pos_id ===34){
+          console.log("YOU HIT THE COMMUNITY!");
+          $.get("/pullcommunity").then(function(response){
+            var randomNumber = Math.floor(Math.random() * (response.length)+1);
+            var randomCommunity = response[randomNumber-1];
+            console.log(randomCommunity);
+            // console.log(randomCommunity);
+          });
+        }
+
+        //
+    });
+    //emits results to all players on server
     socket.emit("roll", newPosition, x, y);
 });
 // socket listener
@@ -125,8 +159,8 @@ function endTurn(){
       activePlayer = 1;
     }
   }).then(function (){
-    // console.log("turning current player off");
     activeOn(activePlayer);
+  }).then(function(){
     activeOff(previousPlayer);
   });
 }
@@ -157,7 +191,25 @@ function playersInfo(){
     p3Info = response[2];
     p4Info = response[3];
     console.log(response[3]);
+    //prints information to player panels, should be able to clean this up somehow
+    $("#user1Name").text(p1Info.user_name);
+    $("#user1Piece").attr("src", p1Info.user_image);
+    $("#user1Money").text(p1Info.user_money);
+
+    $("#user2Name").text(p2Info.user_name);
+    $("#user2Piece").attr("src", p2Info.user_image);
+    $("#user2Money").text(p2Info.user_money);
+
+    $("#user3Name").text(p3Info.user_name);
+    $("#user3Piece").attr("src", p3Info.user_image);
+    $("#user3Money").text(p3Info.user_money);
+
+    $("#user4Name").text(p4Info.user_name);
+    $("#user4Piece").attr("src", p4Info.user_image);
+    $("#user4Money").text(p4Info.user_money);
+
   });
+
 }
 
 
@@ -167,25 +219,54 @@ function playersInfo(){
  //use the variable "activePlayer" which was designed in the dice roll
 
  //player purchases property
+
  $("#purchase").click(function(){
-     //get request where property is equal to the user_position
-    // -= cost from user_money
-    // put request to change the owner
+   //sends money to the bank to purchase property
+    payBank(currentPosition, activePlayer);
 });
 
 //transfer money from the active player to a single other player
 $("#payPlayers").click(function(){
+  if(activePlayer.user_money >= currentPosition.rent){
+      payPlayer();
+  }else{
+    console.log("you must mortage some of your property!");
+  }
 
 
 });
 
 
+function payBank(position, player){
+  //subtract cost of property from players account
+  player.user_money -= position.rent;
+  //update database:players money, owner of tile
+  updatePlayerInfo(player.user_money, player.user_id, position.pos_id);
+}
+//makes a put request changing the player table and places table after property purchase
+function updatePlayerInfo(money, player, position) {
+  console.log(money);
+  console.log(player);
+  console.log(position);
+  $.ajax({
+    method: "PUT",
+    url: "/player/"+player+"/"+position,
+    data: {money:money,
+    player:player}
+  });
+}
+
+function payPlayer(position,player){}
 
 
 // DICE BUTTON ON CLICK FUNCTION ============================================
 //dice button onclick
 $(".dice-btn").click(function(){
   rolldice();
+});
+
+$(".end-btn").click(function(){
+  endTurn();
 });
 // INFO BUTTON ON CLICK FUNCTION ============================================
 // display and hide modal content for USER INSTRUCTIONS
