@@ -5,9 +5,10 @@ var p1Info;
 var p2Info;
 var p3Info;
 var p4Info;
+var currentPosition;
 /*get request sent to api routes requesting */
 
-
+playersInfo();
 $.get("/checkplayers").then(function(response){
   console.log(response);
 });
@@ -62,13 +63,25 @@ function rolldice() {
         }
     }
 
+    //CHECKS CURRENT LOCATION AND RUNS APPROPRIATE FUNCTION
     $.get("/checkcurrentplace/"+newPosition, function (data)
     {
         console.log(data[0]);
-        if(data[0].c_owner === "bank" && data[0].rent != null){
+        currentPosition = data[0];
+
+        //player lands on unowned, purchaseable property
+        if(currentPosition.c_owner === "bank" && currentPosition.rent != null){
           console.log("would you like to purchase this place?");
         }
-        if(data[0].pos_id ===8||data[0].pos_id ===23||data[0].pos_id ===37){
+
+        //player lands on another players owned space
+        if(currentPosition.c_owner != "bank" && currentPosition.active === true){
+          console.log("YOU OWER PLAYER "+data[0].c_owner+"!");
+            //pay another player function
+        }
+
+        //player lands on chance
+        if(currentPosition.pos_id ===8||currentPosition.pos_id ===23||currentPosition.pos_id ===37){
           console.log("YOU HIT THE CHANCE!");
           $.get("/pullchance").then(function(response){
             var randomNumber = Math.floor(Math.random() * (response.length)+1);
@@ -77,7 +90,9 @@ function rolldice() {
             console.log(randomChance);
           });
         }
-        if(data[0].pos_id ===3||data[0].pos_id ===18||data[0].pos_id ===34){
+
+        //player lands on community chest
+        if(currentPosition.pos_id ===3||currentPosition.pos_id ===18||currentPosition.pos_id ===34){
           console.log("YOU HIT THE COMMUNITY!");
           $.get("/pullcommunity").then(function(response){
             var randomNumber = Math.floor(Math.random() * (response.length)+1);
@@ -86,8 +101,10 @@ function rolldice() {
             // console.log(randomCommunity);
           });
         }
+
+        //
     });
-    //trying to get this to emit to everyone
+    //emits results to all players on server
     socket.emit("roll", newPosition, x, y);
 });
 // socket listener
@@ -178,7 +195,21 @@ function playersInfo(){
     p3Info = response[2];
     p4Info = response[3];
     console.log(response[3]);
+    $("#user1Name").text(p1Info.user_name);
+    $("#user1Piece").attr("src", p1Info.user_image);
+    $("#user1Money").text(p1Info.user_money);
+    $("#user2Name").text(p2Info.user_name);
+    $("#user2Piece").attr("src", p2Info.user_image);
+    $("#user2Money").text(p2Info.user_money);
+    $("#user3Name").text(p3Info.user_name);
+    $("#user3Piece").attr("src", p3Info.user_image);
+    $("#user3Money").text(p3Info.user_money);
+    $("#user4Name").text(p4Info.user_name);
+    $("#user4Piece").attr("src", p4Info.user_image);
+    $("#user4Money").text(p4Info.user_money);
+
   });
+
 }
 
 
@@ -190,7 +221,7 @@ function playersInfo(){
  //player purchases property
 
  $("#purchase").click(function(){
-
+    payBank(currentPosition, activePlayer);
      //get request where property is equal to the user_position
     // -= cost from user_money
     // put request to change the owner
@@ -202,6 +233,21 @@ $("#payPlayers").click(function(){
 
 });
 
+//
+function payBank(position, player){
+
+  console.log("payPlayers working");
+  console.log(position.c_owner);
+  console.log(position.rent);
+  player.user_money -= position.rent;
+  console.log(player);
+
+  $.ajax({
+    method: "PUT",
+    url: "/active/"+player.user_id,
+    data: {current:current}
+  });
+}
 
 
 
