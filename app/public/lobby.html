@@ -1,0 +1,69 @@
+<!-- changed the wolcome <h2> to show username and email -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Passport Authentication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+  <div>
+    <div>
+      <button type="start" class="btn btn-default"><a href = "/game">Start Game</a></button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row playerInfo">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Welcome <span class="member-username"></span></h2>
+        <h2>Email <span class = "member-email"></span></h2>
+      </div>
+      <input type = "cityName" id = "cityName" placeholder = "City Name"></input>
+      <button type="submit" class="btn btn-default">Search City</a></button>
+    </div>
+    <div class="row playerInfo">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Welcome Player 2: <span class="member-username"></span></h2>
+        <h2>Is ready to play</h2>
+      </div>
+    </div>
+    <div class="row playerInfo">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Welcome Player 3: <span class="member-username"></span></h2>
+        <h2>Is ready to play</h2>
+      </div>
+    </div>
+    <div class="row playerInfo">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Welcome Player 4: <span class="member-username"></span></h2>
+        <h2>Is ready to play</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/members.js"></script>
+
+</body>
+
+</html>
