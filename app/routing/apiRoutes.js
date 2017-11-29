@@ -60,6 +60,21 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.put("/addplayer", function(req, res){
+    console.log(req.body);
+    db.players.update({
+      user_name: req.body.user
+    },{where:{
+      //need to clean this up
+        is_turn: 1
+      }
+    }).then(function(results){
+      res.end();
+      //property check function
+      //function based on property check
+    });
+  });
 /*==============================================================================
 ------------------------------PLAYERS DATABASE----------------------------------
 ===============================================================================*/
@@ -105,7 +120,7 @@ module.exports = function(app) {
   });
 
   app.put("/activeon", function(req, res){
-    console.log("====================================================");
+    console.log("current=============================================");
     console.log(req.body.current);
     console.log("====================================================");
     db.players.update({
@@ -121,7 +136,7 @@ module.exports = function(app) {
   });
 
   app.put("/activeoff",function(req, res){
-    console.log("====================================================");
+    console.log("previous============================================");
     console.log(req.body.previous);
     console.log("====================================================");
       db.players.update({
@@ -176,6 +191,9 @@ app.put("/player/:id/:position", function(req,res){
 
 
   app.get("/checkcurrentplace/:position", function(req, res) {
+    console.log("===================================================");
+    console.log(req.params.position);
+    console.log("===================================================");
     var position = req.params.position;
     db.places.findAll({
       where:{
