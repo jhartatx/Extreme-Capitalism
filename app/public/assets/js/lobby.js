@@ -1,5 +1,5 @@
 console.log("connected to lobby.js");
-  var user ="hello";
+  var user ;
 $(document).ready(function(){
 
   $.get("/api/user_data").then(function(data) {
@@ -8,7 +8,7 @@ $(document).ready(function(){
       $(".member-email").text(data.email);
       $(".member-username").text(data.username);
     })
-    .then(function(user){
+    .then(function(){
       console.log("ajax put request 2");
     // console.log(move);
     $.ajax({
