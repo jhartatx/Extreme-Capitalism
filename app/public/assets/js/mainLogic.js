@@ -67,12 +67,10 @@ $(".dice-btn").click(function(){
 
 
 function rolldice() {
-  console.log("=====1=====");
   $.get("/checkactiveplayer").then(function(response){
-    console.log(response);
     //sets local variable to the active players current position
+    activePlayer = response[0];
     var currentLocation = response[0].pos_id;
-    console.log("currentlocation= "+currentLocation);
     //removes the icon where the player was
     $(".player"+activePlayer.user_id).remove();
 
@@ -84,7 +82,6 @@ function rolldice() {
 
     //combines die values
     var diceTotal = x + y;
-    console.log("dice roll= "+diceTotal);
     //add dice total to the users position prior to roll
     newPosition = currentLocation + diceTotal;
 
@@ -92,7 +89,6 @@ function rolldice() {
     if(newPosition > 40){
       newPosition -= 40;
     }
-    console.log("newPosition= "+newPosition);
     //changes players position on database, passing in the users new position
     // updateMove(newPosition);
 
@@ -119,27 +115,26 @@ function rolldice() {
 }
 
 function updateMove(newPosition) {
-  console.log("=====2=====");
+  console.log("NEW POSITION");
   console.log(newPosition);
+
   $.ajax({
       method: "PUT",
       url: "/playermove",
       data: {move:newPosition}
     }).done(function(){
+      console.log("ACTIVE PLAYER");
+      console.log(activePlayer);
       //update the image on the board
       imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
-      $("#p"+activePlayer.pos_id).append(imgPosition);
+      $("#p"+newPosition).append(imgPosition);
     });
     return newPosition;
 }
 
 async function checkPosition(newPosition){
-  console.log("=====3=====");
-  console.log(newPosition);
   var newData = await $.get("/checkcurrentplace/"+newPosition).then(function (data)
     {
-      console.log("DATA");
-      console.log(data);
         currentPosition = data[0];
 
 
