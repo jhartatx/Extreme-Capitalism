@@ -64,10 +64,12 @@ module.exports = function(app) {
   app.put("/addplayer", function(req, res){
     console.log(req.body);
     db.players.update({
-      user_name: req.body.user
+      user_name: req.body.user,
+      is_active:1
     },{where:{
       //need to clean this up
-        is_turn: 1
+        is_turn: 1,
+        is_active:0
       }
     }).then(function(results){
       res.end();
@@ -265,6 +267,23 @@ app.put("/player/:id/:position", function(req,res){
       //card functionality will then occur in here based on cha_id
       res.json(results);
       res.end();
+    });
+  });
+  app.put("/setplayerone", function(req, res){
+    console.log("====================================");
+    console.log("====================================");
+    console.log(req.body.user);
+    console.log("====================================");
+    console.log("====================================");
+    db.players.update({
+      is_turn:1
+    },{where:{
+      user_id:req.body.user
+      }
+    }).then(function(results){
+      res.end();
+      //property check function
+      //function based on property check
     });
   });
 };

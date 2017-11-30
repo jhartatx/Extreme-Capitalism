@@ -48,6 +48,14 @@ function setActive(){
     activePlayer = response[0];
     console.log("activeplayerSet");
     console.log(activePlayer);
+    if(activePlayer === undefined){
+      console.log("there is no active player!");
+      $.ajax({
+        method: "PUT",
+        url: "/setplayerone",
+        data: {user:1}
+      });
+    }
 });}
 setActive();
 
