@@ -10,7 +10,7 @@ var systemMessage;
 var dbl = 0;
 var newPosition;
 /*get request sent to api routes requesting */
-
+//yo yo what up dog?
 
 function playersInfo(){
   $.get("/checkplayers").then(function(response){
@@ -67,6 +67,7 @@ triggers on dice roll,
 //these functions trigger on the click of the dice button
 $(".dice-btn").click(function(){
   rolldice();
+
 });
 
 
@@ -101,7 +102,10 @@ function rolldice() {
     if (x == y) { //<----checking if there is a double
         dbl++; //<---increment double count
         if(dbl%3==0){
+
           dbl = 0;
+        }else{
+
         }
     }
     //emits results to all players on server
@@ -158,7 +162,7 @@ async function checkPosition(newPosition){
           $.get("/pullchance").then(function(response){
             var randomNumber = Math.floor(Math.random() * (response.length)+1);
             var randomChance = response[randomNumber-1];
-            // console.log(randomChance);
+            console.log(response);
             console.log(randomChance);
           });
           announceMessage("move", data);
@@ -170,7 +174,7 @@ async function checkPosition(newPosition){
           $.get("/pullcommunity").then(function(response){
             var randomNumber = Math.floor(Math.random() * (response.length)+1);
             var randomCommunity = response[randomNumber-1];
-            // console.log(randomCommunity);
+            console.log(response);
             // console.log(randomCommunity);
           });
           announceMessage("move", data);
@@ -309,6 +313,7 @@ function activeOn(current) {
     url: "/activeon",
     data: {current:current.active}
   }).then((status)=>{console.log(status.statuscode)});
+  return current;
 }
 function activeOff(previous) {
   console.log("=====3=====");
