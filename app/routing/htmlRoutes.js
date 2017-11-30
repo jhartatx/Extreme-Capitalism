@@ -13,6 +13,9 @@ var path = require("path");
 
 
 // Requiring our custom middleware for checking if a user is logged in
+
+
+//UNCOMMENT THIS BEFORE PUSHING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
@@ -20,7 +23,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/lobby");
+      res.redirect("/game");
     }
     res.sendFile(path.join(__dirname, "../public/registration.html"));
   });
@@ -35,11 +38,11 @@ module.exports = function(app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/lobby", isAuthenticated, function(req, res) {
+  app.get("/lobby",isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/lobby.html"));
   });
 
-    app.get("/game", isAuthenticated, function(req, res) {
+    app.get("/game", isAuthenticated,function(req, res) {
     res.sendFile(path.join(__dirname, "../public/game.html"));
   });
 

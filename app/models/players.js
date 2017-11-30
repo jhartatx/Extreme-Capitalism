@@ -22,6 +22,9 @@ user_id: {
   },
   user_image:{
     type: DataTypes.STRING
+  },
+  is_active:{
+    type:DataTypes.BOOLEAN
   }
 }, {
   timestamps: false
