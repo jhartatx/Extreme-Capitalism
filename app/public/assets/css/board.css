@@ -137,17 +137,18 @@ h1, h2, h3, h4, h5, h6 {
   color:black;
   border: 1px solid black;
   padding:5px 10px;
-  width:50%;
+  width:58.5%;
   font-size:8px;
-  margin:2% 16%;
+  margin:3% 0% 3% 12%;
   box-shadow: -4px 5px 20px #dbdbdb;
   transition:.3s ease-in-out;
 }
 
 .dice-btn:hover{
   background:none;
-  border: 1px solid #257EC2;
-  color:#257EC2;
+  border: 1px solid black;
+  color:white;
+  background:black;
   box-shadow: -4px 10px 10px #dbdbdb;
   transition:.3s ease-in-out;
   cursor:pointer;
@@ -167,6 +168,60 @@ h1, h2, h3, h4, h5, h6 {
 #dice-2 img{
   width:20%;
 
+}
+
+/* ---------------------------------------------- */
+/* end your turn btn */
+.end-btn{
+  grid-column: 3;
+  grid-row: 4;
+  margin-top:-41%;
+  margin-left:33%;
+  background:none;
+  color:#C50000;
+  border: 1px solid #C50000;
+  padding:5px 10px;
+  width:66.5%;
+  font-size:8px;
+  box-shadow: -4px 5px 20px #dbdbdb;
+  transition:.3s ease-in-out;
+}
+
+.end-btn:hover{
+  background:none;
+  border: 1px solid #C50000;
+  background:#C50000; 
+  color:white;
+  box-shadow: -4px 10px 10px #dbdbdb;
+  transition:.3s ease-in-out;
+  cursor:pointer;
+}
+
+/* ---------------------------------------------- */
+/* purchase button */
+.purchase-btn{
+  grid-column: 3;
+  grid-row: 5;
+  margin-top:-72%;
+  margin-left:33%;
+  background:none;
+  color:#41994e;
+  border: 1px solid #41994e;
+  padding:5px 10px;
+  width:66.5%;
+  font-size:8px;
+  box-shadow: -4px 5px 20px #dbdbdb;
+  transition:.3s ease-in-out;
+}
+
+.purchase-btn:hover{
+  background:none;
+  border: 1px solid #41994e;
+  background:#41994e; 
+  color:white;
+  box-shadow: -4px 10px 10px #dbdbdb;
+  transition:.3s ease-in-out;
+  cursor:pointer;
 }
 
 /* ================================================================================= */
