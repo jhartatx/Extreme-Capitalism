@@ -41,15 +41,13 @@ function playersInfo(){
 }
 playersInfo();
 
+
+//This function sets the turn to player one when the laster player logs in if it isn't already someones turn
 function setActive(){
   $.get("/checkactiveplayer").then(function(response){
-    console.log("=====================================================");
-    //sets global variable to active player in database
+
     activePlayer = response[0];
-    console.log("activeplayerSet");
-    console.log(activePlayer);
     if(activePlayer === undefined){
-      console.log("there is no active player!");
       $.ajax({
         method: "PUT",
         url: "/setplayerone",
@@ -63,11 +61,9 @@ setActive();
 
 
 /*==============================================================================
--------------------------Move the Active Player---------------------------------
+-------------------------Roll Dice----------------------------------------------
+triggers on dice roll,
 ===============================================================================*/
-
-
-
 //these functions trigger on the click of the dice button
 $(".dice-btn").click(function(){
   rolldice();
@@ -123,16 +119,12 @@ function rolldice() {
 }
 
 function updateMove(newPosition) {
-  console.log("NEW POSITION");
-  console.log(newPosition);
 
   $.ajax({
       method: "PUT",
       url: "/playermove",
       data: {move:newPosition}
     }).done(function(){
-      console.log("ACTIVE PLAYER");
-      console.log(activePlayer);
       //update the image on the board
       imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
       $("#p"+newPosition).append(imgPosition);
@@ -238,33 +230,71 @@ socket.on('roll', function(newPosition, x, y, systemMessage){
   }
 });
 
+/*==============================================================================
+-------------------------Purchase Property--------------------------------------
+===============================================================================*/
+$("#purchase").click(function(){
+  console.log("activePlayer");
+  console.log(activePlayer);
+   //sends money to the bank to purchase property
+    payBank(activePlayer);
+});
 
+function payBank(player){
+  $.get("/checkcurrentplace/"+player.pos_id).then(function(response){
+    console.log("done");
+  //   console.log("response");
+  //   console.log(response);
+    var location = response[0];
+    console.log(location);
+    //subtract cost of property from players account
+    // player.user_money -= location.rent;
+    // console.log(player.user_money);
+    //update database:players money, owner of tile
+    // updatePlayerInfo(player.user_money, player.user_id, location.pos_id);
+  });
+
+}
+
+function updatePlayerInfo(money, player, position) {
+  // console.log(money);
+  // console.log(player);
+  // console.log(position);
+  $.ajax({
+    method: "PUT",
+    url: "/player/"+player+"/"+position,
+    data: {money:money,
+    player:player}
+  })
+  .then(playersInfo())
+  .then(announceMessage("purchase"));
+}
 
 /*==============================================================================
 -------------------------Change the Active Player-------------------------------
 ===============================================================================*/
-
-
 
 $(".end-btn").click(function(){
   endTurn();
 });
 //Invoke this function when you want the next player to be "active"
 function endTurn(){
+  console.log("=====1=====");
   $.get("/checkactiveplayer").then(function(response){
     // console.log(response);
     // console.log(response[0]);
+    var players = {previous: response[0].user_id, active:response[0].user_id + 1};
     previousPlayer = response[0].user_id;
     activePlayer = response[0].user_id + 1;
     if(activePlayer === 5){
       activePlayer = 1;
     }
-
+      return players;
     //this is 80% operational but behind by one player
-  }).then(function (){
-    activeOn(activePlayer);
-  }).then(function(){
-    activeOff(previousPlayer);
+  }).then(function (players){
+    return activeOn(players);
+  }).then(function(players){
+    return activeOff(players);
   }).then(function(){
     setActive();
   }).then(function(){
@@ -272,19 +302,21 @@ function endTurn(){
   });
 }
 function activeOn(current) {
+  console.log("=====2=====");
   // console.log(current);
   $.ajax({
     method: "PUT",
     url: "/activeon",
-    data: {current:current}
-  });
+    data: {current:current.active}
+  }).then((status)=>{console.log(status.statuscode)});
 }
 function activeOff(previous) {
+  console.log("=====3=====");
   // console.log(previous);
   $.ajax({
     method: "PUT",
     url: "/activeoff",
-    data: {previous:previous}
+    data: {previous:previous.previous}
   });
 }
 /*==============================================================================
@@ -314,13 +346,8 @@ socket.on("players", function(p1Info, p2Info, p3Info, p4Info){
 /*==============================================================================
  ---------------------------------Transfer money--------------------------------
  ===============================================================================*/
- //use the variable "activePlayer" which was designed in the dice roll
 
- //player purchases property
-$("#purchase").click(function(){
-   //sends money to the bank to purchase property
-    payBank(currentPosition, activePlayer);
-});
+
 //transfer money from the active player to a single other player
 $("#payPlayers").click(function(){
   if(activePlayer.user_money >= currentPosition.rent){
@@ -331,26 +358,9 @@ $("#payPlayers").click(function(){
 });
 
 
-function payBank(position, player){
-  //subtract cost of property from players account
-  player.user_money -= position.rent;
-  //update database:players money, owner of tile
-  updatePlayerInfo(player.user_money, player.user_id, position.pos_id);
-}
+
 //makes a put request changing the player table and places table after property purchase
-function updatePlayerInfo(money, player, position) {
-  // console.log(money);
-  // console.log(player);
-  // console.log(position);
-  $.ajax({
-    method: "PUT",
-    url: "/player/"+player+"/"+position,
-    data: {money:money,
-    player:player}
-  })
-  .then(playersInfo())
-  .then(announceMessage("purchase"));
-}
+
 
 function payPlayer(position,player){}
 
@@ -533,6 +543,9 @@ socket.on("announcement", function(text){
   '</div>'+
   '<br>');
 $(".chat-history").append(systemMessage);
+//and target here to make scrollbar go to the bottom
+// $(".chat-history").scrollTop($(".chat-history").css("height"));
+
 });
 // display and hide modal content for EXIT GAME
 $("#end-game-btn").click(function (){

@@ -131,7 +131,13 @@ module.exports = function(app) {
         user_id: req.body.current
       }
     }).then(function(){
-      res.end();
+      var status={
+        status:"success",
+        statuscode:200,
+        message:"database updated sucessfully"
+      };
+      //check if this ends
+      res.send(status);
     }).catch(function(err){
       console.error(err);
     });
