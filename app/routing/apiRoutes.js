@@ -99,12 +99,27 @@ module.exports = function(app) {
       where:{
           is_turn: 1
         }
-    }).then(function(results) {
+    })
+    .then(function(results){
+      var activeCheck={
+        status:"success",
+        statuscode:200,
+        message:"database updated sucessfully"
+      };
+      //check if this ends
       res.json(results);
-      res.end();
-      // console.log(res.json(results));
+      res.send(activeCheck);
+    }).catch(function(err){
+      console.error(err);
     });
   });
+
+  //   .then(function(results) {
+  //     res.json(results);
+  //     res.end();
+  //     // console.log(res.json(results));
+  //   });
+  // });
 
   //pulls information of the current player
   app.put("/playermove", function(req, res){
@@ -131,13 +146,13 @@ module.exports = function(app) {
         user_id: req.body.current
       }
     }).then(function(){
-      var status={
+      var statusOn={
         status:"success",
         statuscode:200,
         message:"database updated sucessfully"
       };
       //check if this ends
-      res.send(status);
+      res.send(statusOn);
     }).catch(function(err){
       console.error(err);
     });
@@ -153,7 +168,13 @@ module.exports = function(app) {
           user_id: req.body.previous
         }
     }).then(function(){
-      res.end();
+      var statusOff={
+        status:"success",
+        statuscode:200,
+        message:"database updated sucessfully"
+      };
+      //check if this ends
+      res.send(statusOff);
     }).catch(function(err){
       console.error(err);
     });
@@ -174,6 +195,16 @@ app.put("/player/:id/:position", function(req,res){
     });
     })
     .then(function(){
+      res.end();
+    });
+});
+
+app.put("/freeparking/:id", function(req,res){
+  var  player = req.params.id;
+
+  db.players.update({user_money:req.body.money},
+    {where:{user_id:player}
+  }).then(function(){
       res.end();
     });
 });

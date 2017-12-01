@@ -72,8 +72,11 @@ io.on('connection', function(socket){
     //   console.log("___________DISCONNECTED____________________________");
     // console.log('user disconnected');
   });
-  socket.on('roll', function(newPos, x, y, systemMessage){
-    io.emit('roll', newPos, x, y, systemMessage);
+  socket.on('newPlayer', function(activePlayer){
+    io.emit('newPlayer', activePlayer);
+  });
+  socket.on('roll', function(newPos, x, y, systemMessage, imgPosition){
+    io.emit('roll', newPos, x, y, systemMessage, imgPosition);
   });
   socket.on('players', function(p1Info, p2Info, p3Info, p4Info){
     io.emit('players', p1Info, p2Info, p3Info, p4Info);
