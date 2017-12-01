@@ -19,7 +19,8 @@
   margin-left:7%;
   margin-right:-6%;
   border-radius:8px;
-
+  min-width: 245px;
+  max-width: 245px;
 }
 
 #game-rules-btn, #info-btn, #end-game-btn, #auction-house-btn{
@@ -407,3 +408,7 @@ user-btn i.active{
   background:green;
   transition:.2s ease-in-out;
 }
+
+
+
+
