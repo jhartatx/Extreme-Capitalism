@@ -77,6 +77,39 @@ module.exports = function(app) {
       //function based on property check
     });
   });
+
+  /*==============================================================================
+  ---------------------------  Property Populating -------------------------------
+  ===============================================================================*/
+  app.put("/city", function(req, res) {
+    var cityArray = req.body.array;
+    var dbArray = [2, 4, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 25, 27, 28, 30, 32, 33, 35, 38, 40, 6, 16, 26, 36];
+    for (var  i = 0; i < dbArray.length; i++) {
+       updateDB(dbArray[i], cityArray[i]);
+      //.then(function(results){
+      //   res.json(results);
+      //   res.end();
+      // });
+    }
+    //console.log(req.body.array[j]);
+    function updateDB(location, replacement){
+      db.places.update(
+        {name: replacement},
+        {where: {pos_id: location}}
+      );
+      // .then(function(res){
+      //   res.json(res);
+      //   res.end();
+      //   });
+      }
+  });
+  app.get("/property", function(req, res){
+  db.places.findAll({}).then(function(results){
+    res.json(results);
+    res.end();
+  });
+});
+
 /*==============================================================================
 ------------------------------PLAYERS DATABASE----------------------------------
 ===============================================================================*/
