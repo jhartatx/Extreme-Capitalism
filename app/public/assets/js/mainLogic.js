@@ -13,6 +13,7 @@ var updateInfo;
 var imgPosition;
 var x ;
 var y ;
+var transaction;
 /*get request sent to api routes requesting */
 //yo yo what up dog?
 
@@ -48,8 +49,6 @@ playersInfo();
 
 //This function sets the turn to player one when the laster player logs in if it isn't already someones turn
 function setActive(results){
-  console.log("set active Results");
-  console.log(results);
   $.get("/checkactiveplayer").then(function(response){
     activePlayer = response[0];
     if(activePlayer === undefined){
@@ -124,13 +123,8 @@ function rolldice() {
     return newPosition;
 }
 )
-//"put" the users location on players database
 .then((newPosition)=>updateMove(newPosition))
-//"get" the location's information from places database
-//information being passed here is considered undefined
 .then((newPosition)=>checkPosition(newPosition));
-//project message based on where user landed
-// .then((newData)=>announceMessage("move", newData));
 }
 
 function updateMove(newPosition) {
@@ -140,8 +134,6 @@ function updateMove(newPosition) {
       url: "/playermove",
       data: {move:newPosition}
     }).done(function(){
-
-      // imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
       socket.emit("roll", newPosition, x, y, systemMessage, imgPosition);
     });
     return newPosition;
@@ -155,16 +147,37 @@ async function checkPosition(newPosition){
 
         //player lands on unowned, purchaseable property
         if(currentPosition.c_owner === "bank" && currentPosition.rent != null){
-          // console.log("would you like to purchase this place?");
+          console.log("would you like to purchase this place?");
           announceMessage("move", data);
           //make the purchase button appear to the active player
         }
 
         //player lands on another players owned space
-        if(currentPosition.c_owner != "bank" && current.Position.c_owner!= activePlayer.user_id &&currentPosition.active === true){
-          console.log("YOU OWER PLAYER "+data[0].c_owner+"!");
-            //pay another player function
+        if(currentPosition.c_owner != "bank"){
+          //eventually check for active
+          if(currentPosition.c_owner!= activePlayer.user_id){
+            $.get("/calc/"+currentPosition.id_grp+"/"+currentPosition.c_owner).then(function(response){
+              transaction = ((currentPosition.rent*response.length)/2);
+              console.log("TRANSACTION");
+              console.log(transaction);
+
+
+              return transaction;})
+              .then(function(transaction){
+                console.log("TRANSACTION");
+                console.log(transaction);
+                $.get("/checkplayers")
+                .then((response)=>payPlayers(response));
+              });
+
+
+
+
+          }else{
+            console.log("YOU LANDED ON YOUR OWN PROPERTY");
             announceMessage("move", data);
+          }
+
         }
 
         //player lands on chance
@@ -212,21 +225,31 @@ function freeParking(newTotal) {
   .then(function(){
       playersInfo();
   });}
+
+  function payPlayers(response){
+    console.log("YOU OWE A PLAYER "+transaction+"!");
+    console.log(response);
+    var loss = response[activePlayer.user_id -1].user_money -= transaction;
+    var loser = response[activePlayer.user_id -1].user_name;
+    var gain = response[currentPosition.c_owner -1].user_money += transaction;
+    var winner = response[currentPosition.c_owner -1].user_name;
+    console.log("=====LOSS/GAIN=====");
+    console.log(loss);
+    console.log(gain);
+    var information ={loser:loser, winner:winner, amount:transaction};
+    announceMessage("owePlayer", information);
+    $.ajax({
+      method: "PUT",
+      url: "/playerPaysPlayer/"+activePlayer.user_id+"/"+currentPosition.c_owner,
+      data: {gain:gain, loss:loss}
+    });
+  }
 //socket listener logic.
 socket.on('newPlayer', function(checkedActive){
-  console.log("A New Player has been assigned");
   activePlayer = checkedActive;
-  console.log("================================");
-  console.log(activePlayer);
-  console.log("================================");
-  console.log(checkedActive);
-
 });
 socket.on('roll', function(newPosition, x, y, systemMessage, imgPosition){
-  console.log("================================");
-    console.log("================================");
-      console.log("ActivePlayer");
-  console.log(activePlayer);
+
   $(".player"+activePlayer.user_id).remove();
   imgPosition = $('<img class="player'+activePlayer.user_id+'"src="'+activePlayer.user_image+'">');
   // console.log(newPosition);
@@ -321,6 +344,13 @@ function endTurn(){
     if(players.active === 5){
       players.active = 1;
     }
+    var active = players.active;
+    var previous = players.previous;
+    console.log("===============================");
+    console.log("===============================");
+    console.log(active);
+    console.log(previous);
+    socket.emit("activeGreen", active, previous);
       return players;
     //this is 80% operational but behind by one player
   })
@@ -335,6 +365,7 @@ function endTurn(){
   // })
   .then(function(statusOff){
     announceMessage("turn", statusOff);
+
   });
 }
 function activeOn(current, statusCheck) {
@@ -361,6 +392,13 @@ function activeOff(previous, statusCheck) {
     data: {previous:previous.previous}
   });
 }
+socket.on("activeGreen", function(active, previous){
+    $(".user-"+active).css("background-color", "#41994e");
+    $(".user-"+previous).css("background-color","white");
+    $(".user-btn:hover").css("background-color", "#41994e");
+
+
+});
 /*==============================================================================
 -------------------------Pull Players Information-------------------------------
 ===============================================================================*/
@@ -368,6 +406,7 @@ function activeOff(previous, statusCheck) {
 
 
 socket.on("players", function(p1Info, p2Info, p3Info, p4Info){
+
   $("#user1Name").text(p1Info.user_name);
   $("#user1Piece").attr("src", p1Info.user_image);
   $("#user1Money").text(p1Info.user_money);
@@ -555,12 +594,16 @@ var currentBid = 0;      //A GLOBAL VARIABLE THAT SHOULD PROBABLY BE AT THE TOP
  ===============================================================================*/
 var text='<p>Oops, something went Wrong!</p>';
 function announceMessage(type, position){
-// console.log("=====4=====");
-//   console.log("activePlayer");
-//   console.log(activePlayer);
-//   console.log("position");
-//   console.log(position);
-//   console.log("announceMessage");
+console.log("=====4=====");
+  console.log("activePlayer");
+  console.log(activePlayer);
+  console.log("position");
+  console.log(position);
+  console.log("announceMessage");
+
+// var information ={loser:loser, winner:winner, amount:transaction};
+// announceMessage("owePlayer", information);
+
 if(type==="purchase"){
 
   text = '<p>'+position.activePlayer+' has purchased '+position.locationName+' for $'+position.cost+'!</p>';
@@ -576,6 +619,9 @@ if(type==="freeParking"){
 }
 if(type==="passingGo"){
   text = '<p>'+position.player+' earned $200 for Passing Go!</p>';
+}
+if(type==="owePlayer"){
+    text = '<p>'+position.loser+' owes '+position.winner +" $"+ position.amount+' for landing on their property!</p>';
 }
  socket.emit("announcement", text);
  // console.log(systemMessage);

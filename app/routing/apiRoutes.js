@@ -137,9 +137,6 @@ module.exports = function(app) {
   });
 
   app.put("/activeon", function(req, res){
-    console.log("current=============================================");
-    console.log(req.body.current);
-    console.log("====================================================");
     db.players.update({
       is_turn: 1
     },{where:{
@@ -159,9 +156,6 @@ module.exports = function(app) {
   });
 
   app.put("/activeoff",function(req, res){
-    console.log("previous============================================");
-    console.log(req.body.previous);
-    console.log("====================================================");
       db.players.update({
         is_turn: 0
       },{where:{
@@ -209,17 +203,63 @@ app.put("/freeparking/:id", function(req,res){
     });
 });
 
+app.get("/calc/:location/:player", function(req, res){
+  db.places.findAll({
+    where:{
+        id_grp: req.params.location,
+        c_owner: req.params.player
+      }
+  }).then(function(results){
+    res.json(results);
+    res.end();
+  });
+});
+
+
+// db.players.update({user_money:req.body.money},
+//   {where:{user_id:player}
+// })
+// .then(function(){
+//   db.places.update({c_owner: player},
+//     {where:{pos_id:position}
+//   });
+//   })
+//   .then(function(){
+//     res.end();
+//   });
+
+// $.ajax({
+//   method: "PUT",
+//   url: "/playerPaysPlayer/"+activePlayer.user_id+"/"+currentPosition.c_owner,
+//   data: {gain:gain, loss:loss}
+// });
+app.put("/playerPaysPlayer/:loser/:gain", function(req, res){
+  db.players.update({user_money:req.body.gain},
+  {where:{user_id:req.params.gain}
+  })
+//
+  //THIS PIECE DOESN"T FIRE
+//
+  .then(function(){
+    db.players.update({user_money:req.body.loss},
+    {where:{user_id:req.params.loss}
+    });
+  })
+  .then(function(){
+    res.end();
+  });
+
+});
+
+app.get("/checkplayers", function(req, res) {
+  db.players.findAll({}).then(function(results) {
+    res.json(results);
+    res.end();
+  });
+});
   /*============================================================================
   ------------------------------PLACES DATABASE---------------------------------
   =============================================================================*/
-  //localhost:8081/checkplaces pulls up locations on the board
-  // app.get("/checkplaces", function(req, res) {
-  //   db.places.findAll({}).then(function(results) {
-  //     res.json(results);
-  //     res.end();
-  //     // console.log(res.json(results));
-  //   });
-  // });
   app.get("/checkplaces", function(req, res) {
     db.places.findAll({}).then(function(results) {
       res.json(results);
@@ -264,16 +304,9 @@ app.put("/freeparking/:id", function(req,res){
   //sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullchance", function(req, res){
     db.chance_cards.findAll({
-      // where:{
-      //   // MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
-      //   cha_id: 2
-      // },
     }).then(function(results){
-      //card functionality will then occur in here based on cha_id
       res.json(results);
       res.end();
-      // res.json(results[0].card_text);
-      // res.json(results[0].card_value);
     });
   });
 
@@ -293,15 +326,9 @@ app.put("/freeparking/:id", function(req,res){
     });
   });
 
-//sends message to db requesting a chance card based on the cha_id of the card
   app.get("/pullcommunity", function(req, res){
     db.community_cards.findAll({
-      // where:{
-      //   //MATH.RANDOM function should pass a variable where the "2" currently is to pull up a card based on the cards id.
-      //   com_id: 2
-      // },
     }).then(function(results){
-      //card functionality will then occur in here based on cha_id
       res.json(results);
       res.end();
     });

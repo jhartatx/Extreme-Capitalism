@@ -84,6 +84,9 @@ io.on('connection', function(socket){
   socket.on('announcement', function(text){
     io.emit('announcement', text);
   });
+  socket.on('activeGreen', function(active, previous){
+    io.emit('activeGreen', active, previous);
+  });
 });
 
 //----------------------needs to be final line of server.js
