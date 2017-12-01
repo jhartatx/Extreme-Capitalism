@@ -1,5 +1,5 @@
 /* PIECES & POSITIONS ============================================================== */
-/* board posiion settings */
+/* board posiion settings */ 
 .row{
   margin-top:4%;
 }
@@ -114,6 +114,16 @@
   font-weight:bold;
   text-transform:uppercase;
   margin-bottom:1%;
+}
+
+.modal-content i{
+  font-size:22px;
+  padding:1%;
+}
+
+.modal-content ol li span{
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .modal-content p{
@@ -345,7 +355,6 @@ user-btn i.active{
 }
 
 /* ================================================================================= */
-
 /* ---------------------------------------------------------------------- */
 /*  */
 #p8{
@@ -355,11 +364,46 @@ user-btn i.active{
 }
 
 
-/*======================================================================================*/
-/*                       below is css for lobby.html
-/*------------------------------------------------------------------------------*/
 
-.playerInfo{
-  border: solid;
+/* =================================================================================== */
+/* AUCTION HOUSE SYTLING  ============================================================ */
 
+/* bid amoutn input field */
+#bidAmount{
+  border:1px solid black;
+  padding:10px;
+}
+
+/* post button */
+#post-btn{
+  border: 1px solid black;
+  color:black;
+  margin-top:3.5%;
+
+  width:20%;
+  padding: 7px 15px;
+  transition:.2s ease-in-out;
+}
+
+#post-btn:hover{
+  border: 1px solid black;
+  color:white;
+  background:black;
+  transition:.2s ease-in-out;
+}
+
+/* bid button */
+#bid-btn{
+  border: 1px solid green;
+  color:green;
+  margin-left:2%;
+  padding: 7px 15px;
+  transition:.2s ease-in-out;
+}
+
+#bid-btn:hover{
+  border: 1px solid green;
+  color:white;
+  background:green;
+  transition:.2s ease-in-out;
 }
