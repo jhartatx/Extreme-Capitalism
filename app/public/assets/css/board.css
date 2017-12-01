@@ -1,5 +1,5 @@
 /* ================================================================================= */
-/* General Page Settings */ 
+/* General Page Settings */
 body {
   background-image:url("../images/backgrounds/background-4.jpg");
   background-position: center;
@@ -205,8 +205,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-top:-72%;
   margin-left:33%;
   background:none;
-  color:#41994e;
-  border: 1px solid #41994e;
+  color:green;
+  border: 1px solid green;
   padding:5px 10px;
   width:66.5%;
   font-size:8px;
@@ -216,8 +216,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .purchase-btn:hover{
   background:none;
-  border: 1px solid #41994e;
-  background:#41994e; 
+  border: 1px solid green;
+  background:green; 
   color:white;
   box-shadow: -4px 10px 10px #dbdbdb;
   transition:.3s ease-in-out;
